@@ -1,0 +1,44 @@
+<h2>マイページ編集</h2>
+
+<div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+
+<%= attachment_image_tag current_member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
+
+<%= form_with(model: current_member, url:members_path(current_member),local:true) do |f|%>
+
+<%= f.attachment_field :profile_image %>
+</div>
+
+<div class="col-xs-4">
+
+<table class="table">
+    <tr>
+        <th><%= f.label :名前 %></th>
+　　　　<td><%= f.text_field :name, class:"form-control" %></td>
+　　</tr>
+　　<tr>
+　　    <th><%= f.label :ニックネーム %></th>
+　　　　<td><%= f.text_field :nickname, class:"form-control" %></td>
+　　</tr>　
+　　<tr>
+　　    <th><%= f.label :メールアドレス %></th>
+　　　　<td><%= f.email_field :email, class:"form-control" %></td>
+　　</tr>
+　　<tr>
+　　    <th><%= f.label :プロフィール %></th>
+　　    <td><%= f.text_area :profile, class:"form-control" %></td>
+　　</tr>
+</table>
+
+
+  <div class="text-right">
+<%= f. submit '更新' %>
+</div>
+
+<% end %>
+</div>
+
+<div class="col-xs-2"></div>
+</div>
