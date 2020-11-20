@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_062533) do
+ActiveRecord::Schema.define(version: 2020_11_20_064443) do
+
+  create_table "categories", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "category_name"
+    t.string "room_layout_name"
+    t.string "room_image_name"
+    t.string "room_genre_name"
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id", "room_id"], name: "index_favorites_on_member_id_and_room_id", unique: true
+    t.index ["member_id"], name: "index_favorites_on_member_id"
+    t.index ["room_id"], name: "index_favorites_on_room_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "item_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +50,31 @@ ActiveRecord::Schema.define(version: 2020_11_16_062533) do
     t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_image_id"
+    t.boolean "is_deleted", default: false
+    t.text "profile"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "category"
+    t.string "size"
+    t.text "production"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
