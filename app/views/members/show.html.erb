@@ -1,43 +1,46 @@
-<h2><%= current_member.nickname %></h2>
+<h2><%= @member.nickname %></h2>
 
-<%= render 'follow_form' if logged_in? %>
+<%= render 'follow_form', member: @member %>
 
 <div class="row">
     <div class="col-xs-4">
 
 
 <div class="text-center">
- <div class="member-image"><%= attachment_image_tag current_member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+ <div class="member-image"><%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
 </div>
 <br>
 <table class="table">
 <tr><th>ニックネーム</th>
-    <td><div class="member-name"><%= current_member.nickname %></div></td>
+    <td><div class="member-name"><%= @member.nickname %></div></td>
 </tr>
 <tr>
     <th>プロフィール</th>
-    <td><div class="member-profile"><%= current_member.profile %></div></td>
+    <td><div class="member-profile"><%= @member.profile %></div></td>
 </tr>
 <tr>
-    <th></th>
     <td>
+ 
         <% @member ||= current_member %>
-        <div class="follow-followed">
+        <div class="follow_followed">
             <a href="<%= following_member_path(@member) %>">
-                <strong id="following" class="follow-followed"><%= @member.following.count %></strong>
+                <strong id="following" class="follow_followed"><%= @member.following.count %></strong>
                 フォロー
             </a>
+            
+            </td>
+            <td>
             <a href="<%= followers_member_path(@member) %>">
-                <strong id="followers" class="follow-followed"><%= @member.followers.count %></strong>
-                フォローワー
+                <strong id="followers" class="follow_followed"><%= @member.followers.count %></strong>
+                フォロワー
             </a>
         </div>
     </td>
 </tr>
 
 </table>
-<%= link_to "編集する", edit_members_path(current_member) %>
-<%= link_to "パスワードを変更する", members_path(current_member) %>
+<%= link_to "編集する", edit_member_path(@member.id) %>
+<%= link_to "パスワードを変更する", member_path(@member.id) %>
 
 </div>
 

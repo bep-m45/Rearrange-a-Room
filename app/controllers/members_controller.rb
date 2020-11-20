@@ -1,28 +1,32 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!
-
+   def index
+   end
 
   def show
+   @member = Member.find(params[:id])
 
   end
 
   def edit
+   @member = Member.find(params[:id])
 
   end
 
   def update
-   current_member.update(member_params)
-   redirect_to members_path(current_member)
+   @member = Member.find(params[:id])
+   @member.update(member_params)
+   redirect_to member_path(@member.id)
 
   end
 
   def create
 
   end
-
-
-  def index
+  
+  def following
   end
+ 
 
    private
   def member_params
