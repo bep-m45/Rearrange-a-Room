@@ -1,5 +1,6 @@
-
 <h2><%= current_member.nickname %></h2>
+
+<%= render 'follow_form' if logged_in? %>
 
 <div class="row">
     <div class="col-xs-4">
@@ -19,7 +20,19 @@
 </tr>
 <tr>
     <th></th>
-<td><div class="follow-followed"></div>0フォロー　０フォロワー</td>
+    <td>
+        <% @member ||= current_member %>
+        <div class="follow-followed">
+            <a href="<%= following_member_path(@member) %>">
+                <strong id="following" class="follow-followed"><%= @member.following.count %></strong>
+                フォロー
+            </a>
+            <a href="<%= followers_member_path(@member) %>">
+                <strong id="followers" class="follow-followed"><%= @member.followers.count %></strong>
+                フォローワー
+            </a>
+        </div>
+    </td>
 </tr>
 
 </table>
