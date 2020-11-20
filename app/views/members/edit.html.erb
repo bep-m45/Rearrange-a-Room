@@ -4,9 +4,9 @@
     <div class="col-xs-2"></div>
     <div class="col-xs-4">
 
-<%= attachment_image_tag current_member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
+<%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
 
-<%= form_with(model: current_member, url:members_path(current_member),local:true) do |f|%>
+<%= form_with(model: @member, url:members_path(current_member),local:true) do |f|%>
 
 <%= f.attachment_field :profile_image %>
 </div>

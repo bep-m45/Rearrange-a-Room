@@ -1,9 +1,17 @@
-<% unless current_member?(@member) %>
+<% if member != current_member %>
   <div id="follow_form">
-  <% if current_member.following?(@member) %>
-    <%= render 'unfollow' %>
+  <% if current_member.following?(member) %>
+  <%= form_for(current_member.active_relationships.find_by(followed_id: member.id), html: { method: :delete }) do |f| %>
+  <%= f.submit "Unfollow", class: "btn" %>
+<% end %>
+    
   <% else %>
-    <%= render 'follow' %>
+   
+   <%= form_for(current_member.active_relationships.build) do |f| %>
+  <div><%= hidden_field_tag :followed_id, member.id %></div>
+  <%= f.submit "Follow", class: "btn btn-primary" %>
+<% end %>
+   
   <% end %>
   </div>
 <% end %>

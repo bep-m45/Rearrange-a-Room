@@ -15,13 +15,8 @@ ActiveRecord::Schema.define(version: 2020_11_20_064443) do
   create_table "categories", force: :cascade do |t|
     t.integer "item_id"
     t.string "category_name"
-    t.string "room_layout_name"
-    t.string "room_image_name"
-    t.string "room_genre_name"
-    t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "favorites", force: :cascade do |t|
