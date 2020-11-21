@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 2020_11_20_064443) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer "member_id"
-    t.integer "category"
     t.string "size"
     t.text "production"
     t.string "image_id"

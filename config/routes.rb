@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
+  root to: 'homes#home'
+  get 'homes/about' => 'homes#about'
 
-  resources :members, only:[:index, :edit, :show, :update] do
-    member do
-      get :following, :followers
-    end
-  end
-
+  
+   devise_for :members ,controllers: {
+    sessions: 'members/sessions',
+    registrations: 'members/registrations'
+  }
   resources :rooms
   resources :relationships, only: [:create, :destroy]
 
-  devise_for :members ,controllers: {
-    sessions: 'members/sessions',
-    registrations: 'members/registrations',
-  }
-
+ 
+  resources :members, only:[:index, :edit, :show, :update]  do
+         member do
+           get :following,:followers
+         end
+       end
 
 
 

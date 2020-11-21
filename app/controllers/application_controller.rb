@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource
       when Member
-        members_path(current_member)
+        member_path(current_member)
     end
   end
 

@@ -1,46 +1,12 @@
 <h2><%= @member.nickname %></h2>
 
-<%= render 'follow_form', member: @member %>
+
 
 <div class="row">
     <div class="col-xs-4">
 
+<%= render 'follow_form', member: @member %>
 
-<div class="text-center">
- <div class="member-image"><%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
-</div>
-<br>
-<table class="table">
-<tr><th>ニックネーム</th>
-    <td><div class="member-name"><%= @member.nickname %></div></td>
-</tr>
-<tr>
-    <th>プロフィール</th>
-    <td><div class="member-profile"><%= @member.profile %></div></td>
-</tr>
-<tr>
-    <td>
- 
-        <% @member ||= current_member %>
-        <div class="follow_followed">
-            <a href="<%= following_member_path(@member) %>">
-                <strong id="following" class="follow_followed"><%= @member.following.count %></strong>
-                フォロー
-            </a>
-            
-            </td>
-            <td>
-            <a href="<%= followers_member_path(@member) %>">
-                <strong id="followers" class="follow_followed"><%= @member.followers.count %></strong>
-                フォロワー
-            </a>
-        </div>
-    </td>
-</tr>
-
-</table>
-<%= link_to "編集する", edit_member_path(@member.id) %>
-<%= link_to "パスワードを変更する", member_path(@member.id) %>
 
 </div>
 
