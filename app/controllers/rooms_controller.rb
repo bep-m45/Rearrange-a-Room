@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     @room.update(room_params)
-    redirect_to member_path(current_member)
+    redirect_to member_path(current_member.id)
   end
   
   def destroy
@@ -41,7 +41,7 @@ class RoomsController < ApplicationController
 
  private
   def room_params
-  params.require(:room).permit(:member_id, :size, :production)
+  params.require(:room).permit(:member_id, :size, :production, :image,  :room_layout_id, :room_genre_id, :room_image_id)
   end
 end
 

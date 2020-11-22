@@ -6,6 +6,10 @@ class MembersController < ApplicationController
 
   def show
    @member = Member.find(params[:id])
+   @rooms = current_member.rooms
+  
+   
+
 
   end
 
@@ -18,7 +22,6 @@ class MembersController < ApplicationController
    @member = Member.find(params[:id])
    @member.update(member_params)
    redirect_to member_path(@member.id)
-
   end
 
   def create

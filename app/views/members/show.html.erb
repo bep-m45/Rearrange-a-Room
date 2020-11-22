@@ -10,5 +10,29 @@
 
 </div>
 
-<div class="col-xs-8"></div>
+<div class="col-xs-8">
+    
+<% @rooms.each do |room| %>
+<br>
+<%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "200x200" %></td>
+<table class="table">
+    <tr>
+      <td><%= room.created_at %></td>
+    </tr>
+    <tr>
+      <td>X良いね　Xコメント</td>
+    </tr>
+    <td>リビング</td>
+    <tr>
+  </table>
+  
+  <% if room.member == current_member %>
+     <%= link_to '編集', edit_room_path(room.id) %>
+     <%= link_to '削除', room_path(room.id), method: :delete, data: {confirm: "Are you sure?"} %>
+           
+  <% end %>
+ <% end %>
+  
+    
+</div>
 </div>

@@ -1,4 +1,4 @@
-<h2>マイページ編集</h2>
+<h2>MY PAGE EDIT</h2>
 
 <div class="row">
     <div class="col-xs-2"></div>
@@ -6,7 +6,7 @@
 
 <%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
 
-<%= form_with(model: @member, url:members_path(current_member),local:true) do |f|%>
+<%= form_with model: @member, url: member_path, local:true do |f|%>
 
 <%= f.attachment_field :profile_image %>
 </div>

@@ -1,4 +1,4 @@
-<h2>投稿一覧</h2>
+<h2>ROOMS</h2>
 <% @rooms.each do |room| %>
 <%= attachment_image_tag room.member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "80x80" %></td>
 <%= room.member.nickname %>

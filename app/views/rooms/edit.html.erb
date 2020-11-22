@@ -1,4 +1,4 @@
-<h2>投稿編集画面</h2>
+<h2>ROOM EDIT</h2>
 
 <div class="row">
     <div class="col-xs-2"></div>
@@ -16,7 +16,7 @@
 <table class="table">
     <tr>
         <th>間取り</th>
-        <td><%#= f.collection_select :category_id, Category.all, :id,:room_layout_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+        <td><%= f.collection_select :room_layout_id, RoomLayout.all, :id,:layout_name,{prompt: "--選択してください--"},class: "form-control" %></td>
     </tr>
     <tr>
         <th>広さ</th>
@@ -24,11 +24,11 @@
     </tr>
     <tr>
         <th>部屋の種類</th>
-        <td><%#= f.collection_select :category_id, Category.all, :id,:room_genre_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+        <td><%= f.collection_select :room_genre_id, RoomGenre.all, :id,:genre_name,{prompt: "--選択してください--"},class: "form-control" %></td>
     </tr>
     <tr>
         <th>イメージ</th>
-        <td><%#= f.collection_select :category_id, Category.all, :id,:room_image_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+        <td><%= f.collection_select :room_image_id, RoomImage.all, :id,:image_name,{prompt: "--選択してください--"},class: "form-control" %></td>
     </tr>
       <tr>
           <th>Roomのコメント</th>
