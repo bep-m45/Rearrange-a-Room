@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RearrangeARoom</title>
+    <title>Rearrange_a_Room</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,30 @@
   </head>
 
   <body>
+    <header>
+          <div class="header">
+        <div class="logo"></div>
+        
+        <div class="header-list">
+            <nav>
+              <ul>
+                <% if member_signed_in? %>
+                  <li class="header-list-item"><%= link_to "TOP", root_path, class: "btn-primary" %></button></li>
+                  <li class="header-list-item"><%= link_to "POST", new_room_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "MY PAGE", member_path(current_member), class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "ROOMS", rooms_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "USUERS", members_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "SIGN OUT", destroy_member_session_path, method: :delete, class: "btn-primary" %></li>
+                <% else %>
+                  <li class="header-list-item"><%= link_to "TOP", root_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "ABOUT", homes_about_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "SIGN UP", new_member_registration_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "SIGN IN", new_member_session_path, class: "btn-primary"  %></li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+    </header>
     <main>
       <div class="container">
         

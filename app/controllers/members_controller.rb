@@ -1,10 +1,15 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!
    def index
+     @members = Member.all
    end
 
   def show
    @member = Member.find(params[:id])
+   @rooms = current_member.rooms
+  
+   
+
 
   end
 
@@ -17,7 +22,6 @@ class MembersController < ApplicationController
    @member = Member.find(params[:id])
    @member.update(member_params)
    redirect_to member_path(@member.id)
-
   end
 
   def create
@@ -25,8 +29,17 @@ class MembersController < ApplicationController
   end
   
   def following
+   @member  = Member.find(params[:id])
+   @members = @member.following.paginate(page: params[:page])
+   render 'following'
   end
  
+ 
+ def followers
+    @member  = Member.find(params[:id])
+    @members = @member.followers.paginate(page: params[:page])
+    render 'followers'
+ end
 
    private
   def member_params

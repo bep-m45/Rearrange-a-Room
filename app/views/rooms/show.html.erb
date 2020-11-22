@@ -1,2 +1,54 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<h2>Show</h2>
+
+<div class="row">
+    <div class="col-xs-2"></div>
+    
+    <div class="col-xs-4">
+        <%= attachment_image_tag @member, :profile_image, :limit, 80, 80, fallback: "no_image.jpg",size: "80x80" %>
+            <%= @member.nickname %>
+            
+<%= attachment_image_tag @room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
+
+<table class="table">
+        <tr>
+            <td><%= @room.created_at %></td>
+            <td>X良いね　Xコメント</td>
+        </tr>
+</table>
+
+</div>
+
+<div class="row">
+<div class="col-xs-4">
+    
+<table class="table">
+    <tr>
+        <th>間取り</th>
+        <td><%#= @room.room_layout.layout_name %></td>
+    </tr>
+    <tr>
+        <th>広さ</th>
+        <td><%#= @room.size %>畳</td>
+    </tr>
+    <tr>
+        <th>部屋の種類</th>
+    <td>リビング</td>
+    </tr>
+    <tr>
+        <th>イメージ</th>
+        <td>ナチュラル</td>
+    </tr>
+    <tr>
+    <th>説明</th>
+    <td><%= @room.production %></td>
+    </tr>
+</table>
+
+<div class="text-right">
+<%= link_to "編集する", edit_room_path(@room.id) %>
+</div>
+
+</div>
+
+<div class="col-xs-2"></div>
+</div>
