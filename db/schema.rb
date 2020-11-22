@@ -12,6 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2020_11_21_100746) do
 
+  create_table "categories", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "category_name"
+    t.string "room_layout_name"
+    t.string "room_image_name"
+    t.string "room_genre_name"
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.integer "member_id"
     t.integer "room_id"
@@ -75,12 +87,10 @@ ActiveRecord::Schema.define(version: 2020_11_21_100746) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer "member_id"
+    t.integer "category"
     t.string "size"
     t.text "production"
     t.string "image_id"
-    t.integer "room_layout_id"
-    t.integer "room_image_id"
-    t.integer "room_genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
