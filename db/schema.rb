@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_20_064443) do
-
-  create_table "categories", force: :cascade do |t|
-    t.integer "item_id"
-    t.string "category_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2020_11_21_100746) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "member_id"
@@ -62,12 +55,32 @@ ActiveRecord::Schema.define(version: 2020_11_20_064443) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "room_genres", force: :cascade do |t|
+    t.string "genre_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "room_images", force: :cascade do |t|
+    t.string "image_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "room_layouts", force: :cascade do |t|
+    t.string "layout_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.integer "member_id"
-    t.integer "category"
     t.string "size"
     t.text "production"
     t.string "image_id"
+    t.integer "room_layout_id"
+    t.integer "room_image_id"
+    t.integer "room_genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
