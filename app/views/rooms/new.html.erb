@@ -7,16 +7,18 @@
 <%= attachment_image_tag @room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
 
 <%= form_with model: @room, local: true do |f|%>
-
-<%= f.attachment_field :image %>
 </div>
 
 <div class="col-xs-4">
 
 <table class="table">
     <tr>
+        <th>イメージ</th>
+        <td><%= f.attachment_field :image %></td>
+        </tr>
+        <tr>
         <th>間取り</th>
-        <td><%= f.collection_select :room_layout_id, RoomLayout.all, :id,:layout_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+        <td><%= f.collection_select :room_layout_id, RoomLayout.all, :id, :layout_name, {prompt: "--選択してください--"},class: "form-control" %></td>
     </tr>
     <tr>
         <th>広さ</th>
@@ -24,18 +26,18 @@
     </tr>
     <tr>
         <th>部屋の種類</th>
-        <td><%= f.collection_select :room_genre_id, RoomGenre.all, :id,:genre_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+        <td><%= f.collection_select :room_genre_id, RoomGenre.all, :id, :genre_name, {prompt: "--選択してください--"},class: "form-control" %></td>
     </tr>
     <tr>
         <th>イメージ</th>
-        <td><%= f.collection_select :room_image_id, RoomImage.all, :id,:image_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+        <td><%= f.collection_select :room_image_id, RoomImage.all, :id,:image_name, {prompt: "--選択してください--"},class: "form-control" %></td>
     </tr>
       <tr>
           <th>Roomのコメント</th>
           <td><%= f.text_area :production, class:"form-control" %></td>
       </tr>
      <tr>
-     <th>参考ページ</th>
+     <th>参考</th>
      <td></td>
      </tr>
 </table>

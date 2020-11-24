@@ -12,9 +12,12 @@
   <tbody>
     <% @members.each do |member| %>
     <tr>
-      <td><%= attachment_image_tag member, :profile_image, :limit, 50, 50, fallback: "no_image.jpg",size: "100x100" %></td>
-      <td><%= member.nickname %></td>
-      <td><% member.profile %></td>
+      
+      <td><%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg",size: "100x100"), member_path(member.id) %></td>
+    
+      <td><%= link_to member.nickname, member_path(member.id) %></td>
+      
+      <td><%= member.profile %></td>
       <td>
         <a href="<%= followers_member_path(member.id) %>">
                 <strong id="followers" class="follow_followed"><%= member.followers.count %></strong>

@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
   def create
-    member = member.find(params[:followed_id])
+    member = Member.find(params[:followed_id])
     current_member.follow(member)
     redirect_to member
   end

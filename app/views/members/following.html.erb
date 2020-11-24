@@ -23,11 +23,10 @@
       <tbody>
     <% @members.each do |member| %>
       <tr>
-        <td><li><%= link_to attachment_image_tag(member, :profile_image, :fill, 20, 20, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg"), user_path(@user.id) %></li>
-            <li>followed</li>
-            <li><%=link_to member.following.count, following_member_path(member) %></li>
-            <li> followers</li>
-            <li><%=link_to member.followers.count, followers_member_path(member) %></li>
+        <td><%= link_to attachment_image_tag(member, :profile_image, :fill, 20, 20, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "80x80"), member_path(member.id) %>
+      
+           フォロワー
+           <%=link_to member.followers.count, followers_member_path(member) %>
         </td>
         <td><%= link_to member.nickname, member_path(member) %></td>
         <td><%= member.profile %></td>
