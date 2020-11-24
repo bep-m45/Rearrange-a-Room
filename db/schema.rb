@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_21_100746) do
+ActiveRecord::Schema.define(version: 2020_11_23_055436) do
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "room_id"
+    t.integer "member_id", null: false
+    t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id", "room_id"], name: "index_favorites_on_member_id_and_room_id", unique: true
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 2020_11_21_100746) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "room_comments", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "room_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "room_genres", force: :cascade do |t|

@@ -1,10 +1,12 @@
 class RoomsController < ApplicationController
   def index
     @rooms = Room.all
+   
   end
 
   def new
     @room = Room.new
+    
   end
 
   def create
@@ -17,6 +19,8 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @member = @room.member
+    @room_comment = RoomComment.new
+    @room_comments = @room.room_comments
   end
 
   def edit
@@ -34,10 +38,6 @@ class RoomsController < ApplicationController
      @member.destroy
     redirect_to member_path(current_member)
   end  
-
-
-
-
 
  private
   def room_params

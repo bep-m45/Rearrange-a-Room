@@ -1,17 +1,20 @@
+<div class="plofile-container">
 <% if member != current_member %>
   <div id="follow_form">
   <% if current_member.following?(member) %>
+  <div class="block-center">
   <%= form_for(current_member.active_relationships.find_by(followed_id: member.id), html: { method: :delete }) do |f| %>
-  <%= f.submit "Unfollow", class: "btn" %>
+  </div>
+  <%= f.submit "フォロー中", class: "btn" %>
 <% end %>
-    
+
   <% else %>
-   
+
    <%= form_for(current_member.active_relationships.build) do |f| %>
   <div><%= hidden_field_tag :followed_id, member.id %></div>
-  <%= f.submit "Follow", class: "btn btn-primary" %>
+  <%= f.submit "", class: "btn btn-primary" %>
 <% end %>
-   
+
   <% end %>
   </div>
 <% end %>
@@ -21,7 +24,7 @@
 </div>
 <br>
 <table class="table">
-<tr><th>ニックネーム</th>
+<tr><th>名前</th>
     <td><div class="member-name"><%= @member.nickname %></div></td>
 </tr>
 <tr>
@@ -30,14 +33,14 @@
 </tr>
 <tr>
     <td>
- 
+
         <% @member ||= current_member %>
         <div class="follow_followed">
             <a href="<%= following_member_path(@member) %>">
                 <strong id="following" class="follow_followed"><%= @member.following.count %></strong>
                 フォロー
             </a>
-            
+
             </td>
             <td>
             <a href="<%= followers_member_path(@member) %>">
@@ -51,3 +54,4 @@
 </table>
 <%= link_to "編集する", edit_member_path(@member.id) %>
 <%= link_to "パスワードを変更する", member_path(@member.id) %>
+</div>
