@@ -5,31 +5,47 @@
   <div class="block-center">
   <%= form_for(current_member.active_relationships.find_by(followed_id: member.id), html: { method: :delete }) do |f| %>
   </div>
-  <%= f.submit "フォロー中", class: "btn" %>
+  <%= f.submit "フォロー中" %>
 <% end %>
 
   <% else %>
 
    <%= form_for(current_member.active_relationships.build) do |f| %>
   <div><%= hidden_field_tag :followed_id, member.id %></div>
-  <%= f.submit "", class: "btn btn-primary" %>
+  <%= f.submit "フォロー"%>
 <% end %>
 
   <% end %>
   </div>
 <% end %>
 
+
+<% unless member.id == current_member.id %>
+  <%# if (current_member.followed_by? @member) && (@member.followed_by? current_member)  %>
+  <% if @is_chat == true %>
+    <p class="member-show-room"><a href="/chats/<%= @chat_id %>">チャットへ</a>
+  <% else %>
+    <%= form_for @chat do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :member_id, value: member.id %>
+      <% end %>
+      <%= f.submit "チャットを始める"%>
+    <% end %>
+  <% end %>
+<% end %>
+
+
 <div class="text-center">
- <div class="member-image"><%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+ <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
 </div>
 <br>
 <table class="table">
 <tr><th>名前</th>
-    <td><div class="member-name"><%= @member.nickname %></div></td>
+    <td><div class="member-name"><%= member.nickname %></div></td>
 </tr>
 <tr>
     <th>プロフィール</th>
-    <td><div class="member-profile"><%= @member.profile %></div></td>
+    <td><div class="member-profile"><%= member.profile %></div></td>
 </tr>
 <tr>
     <td>

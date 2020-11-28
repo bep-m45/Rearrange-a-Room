@@ -6,12 +6,26 @@ class MembersController < ApplicationController
 
   def show
    @member = Member.find(params[:id])
-   @rooms = @member.rooms
-   
-    # favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
-    # @favorite_list = Post.find(favorites)  
-
+   @rooms= @member.rooms
+   @current_member_entry = Entry.where(member_id: current_member.id)
+   @member_entry = Entry.where(member_id: @member.id)
+   unless @member.id == current_member.id
+    @current_member_entry.each do |cu|
+     @member_entry.each do |u|
+     if cu.chat_id == u.chat_id then
+      @is_chat = true
+      @chat_id = cu.chat_id
+     end
+    end
+   end
+   if @is_chat
+   else
+    @chat = Chat.new
+    @entry = Entry.new
+   end
+   end
   end
+
 
   def edit
    @member = Member.find(params[:id])
@@ -27,24 +41,22 @@ class MembersController < ApplicationController
   def create
 
   end
-  
+
   def following
    @member  = Member.find(params[:id])
    @members = @member.following.paginate(page: params[:page])
    render 'following'
   end
- 
- 
+
+
  def followers
     @member  = Member.find(params[:id])
     @members = @member.followers.paginate(page: params[:page])
     render 'followers'
  end
 
-   private
+  private
   def member_params
   params.require(:member).permit(:name, :nickname, :email, :profile_image, :profile )
   end
 end
-
-

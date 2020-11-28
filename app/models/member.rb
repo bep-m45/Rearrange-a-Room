@@ -12,6 +12,8 @@ class Member < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :favorites, dependent: :destroy
   has_many :room_comments, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :entres, dependent: :destroy
   
   def follow(other_member)
     active_relationships.create(followed_id: other_member.id)

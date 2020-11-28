@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_055436) do
+ActiveRecord::Schema.define(version: 2020_11_26_042312) do
 
-  create_table "categories", force: :cascade do |t|
-    t.integer "item_id"
-    t.string "category_name"
-    t.string "room_layout_name"
-    t.string "room_image_name"
-    t.string "room_genre_name"
-    t.string "ancestry"
+  create_table "chats", force: :cascade do |t|
+    t.integer "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "chat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -55,6 +56,14 @@ ActiveRecord::Schema.define(version: 2020_11_23_055436) do
     t.text "profile"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "chat_id"
+    t.integer "member_id"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -95,10 +104,12 @@ ActiveRecord::Schema.define(version: 2020_11_23_055436) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer "member_id"
-    t.integer "category"
     t.string "size"
     t.text "production"
     t.string "image_id"
+    t.integer "room_layout_id"
+    t.integer "room_image_id"
+    t.integer "room_genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

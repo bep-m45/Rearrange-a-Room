@@ -13,7 +13,7 @@
     <% @members.each do |member| %>
     <tr>
       
-      <td><%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg",size: "100x100"), member_path(member.id) %></td>
+      <td><%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), member_path(member.id) %></td>
     
       <td><%= link_to member.nickname, member_path(member.id) %></td>
       
