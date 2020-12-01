@@ -1,0 +1,35 @@
+<h2>会員一覧</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th>ニックネーム（名前）</th>
+      <th>プロフィール</th>
+      <th>フォロワー数</th>
+      <th>ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @members.each do |member| %>
+    <tr>
+      <td><%= member.id %></td>
+      <td><%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), member_path(member.id) %></td>
+
+      <td><%= link_to member.nickname, member_path(member.id) %>（<%= member.name %>）</td>
+
+      <td><%= text_url_to_link(h(member.profile)).html_safe %></td>
+      <td>
+        <a href="<%= followers_member_path(member.id) %>">
+                <strong id="followers" class="follow_followed"><%= member.followers.count %></strong>
+                フォロワー
+         </a>
+      </td>
+      <td><%= member.is_deleted %></td>
+      <td><%= link_to '編集', edit_admins_member_path(member.id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

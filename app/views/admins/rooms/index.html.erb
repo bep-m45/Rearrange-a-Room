@@ -1,0 +1,27 @@
+<h2>投稿一覧</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th>説明</th>
+      <th>いいね数 / コメント数</th>
+      <th>投稿者</th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
+    <tr>
+      <td><%= room.id%></td>
+      <td><%= link_to (attachment_image_tag room, :image, :limit, 50, 50, fallback: "no_image.jpg", size: "100x100"), room_path(room.id) %></td>
+      <td><%= text_url_to_link(h(room.production)).html_safe %></td>
+      <td><%= room.favorites.count %> <%= room.room_comments.count %></td>
+      <td><%= link_to room.member.nickname, member_path(room.member.id) %></td>
+      <td><%= link_to '詳細', admins_room_path(room.id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

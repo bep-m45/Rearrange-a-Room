@@ -1,4 +1,8 @@
-
+<% if flash[:notice] %>
+   <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+<% end %>
 <h2><%= @member.nickname %> PAGE</h2>
 
 
@@ -7,7 +11,6 @@
     <div class="col-xs-4">
 
 <%= render 'follow_form', member: @member %>
-
 
 </div>
 
@@ -27,8 +30,9 @@
   <% if room.member == current_member %>
      <%= link_to '編集', edit_room_path(room.id) %>
      <%= link_to '削除', room_path(room.id), method: :delete, data: {confirm: "Are you sure?"} %>
-
   <% end %>
+ 
+   
   </div>
  <% end %>
  </div>

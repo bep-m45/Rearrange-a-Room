@@ -1,4 +1,18 @@
+<% if flash[:notice] %>
+   <div class="flash">
+        <%= flash[:notice] %>
+   </div>
+<% end %>
 <h2>NEW</h2>
+
+      <% if @room.errors.any? %>
+            <h5><%= pluralize(@room.errors.count, "error") %> prohibited this product from being saved:</h5>
+  <div class="alert alert-warning">
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <%end %>
 
 <div class="row">
     <div class="col-xs-2"></div>
@@ -37,9 +51,7 @@
           <td><%= f.text_area :production, class:"form-control" %></td>
       </tr>
      <tr>
-     <th>参考</th>
-     <td></td>
-     </tr>
+    
 </table>
 
 <div class="text-right">

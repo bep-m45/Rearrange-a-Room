@@ -16,3 +16,20 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+    $('.hamburger').click(function() {
+        $(this).toggleClass('active');
+ 
+        if ($(this).hasClass('active')) {
+            $('.globalMenuSp').addClass('active');
+        } else {
+            $('.globalMenuSp').removeClass('active');
+        }
+    });
+});
+
+Resources
+
+
+
