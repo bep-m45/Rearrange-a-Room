@@ -11,5 +11,12 @@ class Room < ApplicationRecord
     def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
     end
+    
+  validates :image, presence: true    
+  validates :size, presence: true  
+  validates :room_layout_id, presence: true
+  validates :room_genre_id, presence: true  
+  validates :room_image_id, presence: true
+  validates :production, presence: true, length: { maximum: 300 }
   
 end

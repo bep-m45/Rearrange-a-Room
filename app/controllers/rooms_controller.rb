@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+   before_action :authenticate_member!, only: [:new, :show, :edit]
+   
   def index
     
       if params[:room_layout_id]
@@ -17,14 +19,18 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    
   end
 
   def create
     @room = Room.new(room_params)
     @room.member_id = current_member.id
-    @room.save
+    if @room.save
     redirect_to room_path(@room.id)
+    flash[:notice] = "Roomを投稿しました"
+    else
+    render "new"
+    flash[:notice] = "送信に失敗しましたしました"
+    end
   end
 
   def show
@@ -36,9 +42,9 @@ class RoomsController < ApplicationController
      if params[:room_layout_id]
   		@room_layout = RoomLayout.find(params[:room_layout_id])
   		@room_layouts = @room_layout.rooms.order(created_at: :desc)
-    else
+     else
       @room_layouts = RoomLayout
-    end
+     end
     
      if params[:room_genre_id]
   		@room_genre = RoomGenre.find(params[:room_genre_id])
@@ -61,14 +67,21 @@ class RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
-    @room.update(room_params)
+    if @room.update(room_params)
+      flash[:notice] = "Roomが編集されました"
     redirect_to member_path(current_member.id)
+    else
+      flash[:notice] ='ROOMの編集に失敗しました'
+      render "edit"
+    end
   end
   
   def destroy
      @member = Member.find(params[:id])
-     @member.destroy
+     if @member.destroy
+       flash[:notice] ='Roomの投稿を削除しました'
     redirect_to member_path(current_member)
+     end
   end  
 
  private

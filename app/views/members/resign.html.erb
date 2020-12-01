@@ -1,0 +1,17 @@
+<h2>RESIGN？</h2>
+<div class="row">
+  <div class="col-xs-3"></div>
+
+<div class="col-xs-6">
+<p>退会すると、会員登録情報や<br>
+ご自身の投稿を含む全ての投稿が閲覧できなくなります。<br>
+退会する場合は、「退会する」をクリックしてください。</p>
+<br>
+<div class="text-center">
+<%= link_to'退会しない', member_path(current_member.id) %>　
+<%= link_to '退会する', members_resign_path ,method: :patch, "data-confirm" => "本当に退会しますか？"%>
+</div>
+</div>
+
+<div class="col-xs-3"></div>
+</div>

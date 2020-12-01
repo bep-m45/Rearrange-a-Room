@@ -70,3 +70,9 @@ gem 'dotenv-rails'
 #group :production do 
   #gem 'mysql2'
 #end
+
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-instagram'
+

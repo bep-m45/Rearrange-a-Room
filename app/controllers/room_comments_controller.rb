@@ -1,9 +1,14 @@
 class RoomCommentsController < ApplicationController
+   before_action :authenticate_member!
   def create
     @room = Room.find(params[:room_id])
     @room_comment = @room.room_comments.new(room_comment_params)
     @room_comment.member_id = current_member.id
-    @room_comment.save
+    if @room_comment.save
+      flash[:notice] = "コメントを投稿しました"
+    else
+      flash[:notice] = "コメントの投稿に失敗しました"
+    end
     redirect_to request.referer
   end
   

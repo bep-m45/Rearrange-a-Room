@@ -11,33 +11,53 @@
   </head>
 
   <body>
+  
     <header>
           <div class="header">
         <div class="logo">Rearrange a Room</div>
+       
         
-        <div class="header-list">
+                  <li class="header-list-item"><%= link_to "会員一覧", admins_members_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "投稿一覧", admins_rooms_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn-primary" %></li>
+       
+      
+
+        <!--<div class="header-list">-->
             <nav>
-              <ul>
+              <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <nav class="globalMenuSp">
+                <ul>
+
                 <% if member_signed_in? %>
-                  <li class="header-list-item"><%= link_to "TOP", root_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "POST", new_room_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "MY PAGE", member_path(current_member), class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "ROOMS", rooms_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "USUERS", members_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "SIGN OUT", destroy_member_session_path, method: :delete, class: "btn-primary" %></li>
+                  <li><%= link_to "TOP", root_path %></li>
+                  <li><%= link_to "POST", new_room_path %></li>
+                  <li><%= link_to "MY PAGE", member_path(current_member) %></li>
+                  <li><%= link_to "ROOMS", rooms_path %></li>
+                  <li><%= link_to "USUERS", members_path %></li>
+                  <li><%= link_to "SIGN OUT", destroy_member_session_path, method: :delete %></li>
                 <% else %>
-                  <li class="header-list-item"><%= link_to "TOP", root_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "ABOUT", homes_about_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "SIGN UP", new_member_registration_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "SIGN IN", new_member_session_path, class: "btn-primary"  %></li>
+                  <li><%= link_to "TOP", root_path %></li>
+                  <li><%= link_to "ABOUT", homes_about_path %></li>
+                  <li><%= link_to 'GEST SIGN IN', members_guest_sign_in_path, method: :post %></li>
+                  <li><%= link_to "SIGN UP", new_member_registration_path %></li>
+                  <li><%= link_to "SIGN IN", new_member_session_path %></li>
                 <% end %>
               </ul>
             </nav>
+
+          
           </div>
     </header>
     <main>
-      <div class="container">
         
+      <div class="container">
+
           <%= yield %>
       </div>
     </main>

@@ -1,4 +1,21 @@
+<% if flash[:notice] %>
+   <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+<% end %>
 <h2>MY PAGE EDIT</h2>
+
+
+      <% if @member.errors.any? %>
+            <h5><%= pluralize(@member.errors.count, "error") %> prohibited this product from being saved:</h5>
+  <div class="alert alert-warning">
+    <ul>
+      <% @member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="row">
     <div class="col-xs-2"></div>
@@ -34,6 +51,7 @@
 
  <div class="text-right">
 <%= f. submit '更新' %>
+<%=link_to '退会', members_resign_path %>
 </div>
 
 <% end %>

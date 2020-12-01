@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+   before_action :authenticate_member!
+   
   def create
     @room = Room.find(params[:room_id])
     favorite = current_member.favorites.new(room_id: @room.id)
