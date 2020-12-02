@@ -1,6 +1,11 @@
 class ChatsController < ApplicationController
    before_action :authenticate_member!
-   
+
+  def index
+  @entries = Entry.where.not(member: current_member)
+  
+  end
+
   def create
   @chat = Chat.create
   @entry1 = Entry.create(chat_id: @chat.id, member_id: current_member.id)
@@ -9,6 +14,7 @@ class ChatsController < ApplicationController
   end
 
   def show
+    @entries = Entry.where.not(member: current_member, )
     @chat = Chat.find(params[:id])
   if Entry.where(member_id: current_member.id,chat_id: @chat.id).present?
     @messages = @chat.messages

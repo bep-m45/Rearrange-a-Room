@@ -17,19 +17,17 @@
 <div class="row">
     <div class="col-xs-2"></div>
     <div class="col-xs-4">
+      <%= form_with model: @room, local: true do |f|%>
+<div class="post_image">
+<%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "320x320",class: "image" %>
+<%= f.attachment_field :image %>
+</div>
 
-<%= attachment_image_tag @room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
-
-<%= form_with model: @room, local: true do |f|%>
 </div>
 
 <div class="col-xs-4">
 
 <table class="table">
-    <tr>
-        <th>イメージ</th>
-        <td><%= f.attachment_field :image %></td>
-        </tr>
         <tr>
         <th>間取り</th>
         <td><%= f.collection_select :room_layout_id, RoomLayout.all, :id, :layout_name, {prompt: "--選択してください--"},class: "form-control" %></td>

@@ -23,10 +23,10 @@
 }
 
 
-body {
-  background-image: image-url("/images/background2.jpg");
-}
-
+// body {
+//   background-image: image-url("/images/.jpg");
+//   background-size: cover;
+// }
 
 main {
   width: 100%;
@@ -35,10 +35,9 @@ main {
 
 h1 {
   margin-bottom: 70px;
-  font-size: 90px;
+  font-size: 70px;
   font-family: Impact,Charcoal;
   text-align: center;
-  box-shadow: 0 20px 45px 0 #161701;
 }
 
 h2 {
@@ -46,19 +45,19 @@ h2 {
   font-family: Impact,Charcoal;
   font-size: 70px;
   text-align: center;
-  box-shadow: 0 20px 45px 0 #161701;
+
 
 
 }
 
 .plofile-container {
   padding :20px;
-  background-image: url("/images/table.jpeg");
+  background-color: rgba(243, 237, 72, 0.70);
   box-shadow: 0 20px 35px 0 #161701;
 }
 
 table {
-  background-color: rgba(217, 193, 170, 0.80);
+  background-color: rgba(243, 237, 72, 0.79);
 
 }
 
@@ -79,6 +78,7 @@ table {
    height: 90px;
    padding-top: 10px;
    background-size: cover;
+
  }
 
 .header {
@@ -237,3 +237,5 @@ li {
   margin-top: 15px;
   margin-left: 15px;
 }
+ 
+ 

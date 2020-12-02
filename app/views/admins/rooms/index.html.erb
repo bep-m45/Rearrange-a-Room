@@ -16,10 +16,13 @@
     <% @rooms.each do |room| %>
     <tr>
       <td><%= room.id%></td>
-      <td><%= link_to (attachment_image_tag room, :image, :limit, 50, 50, fallback: "no_image.jpg", size: "100x100"), room_path(room.id) %></td>
+      <td><%= link_to (attachment_image_tag room, :image, :limit, 50, 50, fallback: "no_image.jpg", size: "100x100"), admins_room_path(room.id) %></td>
       <td><%= text_url_to_link(h(room.production)).html_safe %></td>
-      <td><%= room.favorites.count %> <%= room.room_comments.count %></td>
-      <td><%= link_to room.member.nickname, member_path(room.member.id) %></td>
+      <td>　　
+          <i class="fas fa-heart" aria-hidden="true"></i><%= room.favorites.count %>　
+          <i class="fa fa-comment"></i><%= room.room_comments.count %>
+      </td>
+      <td><%= link_to room.member.nickname, admins_member_path(room.member.id) %></td>
       <td><%= link_to '詳細', admins_room_path(room.id) %></td>
     </tr>
     <% end %>

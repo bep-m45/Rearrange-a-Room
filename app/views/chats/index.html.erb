@@ -1,0 +1,29 @@
+<h2>DM ALL</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>名前</th>
+        <th></th>
+    </tr>
+    <tr>
+   </thead>
+   <tbody>
+       
+       <% @entries.each do |entry| %>
+       
+       <tr>
+        <td><%= attachment_image_tag entry.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %></td>
+        <td><%= entry.member.nickname %></td>
+        <td>
+            <%= link_to "チャットへ", chat_path(entry.chat.id) %>
+        </td>
+       </tr>
+       <% end %>
+      
+
+   </tbody>
+   </table>
+
+

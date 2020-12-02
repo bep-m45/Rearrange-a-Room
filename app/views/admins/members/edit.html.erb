@@ -1,6 +1,6 @@
 
 <h2>
-  <%= @member.nickname %>様 
+  <%= @member.nickname %>様
 ( <% if @member.is_deleted %>
    <span>退会済会員</span>
   <% else %>
@@ -23,7 +23,7 @@
 <div class="col-xs-4">
 
 <table class="table">
-  <tr> 
+  <tr>
   <th>ID</th>
   <td><%= @member.id %></td>
   </tr>
@@ -44,7 +44,7 @@
 　　    <td><%= @member.profile %></td>
 　　</tr>
 　　<tr>
-　　    <%= form_with model: @member, url: member_path, local:true do |f|%>
+　　     <%= form_with model: @member, url: admins_member_path(@member), local:true do |f|%>
         <th><%= f.label :会員ステータス %></th>
         <td><%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み</td>
    </tr>

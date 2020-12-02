@@ -3,7 +3,11 @@
         <%= flash[:notice] %>
       </div>
 <% end %>
-<h2><%= @member.nickname %> PAGE</h2>
+<h2><%= @member.nickname %> PAGE 
+     <% if @member.is_deleted %>
+         (退会済会員)
+      <% end %>
+</h2>
 
 
 

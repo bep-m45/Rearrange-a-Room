@@ -4,24 +4,39 @@ class Admins::MembersController < ApplicationController
   def index
     @members = Member.all
   end
-
+  
+  def show
+  @member = Member.find(params[:id])
+  @rooms = @member.rooms
+  end
+  
   def edit
    @member = Member.find(params[:id])
   end
   
    def update
-        @member = Member.find(params[:id])
+        @member =Member.find(params[:id])
         if @member.update(member_params)
-            flash[:notice] = "お客様情報を更新しました"
+          
+          if @member.is_deleted == true
+             @member.rooms.destroy_all
+          else  
+          end
+          flash[:notice] = "お客様情報を更新しました"
             redirect_to admins_members_path
+          
         else
             render 'admins/members/edit'
         end
    end
+   
+   
+ def resign
+ end
   
    private
    
   def member_params
-  params.require(:member).permit(:is_deleted )
+  params.require(:member).permit(:is_deleted)
   end
- end
+end

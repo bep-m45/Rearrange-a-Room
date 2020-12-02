@@ -28,8 +28,8 @@ class RoomsController < ApplicationController
     redirect_to room_path(@room.id)
     flash[:notice] = "Roomを投稿しました"
     else
-    render "new"
-    flash[:notice] = "送信に失敗しましたしました"
+    render "new", notice: "送信に失敗しましたしました"
+    # flash[:notice] = "送信に失敗しましたしました"
     end
   end
 

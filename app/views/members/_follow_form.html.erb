@@ -1,4 +1,11 @@
 <div class="plofile-container">
+<% if member == current_member %>
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalForm" data-cusno=1 data-visitday="2019-07-01">
+    DM一覧
+</button>
+<% end %>
+
+  <% if member.is_deleted == false %>
 <% if member != current_member %>
   <div id="follow_form">
   <% if current_member.following?(member) %>
@@ -25,13 +32,15 @@
   <% if @is_chat == true %>
     <p class="member-show-room"><a href="/chats/<%= @chat_id %>">チャットへ</a>
   <% else %>
-    <%= form_for @chat do |f| %>
+    <%= form_with model: @chat, local: true do |f| %>
       <%= fields_for @entry do |e| %>
         <%= e.hidden_field :member_id, value: member.id %>
       <% end %>
       <%= f.submit "チャットを始める"%>
     <% end %>
   <% end %>
+<% end %>
+<% else %>
 <% end %>
 
 
@@ -68,6 +77,61 @@
 </tr>
 
 </table>
+
 <%= link_to "編集する", edit_member_path(@member.id) %>
 <%= link_to "パスワードを変更する", member_path(@member.id) %>
+</div>
+
+<div class="modal fade" id="modalForm" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">閉じる</span>
+        </button>
+      </div>
+      <form role="form" id="form1" action="" method="POST">
+
+        <div class="modal-body">
+
+          <h2>DM ALL</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>名前</th>
+        <th></th>
+    </tr>
+    <tr>
+   </thead>
+   <tbody>
+
+       <% @entries.each do |entry| %>
+
+       <tr>
+        <td><%= attachment_image_tag entry.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %></td>
+        <td><%= entry.member.nickname %></td>
+        <td>
+            <%= link_to "チャットへ", chat_path(entry.chat.id) %>
+        </td>
+       </tr>
+       <% end %>
+
+
+   </tbody>
+   </table>
+
+
+</div>
+        <!-- Modal フッター -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
+
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

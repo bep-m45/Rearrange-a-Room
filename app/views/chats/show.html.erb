@@ -28,7 +28,7 @@
             <%= attachment_image_tag m.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
           </div>
   
-          <div class="chat-hukidashi"> <strong><%= <%= text_url_to_link(h()).html_safe %>%></strong> <br>
+          <div class="chat-hukidashi"><strong><%= text_url_to_link(h(m.comment)).html_safe %></strong> <br>
             <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
           </div>
           </div>
@@ -36,12 +36,13 @@
         <% end %>
         </div>
   <div class="posts">
-     <% if @member.errors.any? %>
-            <h5><%= pluralize(@member.errors.count, "error") %> prohibited this product from being saved:</h5>
+     <% if @message.errors.any? %>
+            <h5><%= pluralize(@message.errors.count, "error") %> prohibited this product from being saved:</h5>
   <div class="alert alert-warning">
     <ul>
-      <% @member.errors.full_messages.each do |message| %>
+      <% @message.errors.full_messages.each do |message| %>
         <li><%= message %></li>
+      <% end %>
       <% end %>
     <%= form_with model: @message, local: true do |f| %>
       <%= f.text_area :comment, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-control" %>

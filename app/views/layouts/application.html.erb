@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   </head>
 
@@ -15,12 +15,16 @@
     <header>
           <div class="header">
         <div class="logo">Rearrange a Room</div>
-       
         
+         <% if admin_signed_in? %>
+       <nav>
+        <ul>
                   <li class="header-list-item"><%= link_to "会員一覧", admins_members_path, class: "btn-primary" %></li>
                   <li class="header-list-item"><%= link_to "投稿一覧", admins_rooms_path, class: "btn-primary" %></li>
                   <li class="header-list-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn-primary" %></li>
-       
+       </ul>
+       </nav>
+       <% end %>
       
 
         <!--<div class="header-list">-->
@@ -55,7 +59,11 @@
           </div>
     </header>
     <main>
-        
+        <% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
       <div class="container">
 
           <%= yield %>

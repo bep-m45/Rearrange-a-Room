@@ -12,7 +12,7 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
@@ -29,7 +29,44 @@ $(function() {
     });
 });
 
-Resources
 
 
+// $('#newday').datepicker({
+//     dateFormat: 'yy-mm-dd',
+// });
+
+$('#modalForm').on('show.bs.modal', function (event) {
+  
+    var button = $(event.relatedTarget);
+  
+    var modal = $(this);
+   
+    var cusnoVal = button.data('cusno');
+
+    modal.find('.modal-body input#cusno').val(cusnoVal);
+  
+    var visitdayVal = button.data('visitday');
+    modal.find('.modal-body input#oldday').val(visitdayVal);
+});
+
+
+$(function(){
+ 	$('.post_image').on('change', function (e) {
+ 		var reader = new FileReader();
+		reader.onload = function (e) {
+		  $(".image").attr('src', e.target.result);
+		}
+  	reader.readAsDataURL(e.target.files[0]);
+  });
+}); 
+
+$(function(){
+ 	$('.post_image').on('change', function (e) {
+ 		var reader = new FileReader();
+		reader.onload = function (e) {
+		  $(".profile_image").attr('src', e.target.result);
+		}
+  	reader.readAsDataURL(e.target.files[0]);
+  });
+}); 
 

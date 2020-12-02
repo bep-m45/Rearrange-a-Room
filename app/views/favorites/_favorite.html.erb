@@ -8,10 +8,10 @@
                     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
                       <%= room.favorites.count %>
                   <% end %>
-                  　<%= link_to room_path(room.id) do %>
+                  　
                   <i class="fa fa-comment"></i>
                     <%= room.room_comments.count %>
-                  <% end %>
+                  
                </td>
               </tr>
               <tr>
@@ -38,6 +38,6 @@
               <td><%= room.room_genre.genre_name %></td>
            </tr>
         </table>
-      <% end %>
+        <% end %>
         
 <% end %>

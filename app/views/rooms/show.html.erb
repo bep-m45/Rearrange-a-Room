@@ -25,7 +25,7 @@
        <% if @room.favorited_by?(current_member) %>
             <table class="table">
               <tr>
-                <td><%= @room.created_at %>
+                <td><%= @room.created_at.strftime("%Y-%m-%d %H:%M") %>
                 　<%= link_to room_favorites_path(@room), method: :delete, remote: true do %>
                     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
                       <%= @room.favorites.count %> いいね
@@ -84,13 +84,14 @@
     </tr>
     <tr>
     <th>説明</th>
-    <td><%= @room.production %></td>
+    <td><%= text_url_to_link(h(@room.production)).html_safe %></td>
     </tr>
 </table>
 
 <% if @room.member == current_member %>
 <div class="text-right">
 <%= link_to "編集する", edit_room_path(@room.id) %>
+ <%= link_to '削除', room_path(@room.id), method: :delete, data: {confirm: "Are you sure?"} %>
 </div>
 <% end %>
 </div>
