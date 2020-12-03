@@ -71,8 +71,5 @@ gem 'dotenv-rails'
   #gem 'mysql2'
 #end
 
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'omniauth-instagram'
+
 

@@ -27,7 +27,11 @@
             フォロワー
             <%=link_to member.followers.count, followers_member_path(member) %>
         </td>
-        <td><%= link_to member.nickname, member_path(member) %></td>
+        <td><%= link_to member.nickname, member_path(member) %>
+        　　　<% if member.is_deleted %>
+        　　 　(退会済会員)
+            <% end %>
+        </td>
         <td><%= member.profile %></td>
       </tr>
     <% end %>

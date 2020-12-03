@@ -42,4 +42,6 @@ class Admins::RoomsController < ApplicationController
      end
     end
 
+
+
 end

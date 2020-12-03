@@ -26,7 +26,7 @@ Rails.application.routes.draw do
        end
    resources :rooms do
    resource :favorites, only: [:create, :destroy]
-   resources :room_comments, only: [:create, :destroy]
+   resources :room_comments, only: [:create, :destroy] 
   end      
    resources :relationships, only: [:create, :destroy]
    resources :messages, only: [:create]

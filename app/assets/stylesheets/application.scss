@@ -23,10 +23,10 @@
 }
 
 
-// body {
-//   background-image: image-url("/images/.jpg");
-//   background-size: cover;
-// }
+body {
+  background-image: image-url("/images/background.jpg");
+  background-size: cover;
+}
 
 main {
   width: 100%;
@@ -45,21 +45,28 @@ h2 {
   font-family: Impact,Charcoal;
   font-size: 70px;
   text-align: center;
+  box-shadow: 0 20px 35px 0 #161701;
+}
 
-
-
+h3 {
+  margin-top: 70px;
+  margin-bottom: 30px;
+  font-family: Impact,Charcoal;
+  font-size: 50px;
+  text-align: center;
 }
 
 .plofile-container {
-  padding :20px;
-  background-color: rgba(243, 237, 72, 0.70);
+  padding : 20px;
+  background-image: image-url("/images/table.jpg");
   box-shadow: 0 20px 35px 0 #161701;
 }
 
 table {
-  background-color: rgba(243, 237, 72, 0.79);
-
+   background-color: #FAF7F4;
 }
+
+/*room  post */
 
 .post-container {
    display: flex;
@@ -67,10 +74,27 @@ table {
    flex-wrap: wrap;
 }
 
+.post-show-container {
+  padding: 20px 120px;
+  box-shadow: 0 20px 35px 0 #161701;
+  background-image: image-url("/images/table.jpg");
+}
+
+.room-production-table {
+ 
+}
+
 .post-list {
  margin: 15px;
 }
 
+/* room comment */
+
+.room_comment_container {
+  padding: 20px;
+  background-color: #FAF7F4;
+  box-shadow: 0 20px 35px 0 #161701;
+}
 
 /* ヘッダー */
  header {
@@ -212,11 +236,45 @@ nav.globalMenuSp.active {
 
 
 
-/* main */
-
-.room-production-table {
-  margin-top: 100px;
+/* ranking */
+.room-ranking-container {
 }
+
+.room-ranking {
+   background-color: rgba(252, 131, 17, 0.21);
+   box-shadow: 0 20px 35px 0 #161701;
+   padding: 10px;
+   display: flex;
+   justify-content: left;
+   flex-wrap: wrap;
+}
+
+.room-ranking-item {
+  background-color: rgba(252, 131, 17, 0.21);
+  padding: 15px;
+  margin: 15px
+}
+
+/* search */
+
+.search-container {
+  margin-bottom: 30px;
+  padding: 30px;
+  background-color: rgba(252, 131, 17, 0.21);
+  box-shadow: 0 20px 35px 0 #161701;
+  // background-image: image-url("/images/block.jpg");
+}
+
+.search-logo {
+  width: 400px;
+  height: 240px;
+  background-image: image-url("/images/search.png");
+  background-size: contain;
+}
+
+
+
+
 
 li {
   list-style-type: none;
@@ -237,5 +295,5 @@ li {
   margin-top: 15px;
   margin-left: 15px;
 }
- 
- 
+
+

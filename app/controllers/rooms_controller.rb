@@ -35,9 +35,15 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @member = @room.member
-    @room_comment = RoomComment.new
     @room_comments = @room.room_comments
+    
+    @room_comment = @room.room_comments.build
+    @room_comment_reply = @room.room_comments.build
+    
+    # @room = Room.find(params[:id])
+    @member = @room.member
+    # @room_comment = RoomComment.new
+    # @room_comments = @room.room_comments
     
      if params[:room_layout_id]
   		@room_layout = RoomLayout.find(params[:room_layout_id])
@@ -85,9 +91,14 @@ class RoomsController < ApplicationController
   end  
 
  private
-  def room_params
+ 
+ def set_room
+   @room = Room.find.(params[:id])
+ end
+ 
+ def room_params
   params.require(:room).permit(:member_id, :size, :production, :image,  :room_layout_id, :room_genre_id, :room_image_id)
-  end
+ end
 end
 
 
