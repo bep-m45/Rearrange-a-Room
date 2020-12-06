@@ -26,8 +26,8 @@ class Members::SessionsController < Devise::SessionsController
   # end
   
   def new_guest
-    member = Member.guest
-    sign_in member
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+      member = Member.guest
+      sign_in member
+      redirect_to root_path, notice: 'ゲスト会員としてSign Inしました。'
   end
 end

@@ -1,10 +1,6 @@
-<% if flash[:notice] %>
-  <div class="flash">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
 
-<h2>ROOM EDIT</h2>
+
+<h2>ROOM 編集ページ</h2>
 
       <% if @room.errors.any? %>
         <h5><%= pluralize(@room.errors.count, "error") %> prohibited this product from being saved:</h5>
@@ -58,7 +54,9 @@
                 </table>
 
                 <div class="text-right">
-                  <%= f.submit '投稿' %>
+                  <button type="button" class="btn btn-success">
+                  更新
+                  </button>
                 </div>
             <% end %>
               </div>

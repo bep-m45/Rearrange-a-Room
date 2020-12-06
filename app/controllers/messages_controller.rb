@@ -1,13 +1,14 @@
 class MessagesController < ApplicationController
    before_action :authenticate_member!
   def create
-    if Entry.where(member_id: current_member.id, chat_id: params[:message][:chat_id]).present?
-      @message = Message.create(params.require(:message).permit(:member_id, :comment, :chat_id).merge(member_id: current_member.id))
-      flash[:alert] = "メッセージを送信しました。"
+      Entry.where(member_id: current_member.id, chat_id: params[:message][:chat_id]).present?
+    if @message = Message.create(params.require(:message).permit(:member_id, :chat_id).merge(member_id: current_member.id))
+      flash[:notice] = "メッセージを送信しました"
+      redirect_to chat_path(@message.chat.id)
     else
-      flash[:alert] = "メッセージの送信に失敗しました。"
+      flash[:notice] = "メッセージの送信に失敗しました"
+      render "chats/show"
     end
-    redirect_to "/chats/#{@message.chat_id}"
   end
 end
 

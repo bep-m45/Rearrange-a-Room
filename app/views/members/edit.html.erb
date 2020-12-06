@@ -1,10 +1,6 @@
-<% if flash[:notice] %>
-  <div class="flash">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
 
-<h2>MY PAGE EDIT</h2>
+
+<h2><%= current_member.nickname %> 編集Page</h2>
 
   <% if @member.errors.any? %>
     <h5><%= pluralize(@member.errors.count, "error") %> prohibited this product from being saved:</h5>
@@ -50,8 +46,8 @@
             </table>
 
               <div class="text-right">
-                <%= f. submit '更新' %>
-                  <%=link_to '退会', members_resign_path %>
+                 <button type="submit" class="btn btn-success">更新</button>
+                  <button type="button" class="btn btn-danger"><%=link_to '退会', members_resign_path %><button></button>
               </div>
         <% end %>
       </div>

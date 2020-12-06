@@ -5,18 +5,20 @@ class ApplicationController < ActionController::Base
   def check_guest
     email = resource&.email || params[:member][:email].downcase
     if email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+      redirect_to member_path(current_member)
     end
   end
 
   private
-  
+
   def after_sign_in_path_for(resource)
 
     case resource
       when Member
+        flash[:notice] = "Welecome" + current_member.nickname + "さん！"
         member_path(current_member)
       when Admin
+        flash[:notice] = "Sign Inしました"
         admins_path
     end
   end
@@ -24,8 +26,10 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     case resource
       when :admin
+        flash[:notice] = "Sign Outしました"
         new_admin_session_path
       when :member
+        flash[:notice] = "Sign Outしました"
        root_path
     end
   end
@@ -34,4 +38,3 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :nickname])
   end
 end
- 

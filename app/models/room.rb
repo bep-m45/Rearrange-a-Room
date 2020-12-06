@@ -17,6 +17,6 @@ class Room < ApplicationRecord
   validates :room_layout_id, presence: true
   validates :room_genre_id, presence: true  
   validates :room_image_id, presence: true
-  validates :production, length: { maximum: 300 }
+  validates :production, presence: true, length: { maximum: 250 }
   
 end

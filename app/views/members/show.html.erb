@@ -1,5 +1,5 @@
 <h2>
-  <%= @member.nickname %> 
+  <%= @member.nickname %> Page
     <% if @member.is_deleted %>
       (退会済会員)
     <% end %>
@@ -18,9 +18,7 @@
       <% @rooms.each do |room| %>
         <div class="post-list">
           <br>
-            <%#= link_to room_path(room.id) do %>
-              <%#= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
-            <%# end %>
+         
             <br>
             <div id="favorites_buttons_<%= room.id %>">
               <%= render partial: 'favorites/favorite', locals: { room: room} %>

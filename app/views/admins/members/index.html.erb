@@ -1,8 +1,4 @@
- <% if flash[:notice] %>
-   <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-<% end %>
+
 
 <h2>会員一覧</h2>
 
@@ -37,7 +33,11 @@
   <% else %>
    <span>有効会員</span>
   <% end %></td>
-      <td><%= link_to '編集', edit_admins_member_path(member.id) %></td>
+      <td>
+        <button type="button" class="btn btn-success">
+        <%= link_to '編集', edit_admins_member_path(member.id) %>
+        </button>
+        </td>
     </tr>
     <% end %>
   </tbody>

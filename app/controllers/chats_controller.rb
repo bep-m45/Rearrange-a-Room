@@ -1,20 +1,14 @@
 class ChatsController < ApplicationController
    before_action :authenticate_member!
 
-  def index
-  @entries = Entry.where.not(member: current_member)
-  
-  end
-
-  def create
+   def create
   @chat = Chat.create
   @entry1 = Entry.create(chat_id: @chat.id, member_id: current_member.id)
   @entry2 = Entry.create(params.require(:entry).permit(:member_id, :chat_id).merge(chat_id: @chat.id))
   redirect_to chat_path(@chat.id)
-  end
+   end
 
   def show
-    @entries = Entry.where.not(member: current_member, )
     @chat = Chat.find(params[:id])
   if Entry.where(member_id: current_member.id,chat_id: @chat.id).present?
     @messages = @chat.messages
@@ -24,4 +18,6 @@ class ChatsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   end
+  
+  
 end

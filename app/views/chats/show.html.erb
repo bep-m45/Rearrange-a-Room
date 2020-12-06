@@ -1,10 +1,13 @@
-<% if flash[:notice] %>
-   <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-<% end %>
 
-<h2>DIRECT MESSAGE</h2>
+    <% if @message.errors.any? %>
+            <h5><%= pluralize(@message.errors.count, "error") %> prohibited this product from being saved:</h5>
+
+    <ul>
+      <% @message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <%end %>
+<h2>Direct Message</h2>
 <div class="row">
   <div class="col-xs-2"></div>
   <div class="col-xs-8">
@@ -24,32 +27,36 @@
     <% if @messages.present? %>
       <% @messages.each do |m| %>
         <div class="chat-box">
-          <div class="chat-face">
+        <table class="table">
+          <tr>
+           <td>
+             <div class="chat-face">
             <%= attachment_image_tag m.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
           </div>
-  
-          <div class="chat-hukidashi"><strong><%= text_url_to_link(h(m.comment)).html_safe %></strong> <br>
-            <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+             <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+          </td>   
+           <td>
+          <div class="chat-hukidashi">
+            <strong><%= text_url_to_link(h(m.comment)).html_safe %></strong> <br>
           </div>
+          </td>
+          </tr>
+          </table>
           </div>
         <% end %>
         <% end %>
         </div>
   <div class="posts">
-     <% if @message.errors.any? %>
-            <h5><%= pluralize(@message.errors.count, "error") %> prohibited this product from being saved:</h5>
-  <div class="alert alert-warning">
-    <ul>
-      <% @message.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      <% end %>
+
     <%= form_with model: @message, local: true do |f| %>
       <%= f.text_area :comment, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-control" %>
         <%= f.hidden_field :chat_id, value: @chat.id %>
         <br>
          <div class="text-right">
-          <%= f.submit "投稿"%>
+           <button type="submit" class="btn btn-primary">
+          投稿
+          </button>
+          </div>
           </div>
     <% end %>
   </div>

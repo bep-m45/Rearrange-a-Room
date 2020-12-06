@@ -8,13 +8,13 @@
 
 <h2>
 <% if params[:room_layout_id] %>
-  SELECT ROOMS　<%= @room_layout.layout_name %>
+  Select Rooms　<%= @room_layout.layout_name %>
 <% elsif params[:room_genre_id] %>
-SELECT ROOMS　<%= @room_genre.genre_name %>
+Select Rooms　<%= @room_genre.genre_name %>
 <% elsif params[:room_image_id] %>
-SELECT ROOMS　<%= @room_image.image_name %>
+Select Rooms　<%= @room_image.image_name %>
 <% else %>
-  ROOMS
+  Rooms
 <% end %>
 </h2>
 <div class="row">
@@ -24,13 +24,16 @@ SELECT ROOMS　<%= @room_image.image_name %>
 <% @rooms.each do |room| %>
 
 <div class="post-list">
-
-<%= link_to member_path(room.member_id) do %>
-<%= attachment_image_tag room.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %></td>
+<table class="table">
+    <tr>
+        <td>
+<%= link_to member_path(room.member_id) do %>　
+<%= attachment_image_tag room.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>　
 <% end %>
 <%= room.member.nickname %>
-<br>
-
+</td>
+</tr>
+</table>
 <div id="favorites_buttons_<%= room.id %>">
              <%= render partial: 'favorites/favorite', locals: { room: room} %>
           </div>

@@ -10,18 +10,20 @@
 
 
 
-
+<div class="room-container">
 <div class="row">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-4">
-
-<%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
-
+    <div class="col-xs-6">
+<table class="table">
+  <tr>
+    <td>
+<%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "430x430" %>
+</td>
+</tr>
+</table>
 
 </div>
 
-<div class="col-xs-4">
-
+<div class="col-xs-6">
 <table class="table">
   <tr>
   <th>ID</th>
@@ -51,11 +53,11 @@
 </table>
 
  <div class="text-right">
-<%= f. submit '更新' %>
+<%= f.submit '更新', data: {confirm: "本当に削除しますか？"} %>
 </div>
 
 <% end %>
 </div>
 
-<div class="col-xs-2"></div>
+</div>
 </div>

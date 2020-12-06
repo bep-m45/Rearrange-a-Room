@@ -5,12 +5,12 @@ class MembersController < ApplicationController
    end
 
   def show
-      @entries = Entry.where.not(member: current_member)
+      #@entries = Entry.where.not(member: current_member)
       @member = Member.find(params[:id])
       @rooms = @member.rooms
       @current_member_entry = Entry.where(member_id: current_member.id)
       @member_entry = Entry.where(member_id: @member.id)
- 
+         
      unless @member.id == current_member.id
       @current_member_entry.each do |cu|
        @member_entry.each do |u|
@@ -27,6 +27,12 @@ class MembersController < ApplicationController
        @entry = Entry.new
       end
      end
+       my_chats_ids = []
+         @current_member_entry.each do | entry |
+         my_chats_ids << entry.chat.id
+         end
+
+  @another_entries = Entry.where(chat_id: my_chats_ids).where('member_id != ?', @member.id)
   end
 
 
