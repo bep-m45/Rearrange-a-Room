@@ -1,4 +1,4 @@
-<h2>RESIGN？</h2>
+<h2>本当に退会しますか？</h2>
 <div class="row">
   <div class="col-xs-3"></div>
 
@@ -8,8 +8,8 @@
 退会する場合は、「退会する」をクリックしてください。</p>
 <br>
 <div class="text-center">
-<%= link_to'退会しない', member_path(current_member.id) %>　
-<%= link_to '退会する', members_resign_path ,method: :patch, "data-confirm" => "本当に退会しますか？"%>
+<button type="button" class="btn btn-sccess"><%= link_to'退会しない', member_path(current_member.id) %></button>　
+<button type="button" class="btn btn-danger"><%= link_to '退会する', members_resign_path ,method: :patch, "data-confirm" => "本当に退会しますか？"%></button>
 </div>
 </div>
 

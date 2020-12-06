@@ -1,6 +1,7 @@
 class HomesController < ApplicationController
+  
+  
   def home
-   
      @all_ranks = Room.joins(:favorites).where(favorites: {created_at: Time.now.all_month}).group(:id).order('count(favorites.room_id) desc').limit(6)
     if params[:room_layout_id]
   		@room_layout = RoomLayout.find(params[:room_layout_id])

@@ -1,35 +1,33 @@
-<% if flash[:notice] %>
-   <div class="flash">
-        <%= flash[:notice] %>
-   </div>
-<% end %>
+
 <h2>NEW</h2>
 
       <% if @room.errors.any? %>
             <h5><%= pluralize(@room.errors.count, "error") %> prohibited this product from being saved:</h5>
-  <div class="alert alert-warning">
+ 
     <ul>
       <% @room.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       <%end %>
-
+<div class="room-container">
 <div class="row">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-4">
 
-<%= attachment_image_tag @room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
-
-<%= form_with model: @room, local: true do |f|%>
+    <div class="col-xs-6">
+      <%= form_with model: @room, local: true do |f|%>
+<div class="post_image">
+  <table class="table">
+    <tr>
+<td><%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "430x430",class: "image" %></td>
+</tr>
+</table>
+<%= f.attachment_field :image %>
 </div>
 
-<div class="col-xs-4">
+</div>
+
+<div class="col-xs-6">
 
 <table class="table">
-    <tr>
-        <th>イメージ</th>
-        <td><%= f.attachment_field :image %></td>
-        </tr>
         <tr>
         <th>間取り</th>
         <td><%= f.collection_select :room_layout_id, RoomLayout.all, :id, :layout_name, {prompt: "--選択してください--"},class: "form-control" %></td>
@@ -53,7 +51,7 @@
      <tr>
     
 </table>
-
+<br>
 <div class="text-right">
 <%= f.submit '投稿' %>
 </div>
@@ -61,6 +59,5 @@
 <% end %>
 
 </div>
-
-<div class="col-xs-2"></div>
+</div>
 </div>

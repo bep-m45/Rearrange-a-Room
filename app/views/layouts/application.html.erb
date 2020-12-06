@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   </head>
 
@@ -15,13 +15,6 @@
     <header>
           <div class="header">
         <div class="logo">Rearrange a Room</div>
-       
-        
-                  <li class="header-list-item"><%= link_to "会員一覧", admins_members_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "投稿一覧", admins_rooms_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn-primary" %></li>
-       
-      
 
         <!--<div class="header-list">-->
             <nav>
@@ -31,22 +24,24 @@
                 <span></span>
               </div>
 
-              <nav class="globalMenuSp">
-                <ul>
-
+              <nav>
+              <ul>
                 <% if member_signed_in? %>
-                  <li><%= link_to "TOP", root_path %></li>
-                  <li><%= link_to "POST", new_room_path %></li>
-                  <li><%= link_to "MY PAGE", member_path(current_member) %></li>
-                  <li><%= link_to "ROOMS", rooms_path %></li>
-                  <li><%= link_to "USUERS", members_path %></li>
-                  <li><%= link_to "SIGN OUT", destroy_member_session_path, method: :delete %></li>
+                  <li class="header-list-item"><%= link_to "Home", root_path, class: "btn-primary" %></button></li>
+                  <li class="header-list-item"><%= link_to "My Page", member_path(current_member.id), class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "Users", members_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "Rooms", rooms_path, class: "btn-primary"  %></li>
+                  <li class="header-list-item"><%= link_to "Sign Out", destroy_member_session_path, method: :delete, class: "btn-primary" %></li>
+                <% elsif admin_signed_in? %>
+                  <li class="header-list-item"><%= link_to "会員一覧", admins_members_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "投稿一覧", admins_rooms_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: "btn-primary" %></li>
                 <% else %>
-                  <li><%= link_to "TOP", root_path %></li>
-                  <li><%= link_to "ABOUT", homes_about_path %></li>
-                  <li><%= link_to 'GEST SIGN IN', members_guest_sign_in_path, method: :post %></li>
-                  <li><%= link_to "SIGN UP", new_member_registration_path %></li>
-                  <li><%= link_to "SIGN IN", new_member_session_path %></li>
+                  <li class="header-list-item"><%= link_to "Home", root_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "About", homes_about_path, class: "btn-primary" %></li> 
+                  <li class="header-list-item"><%= link_to "Gest In", members_guest_sign_in_path, method: :post, class: "btn-primary" %></li></a>
+                  <li class="header-list-item"><%= link_to "Sign Up", new_member_registration_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "Sign In", new_member_session_path, class: "btn-primary"  %></li>
                 <% end %>
               </ul>
             </nav>
@@ -55,7 +50,13 @@
           </div>
     </header>
     <main>
-        
+        <h4>
+          <% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+</h4>
       <div class="container">
 
           <%= yield %>

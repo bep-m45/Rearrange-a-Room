@@ -1,62 +1,76 @@
- <% if flash[:notice] %>
-   <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-<% end %>
+
  <h1>Rearrange a Room</h1>   
  
   <div class="row">
    
-      <div class="col-xs-3">
+      <div class="col-xs-12">
         <%= render partial: 'rooms/category', locals: { room_layouts: @room_layouts, room_genres: @room_genres, room_images: @room_images } %>
      </div>
-     
-     <div class="col-xs-9">
+  </div>
+  
+  <div class="row">
+    <div clas="room-ranking-container">
+     <div class="col-xs-12">
        
-         
+       <h2><font color="yellow"><i class="fas fa-crown"></i></font> Rooms Ranking <font color="yellow"><i class="fas fa-crown"></i></font></h2>
          <% lastFavorite = 0 %>
               <% j = 1 %>
+              <div class="room-ranking">
          <% @all_ranks.each.with_index(1) do |ranking, i| %>
-              
               <% if i == 1 %>
                <% lastFavorite = ranking.favorites.count %>
               <% end %>
               
               <% if ranking.favorites.count != lastFavorite %>
               <% j = i %>
-                 <div><%= j %>位</div><br />
-                 <br>
+                  <div class="room-ranking-item">
+                 
+                 <table class="table">
+                   <tr>
+                     <td class="ranking-heading">
+                      <div class="ranking-number-logo2"><div class="ranking-number2"><%= j %></div></div>
+                       <div class="member-profile">
                   <%= link_to member_path(ranking.member_id) do %>
-                    <%= attachment_image_tag ranking.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %></td>
+                    <h4><%= attachment_image_tag ranking.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
                   <% end %>
-                  <%= ranking.member.nickname %><br />
-                  <br>
-                  <%= link_to room_path(ranking.id) do %>
-                    <%= attachment_image_tag ranking, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "270x270" %>
-                  <% end %>
+                  <%= ranking.member.nickname %></h4>
+                  </div>
+                  </td>
+                  </tr>
+                  </table>
                   <div id="favorites_buttons_<%= ranking.id %>">
                     <%= render partial: 'favorites/favorite', locals: { room: ranking} %>
                   </div>
-                  
+              </div>
+              
               <% else %>
+              
                 <% lastFavorite = ranking.favorites.count %>
-                  <div>第<%= j %>位</div>
-                  <br>
-                   <%= link_to member_path(ranking.member_id) do %>
-                     <%= attachment_image_tag ranking.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %></td>
+                <div class="room-ranking-item">
+                  
+                  <table class="table">
+                    <tr>
+                      <td class="ranking-heading">
+                        <div class="ranking-number-logo"><font color="red"><div class="ranking-number"><%= j %></font></div></div>
+                        <div class="menber-profile">
+                      <%= link_to member_path(ranking.member_id) do %>
+                      <h4><%= attachment_image_tag ranking.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
                   <% end %>
-                  <%= ranking.member.nickname %><br />
-                  <br>
-                  <%= link_to room_path(ranking.id) do %>
-                    <%= attachment_image_tag ranking, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "270x270" %>
-                  <% end %>
+                 <%= ranking.member.nickname %></h4>
+                 </div>
+                  </td>
+                  </tr>
+                  </table>
                   <div id="favorites_buttons_<%= ranking.id %>">
                     <%= render partial: 'favorites/favorite', locals: { room: ranking} %>
+                  </div>
                   </div>
 
               <% end %> 
-            
-           
+          
+     
          <% end %>
-       
-     </div>
+         </div>
+        </div>
+   </div>
+   </div>

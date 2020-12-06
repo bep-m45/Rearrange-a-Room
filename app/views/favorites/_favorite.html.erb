@@ -1,17 +1,23 @@
 <% if member_signed_in? %>
-<br>
        <% if room.favorited_by?(current_member) %>
             <table class="table">
+                <tr>
+                    <td>
+                       <%= link_to room_path(room.id) do %>
+                         <%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
+                       <% end %>
+                    </td>
+                </tr>
               <tr>
                 <td><%= room.created_at %>
                 　<%= link_to room_favorites_path(room), method: :delete, remote: true do %>
                     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                      <%= room.favorites.count %>
-                  <% end %>
-                  　<%= link_to room_path(room.id) do %>
+                      <%= room.favorites.count %>いいね
+                  <% end %> 
+
                   <i class="fa fa-comment"></i>
                     <%= room.room_comments.count %>
-                  <% end %>
+
                </td>
               </tr>
               <tr>
@@ -21,23 +27,57 @@
 
         <% else %>
         <table class="table">
+          <tr>
+                    <td>
+                       <%= link_to room_path(room.id) do %>
+                          <%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
+                        <% end %>
+                    </td>
+                </tr>
             <tr>
-              <td><%= room.created_at %>　
+              <td><%= room.created_at %>　　
                 <%= link_to room_favorites_path(room), method: :post, remote: true do %>
                  <i class="far fa-heart" aria-hidden="true"></i>
-                   <%= room.favorites.count %> 
-                <% end %>
-                　
+                   <%= room.favorites.count %>いいね
+                <% end %> 
+
                   <%= link_to room_path(room.id) do %>
                   <i class="fa fa-comment"></i>
-                    <%= room.room_comments.count %> 
-                <% end %>  
+                    <%= room.room_comments.count %>
+                <% end %>
               </td>
               </tr>
               <tr>
-              <td><%= room.room_genre.genre_name %></td>
-           </tr>
+               <td><%= room.room_genre.genre_name %></td>
+             </tr>
         </table>
-      <% end %>
+        <% end %>
         
+  <% else %>
+      <table class="table">
+          <tr>
+                    <td>
+                       <%= link_to room_path(room.id) do %>
+                          <%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
+                        <% end %>
+                    </td>
+                </tr>
+            <tr>
+              <td><%= room.created_at %>　　
+                <%= link_to room_favorites_path(room), method: :post, remote: true do %>
+                 <i class="far fa-heart" aria-hidden="true"></i>
+                   <%= room.favorites.count %>いいね
+                <% end %> 
+
+                  <%= link_to room_path(room.id) do %>
+                  <i class="fa fa-comment"></i>
+                    <%= room.room_comments.count %>
+                <% end %>
+              </td>
+              </tr>
+              <tr>
+               <td><%= room.room_genre.genre_name %></td>
+             </tr>
+        </table>
+
 <% end %>

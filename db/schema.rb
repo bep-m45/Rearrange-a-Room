@@ -96,6 +96,10 @@ ActiveRecord::Schema.define(version: 2020_11_29_033533) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_id"
+    t.index ["member_id"], name: "index_room_comments_on_member_id"
+    t.index ["parent_id"], name: "index_room_comments_on_parent_id"
+    t.index ["room_id"], name: "index_room_comments_on_room_id"
   end
 
   create_table "room_genres", force: :cascade do |t|

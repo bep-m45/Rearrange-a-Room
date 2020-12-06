@@ -5,12 +5,12 @@ class MembersController < ApplicationController
    end
 
   def show
-   
+      #@entries = Entry.where.not(member: current_member)
       @member = Member.find(params[:id])
-      @rooms= @member.rooms
+      @rooms = @member.rooms
       @current_member_entry = Entry.where(member_id: current_member.id)
       @member_entry = Entry.where(member_id: @member.id)
- 
+         
      unless @member.id == current_member.id
       @current_member_entry.each do |cu|
        @member_entry.each do |u|
@@ -27,6 +27,12 @@ class MembersController < ApplicationController
        @entry = Entry.new
       end
      end
+       my_chats_ids = []
+         @current_member_entry.each do | entry |
+         my_chats_ids << entry.chat.id
+         end
+
+  @another_entries = Entry.where(chat_id: my_chats_ids).where('member_id != ?', @member.id)
   end
 
 
@@ -52,14 +58,16 @@ class MembersController < ApplicationController
 
   def following
    @member  = Member.find(params[:id])
-   @members = @member.following.paginate(page: params[:page])
+   @members = @member.following
+   @entries = Entry.where.not(member: current_member)
    render 'following'
   end
 
 
  def followers
     @member  = Member.find(params[:id])
-    @members = @member.followers.paginate(page: params[:page])
+    @members = @member.followers
+    @entries = Entry.where.not(member: current_member)
     render 'followers'
  end
 
@@ -68,6 +76,10 @@ class MembersController < ApplicationController
 
  def resign_update
     current_member.update(is_deleted: true)
+     if @member.is_deleted == true
+             @member.rooms.destroy_all
+     else  
+     end
     reset_session
     flash[:notice] = "退会しました"
     redirect_to root_path

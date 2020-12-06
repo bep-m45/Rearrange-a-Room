@@ -10,6 +10,19 @@ Rails.application.routes.draw do
   get '/members/resign' => 'members#resign'
   patch 'members/resign' => 'members#resign_update'
   resources :admins, only: [:index] 
+    
+    devise_scope :member do
+    post 'members/guest_sign_in', to: 'members/sessions#new_guest'
+    end
+    
+    devise_for :members ,controllers: {
+    registrations: 'members/registrations',
+    sessions: 'members/sessions'
+  }
+   devise_for :admins  ,controllers: {
+    sessions: 'admins/sessions'
+  }
+    
   resources :members, only: [:edit, :show, :index, :update, :new] do
          member do
            get :following,:followers
@@ -17,34 +30,23 @@ Rails.application.routes.draw do
        end
    resources :rooms do
    resource :favorites, only: [:create, :destroy]
-   resources :room_comments, only: [:create, :destroy]
+   resources :room_comments, only: [:create, :destroy] 
   end      
    resources :relationships, only: [:create, :destroy]
    resources :messages, only: [:create]
-   resources :chats, only: [:create, :show]   
+   resources :chats, only: [:create, :show, :index]   
    
-   devise_for :members ,controllers: {
-    registrations: 'members/registrations',
-    sessions: 'members/sessions'
-  }
+ 
 
-  devise_scope :member do
-    post 'members/guest_sign_in', to: 'members/sessions#new_guest'
-  end
+ 
 
- devise_for :admins  ,controllers: {
-    sessions: 'admins/sessions'
-  }
+
   
   namespace :admins do
    resources :members
    resources :rooms
+   resources :room_comments, only: [:destroy]
   end
-
-   
-
- 
-
 
 
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

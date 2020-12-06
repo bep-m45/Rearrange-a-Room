@@ -1,73 +1,159 @@
 <div class="plofile-container">
-<% if member != current_member %>
-  <div id="follow_form">
-  <% if current_member.following?(member) %>
-  <div class="block-center">
-  <%= form_for(current_member.active_relationships.find_by(followed_id: member.id), html: { method: :delete }) do |f| %>
-  </div>
-  <%= f.submit "フォロー中" %>
-<% end %>
-
-  <% else %>
-
-   <%= form_for(current_member.active_relationships.build) do |f| %>
-  <div><%= hidden_field_tag :followed_id, member.id %></div>
-  <%= f.submit "フォロー"%>
-<% end %>
-
-  <% end %>
-  </div>
-<% end %>
-
-
-<% unless member.id == current_member.id %>
-  <%# if (current_member.followed_by? @member) && (@member.followed_by? current_member)  %>
-  <% if @is_chat == true %>
-    <p class="member-show-room"><a href="/chats/<%= @chat_id %>">チャットへ</a>
-  <% else %>
-    <%= form_for @chat do |f| %>
-      <%= fields_for @entry do |e| %>
-        <%= e.hidden_field :member_id, value: member.id %>
-      <% end %>
-      <%= f.submit "チャットを始める"%>
+  <% if member == current_member %>
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalForm" data-cusno=1 data-visitday="2019-07-01">
+        <i class="fas fa-envelope"></i> DM一覧
+      </button><br />
     <% end %>
+   <br>
+   <div class="row">
+    
+     <div class="col-xs-4">   
+    <% if member.is_deleted == false %>
+      <% if member != current_member %>
+            <div id="follow_form">
+              <% if current_member.following?(member) %>
+                  <div class="block-center">
+                    <%= form_for(current_member.active_relationships.find_by(followed_id: member.id), html: { method: :delete }) do |f| %>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                  フォロー中<br />
+                  </button>
+              <% end %>
+        
+              <% else %>
+                    <%= form_for(current_member.active_relationships.build) do |f| %>
+                      <div><%= hidden_field_tag :followed_id, member.id %></div>
+                      <button type="submit" class="btn btn-light">
+                      フォローする<br />
+                      </button>
+                    <% end %>
+              <% end %>
+            </div>
+      <% end %>
+      </div>
+      
+      <div class="col-xs-4">
+      <% unless member.id == current_member.id %>
+        <% if @is_chat == true %>
+          <p class="member-show-room">
+            <button type="button" class="btn btn-info">
+            <a href="/chats/<%= @chat_id %>">
+            チャットへ
+            </a></button><br />
+            <br>
+        <% else %>
+          <%= form_with model: @chat, local: true do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :member_id, value: @member.id %>
+            <% end %>
+            <button type="submit" class="btn btn-info">
+            チャットを始める
+            </button><br />
+            <br>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% else %>
   <% end %>
-<% end %>
+  </div>
+  <div class="col-xs-4"></div>
+ </div>
 
-
-<div class="text-center">
- <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
-</div>
-<br>
-<table class="table">
-<tr><th>名前</th>
-    <td><div class="member-name"><%= member.nickname %></div></td>
-</tr>
-<tr>
-    <th>プロフィール</th>
-    <td><div class="member-profile"><%= text_url_to_link(h(member.profile)).html_safe %></div></td>
-</tr>
-<tr>
-    <td>
-
+  <div class="text-center">
+   <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+   </div>
+   <br>
+   
+   <table class="table">
+    <tr>
+      <th>名前</th>
+      <td><div class="member-name"><%= member.nickname %></div></td>
+    </tr>
+    <tr>
+      <th>プロフィール</th>
+      <td><div class="member-profile"><%= text_url_to_link(h(member.profile)).html_safe %></div></td>
+    </tr>
+    <tr>
+      <td>
         <% @member ||= current_member %>
-        <div class="follow_followed">
+          <div class="follow_followed">
             <a href="<%= following_member_path(@member) %>">
                 <strong id="following" class="follow_followed"><%= @member.following.count %></strong>
                 フォロー
             </a>
-
-            </td>
-            <td>
+      </td>
+      <td>
             <a href="<%= followers_member_path(@member) %>">
-                <strong id="followers" class="follow_followed"><%= @member.followers.count %></strong>
+              <strong id="followers" class="follow_followed"><%= @member.followers.count %></strong>
                 フォロワー
             </a>
+          </div>
+      </td>
+    </tr>
+    
+   </table>
+   <div class="text-right">
+          <button type="button" class="btn btn-success">
+          <%= link_to "編集する", edit_member_path(@member.id) %>
+        <%#= link_to "パスワードを変更する", member_path(@member.id) %>
+        </button>
         </div>
-    </td>
-</tr>
+  
+</div>
 
-</table>
-<%= link_to "編集する", edit_member_path(@member.id) %>
-<%= link_to "パスワードを変更する", member_path(@member.id) %>
+
+<div class="modal fade" id="modalForm" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+       <div class="modal-header">
+         <div class="text-center">
+           <div>DM一覧</div>
+          </div>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">閉じる</span>
+          </button>
+       </div>
+       
+       <form role="form" id="form1" action="" method="POST">
+         <div class="modal-body">
+           
+           <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>名前</th>
+                <th></th>
+              </tr>
+              <tr>
+            </thead>
+            <tbody>
+              <% @another_entries.each do |m| %>
+              
+                <tr>
+                  <td>
+                    <%= attachment_image_tag m.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
+                  </td>
+                  <td>
+                    <%= m.member.nickname %>
+          　　        <% if member.is_deleted %>
+        　　           　(退会済会員)
+                    <% end %>
+                  </td>
+                  <td>
+                     <%= link_to "チャットへ", chat_path(m.chat.id) %>
+                 </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+         </div>
+         
+          <div class="modal-footer">
+            
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
+          </div>
+        </form>
+      </div>
+   </div>
 </div>

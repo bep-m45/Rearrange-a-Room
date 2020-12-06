@@ -1,6 +1,6 @@
 
 <h2>
-  <%= @member.nickname %>様 
+  <%= @member.nickname %>様
 ( <% if @member.is_deleted %>
    <span>退会済会員</span>
   <% else %>
@@ -10,20 +10,22 @@
 
 
 
-
+<div class="room-container">
 <div class="row">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-4">
-
-<%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
-
+    <div class="col-xs-6">
+<table class="table">
+  <tr>
+    <td>
+<%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "430x430" %>
+</td>
+</tr>
+</table>
 
 </div>
 
-<div class="col-xs-4">
-
+<div class="col-xs-6">
 <table class="table">
-  <tr> 
+  <tr>
   <th>ID</th>
   <td><%= @member.id %></td>
   </tr>
@@ -44,18 +46,18 @@
 　　    <td><%= @member.profile %></td>
 　　</tr>
 　　<tr>
-　　    <%= form_with model: @member, url: member_path, local:true do |f|%>
+　　     <%= form_with model: @member, url: admins_member_path(@member), local:true do |f|%>
         <th><%= f.label :会員ステータス %></th>
         <td><%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み</td>
    </tr>
 </table>
 
  <div class="text-right">
-<%= f. submit '更新' %>
+<%= f.submit '更新', data: {confirm: "本当に削除しますか？"} %>
 </div>
 
 <% end %>
 </div>
 
-<div class="col-xs-2"></div>
+</div>
 </div>

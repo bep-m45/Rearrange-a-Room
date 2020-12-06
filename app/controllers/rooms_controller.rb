@@ -28,16 +28,18 @@ class RoomsController < ApplicationController
     redirect_to room_path(@room.id)
     flash[:notice] = "Roomを投稿しました"
     else
-    render "new"
-    flash[:notice] = "送信に失敗しましたしました"
+    render "new", notice: "送信に失敗しましたしました"
+ 
     end
   end
 
   def show
     @room = Room.find(params[:id])
-    @member = @room.member
-    @room_comment = RoomComment.new
     @room_comments = @room.room_comments
+    @room_comment = @room.room_comments.build
+    @room_comment_reply = @room.room_comments.build
+    @member = @room.member
+ 
     
      if params[:room_layout_id]
   		@room_layout = RoomLayout.find(params[:room_layout_id])
@@ -77,17 +79,22 @@ class RoomsController < ApplicationController
   end
   
   def destroy
-     @member = Member.find(params[:id])
-     if @member.destroy
+     @room = Room.find(params[:id])
+     if @room.destroy
        flash[:notice] ='Roomの投稿を削除しました'
     redirect_to member_path(current_member)
      end
   end  
 
  private
-  def room_params
+ 
+ def set_room
+   @room = Room.find.(params[:id])
+ end
+ 
+ def room_params
   params.require(:room).permit(:member_id, :size, :production, :image,  :room_layout_id, :room_genre_id, :room_image_id)
-  end
+ end
 end
 
 

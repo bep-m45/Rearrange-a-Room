@@ -1,160 +1,216 @@
-<% if flash[:notice] %>
-   <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-<% end %>
+<h2><%= @room.member.nickname %>のRoom</h2>
+  <div class="room-container">
+    <div class="row">
 
-<h2>Show</h2>
-
-<div class="row">
-    <div class="col-xs-2"></div>
-
-    <div class="col-xs-4">
-        <%= link_to member_path(@member.id) do %>
-        <%= attachment_image_tag @member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
-           <% end %>
-            <%= @member.nickname %>
-            
-            <br>
-            <br>
-<%= attachment_image_tag @room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "360x360" %>
-
-
-          <% if member_signed_in? %>
-<br>
-       <% if @room.favorited_by?(current_member) %>
-            <table class="table">
-              <tr>
-                <td><%= @room.created_at %>
-                　<%= link_to room_favorites_path(@room), method: :delete, remote: true do %>
-                    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                      <%= @room.favorites.count %> いいね
-                  <% end %>
-                  　<%= link_to room_path(@room.id) do %>
-                  <i class="fa fa-comment"></i>
-                    <%= @room.room_comments.count %>
-                  <% end %>
-               </td>
-              </tr>
-            </table>
-
-        <% else %>
-        <table class="table">
+      <div class="col-xs-6">
+        <div class="room-image">
+          <table class="table">
             <tr>
-              <td><%= @room.created_at %>　
-                <%= link_to room_favorites_path(@room), method: :post, remote: true do %>
-                 <i class="far fa-heart" aria-hidden="true"></i>
-                   <%= @room.favorites.count %> 
-                <% end %>
-                　
-                  <%= link_to room_path(@room.id) do %>
-                  <i class="fa fa-comment"></i>
-                    <%= @room.room_comments.count %> 
-                <% end %>  
+              <td>
+                <%= attachment_image_tag @room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "430x430" %>
               </td>
               </tr>
-            
-        </table>
-        <% end %>
-        
-<% end %>
+              <% if member_signed_in? %>
+                <% if @room.favorited_by?(current_member) %>
+              <tr>
+          <td><%= @room.created_at.strftime("%Y-%m-%d %H:%M") %>
+                    <%= link_to room_favorites_path(@room), method: :delete, remote: true do %>
+                    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                    <%= @room.favorites.count %> いいね
+                  <% end %>
+                    <%= link_to room_path(@room.id) do %>
+                    <i class="fa fa-comment"></i>
+                    <%= @room.room_comments.count %>
+                    <% end %>
+          </td>
+              </tr>
+              <% else %>
 
+                    <tr>
+                      <td>
+                          <%= @room.created_at %>
+                          <%= link_to room_favorites_path(@room), method: :post, remote: true do %>
+                             <i class="far fa-heart" aria-hidden="true"></i>
+                             <%= @room.favorites.count %> いいね
+                          <% end %>
 
-</div>
+                          <%= link_to room_path(@room.id) do %>
+                             <i class="fa fa-comment"></i>
+                             <%= @room.room_comments.count %>
+                          <% end %>
+                      </td>
+                    </tr>
 
-<div class="col-xs-4">
+                 <% end %>
+                <% end %>
+              </table>
+            </div>
+           </div>
 
-<div class="room-production-table">
-<table class="table">
-    <tr>
-        <th>間取り</th>
-        <td><%= @room.room_layout.layout_name %></td>
-    </tr>
-    <tr>
-        <th>広さ</th>
-        <td><%= @room.size %>畳</td>
-    </tr>
-    <tr>
-        <th>部屋の種類</th>
-    <td><%= @room.room_genre.genre_name %></td>
-    </tr>
-    <tr>
-        <th>イメージ</th>
-        <td><%= @room.room_image.image_name %></td>
-    </tr>
-    <tr>
-    <th>説明</th>
-    <td><%= @room.production %></td>
-    </tr>
-</table>
+           <div class="col-xs-6">
+             <div class="room-production-table">
+               <table class="table">
+                 <tr>
+                   <td>
+                     <%= link_to member_path(@member.id) do %>
+                      <%= attachment_image_tag @member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
+                     <% end %>
+                   </td>
+                   <td><%= @member.nickname %></td>
+                 </tr>
+                 <tr>
+                    <th>間取り</th>
+                    <td><%= @room.room_layout.layout_name %></td>
+                 </tr>
+                 <tr>
+                    <th>広さ</th>
+                    <td><%= @room.size %>畳</td>
+                 </tr>
+                 <tr>
+                    <th>部屋の種類</th>
+                    <td><%= @room.room_genre.genre_name %></td>
+                 </tr>
+                 <tr>
+                    <th>イメージ</th>
+                    <td><%= @room.room_image.image_name %></td>
+                 </tr>
+                 <tr>
+                    <th>説明</th>
+                    <td><%= text_url_to_link(h(@room.production)).html_safe %></td>
+                 </tr>
+               </table>
 
-<% if @room.member == current_member %>
-<div class="text-right">
-<%= link_to "編集する", edit_room_path(@room.id) %>
-</div>
-<% end %>
-</div>
-</div>
+              <% if @room.member == current_member %>
+                <div class="text-right">
+                  <button type="button" class="btn btn-success"><%= link_to "編集", edit_room_path(@room.id) %></button>
+                  <button type="button" class="btn btn-danger"><%= link_to '削除', room_path(@room.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></button>
+                </div>
+              <% end %>
+             </div>
+           </div>
+           <div class="col-xs-2"></div>
+    </div>
+  </div>
+<!-- コメント -->
+  <div id="comments_area">
+    <h3><i class="fa fa-comment"></i> Comment　<%= @room.room_comments.count %>件</h3>
+      <div class="room_comment_container">
+        <% @room_comments.each do |room_comment| %>
+            <% if room_comment.parent_id.present? || room_comment.id.blank? %>
+              <% next %>
+            <% end %>
+      <!-- 親コメント一覧 -->
+      <table class="table">
+        <tr>
+          <td>
+          <p>
+            <%= attachment_image_tag room_comment.member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
+            <%= room_comment.member.nickname %>
+          </p>
+          <%= room_comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+          <% if current_member == room_comment.member %>
+          <%= link_to "削除", room_room_comment_path(@room, room_comment), method: :delete, data: {confirm: "本当に削除しますか？"} %><br />
+          <% end %>
+          <div class="btn-wrap">
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalForm" data-cusno=1 data-visitday="2019-07-01" onClick="inputCommentParentId(<%=room_comment.id%>)">
+          返信 <i class="fa fa-comment"></i></i>
+          </button>
+          </div>
+          <br>
+          </td>
+          <td>
+          <%= text_url_to_link(h(room_comment.comment)).html_safe %>
 
-<div class="col-xs-2"></div>
+          </td>
 
-</div>
+          </tr>
+          <!-- 返信コメント一覧 -->
+             <% if @room_comment.errors.any? %>
+            <h5><%= pluralize(@room_comment.errors.count, "error") %> prohibited this product from being saved:</h5>
 
-<div class="row">
-    <div class="col-xs-3"></div>
-
-    <div class="col-xs-6">
-      
-         <%= form_for [@room, @room_comment] do |f| %>
-<br>
-      <%= f.text_area :comment, class:"form-control" %>
-      <br>
-      <div class="text-right">
-      <%= f.submit '送信' %>
-      </div>
+    <ul>
+      <% @room_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
-    </div>
-    <div class="col-xs-3"></div>
-</div>
-
-<div class="row">
-
-    <div class="col-xs-8">
-     
-
-      <br>
-    </div>
-
-    <table class="table">
-        <thead>
+      <%end %>
+          <div id="reply_area">
+            <% room_comment.replies.order(:created_at).each do |reply| %>
             <tr>
-                <th></th>
-                <th>コメント投稿者</th>
-                <th>コメント内容</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @room_comments.each do |room_comment| %>
-             
-            <tr>
-                <td><%= attachment_image_tag room_comment.member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %></td>
-                <td><%= room_comment.member.nickname %></td>
-                <td><%= text_url_to_link(h(room_comment.comment)).html_safe %></td>
-                <% if room_comment.member == current_member %>
-                <td>
-            <%= link_to "削除", room_room_comment_path(@room, room_comment), method: :delete %>
-
-            </td>
+              <td>
+              <p>
+                <%= attachment_image_tag reply.member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "50x50" %>
+                <%= reply.member.nickname %>
+              </p>
+                <%=reply.created_at.strftime("%Y-%m-%d %H:%M") %>
+                <% if current_member == reply.member %>
+                <%= link_to "削除", room_room_comment_path(@room, reply), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+                <% end %>
+                </td>
+                <td><%= text_url_to_link(h(reply.comment)).html_safe %></td>
+                </tr>
             <% end %>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
+          </div>
+          </table>
+          <br>
 
 
+        <% end %>
+    <!-- 親コメント入力フォーム -->
+           <% if @room_comment.errors.any? %>
+            <h5><%= pluralize(@room_comment.errors.count, "error") %> prohibited this product from being saved:</h5>
 
+    <ul>
+      <% @room_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <%end %>
 
-    <div class="col-xs-2"></div>
+        <%= form_with(model:[@room,@room_comment],local:true) do |form| %>
+        <br>
+          <p>
+            <label>コメント</label>
+          </p>
+          <%= form.text_area :comment, class: "form-control input-form" %>
+          <!--<textarea class="form-control input-form" name="comment[content]" rows="5"><%#= @room_comment.comment %></textarea>-->
+          <%= form.hidden_field :room_id, value: @room.id %>
+          <br>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary">
+            送信
+          </button>
+          </div>
+        <% end %>
+     </div>
+  </div>
 
-</div>
+<!-- モーダルフォーム -->
+  <div class="modal fade" id="modalForm" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <!-- Modal ヘッダー -->
+        <div class="modal-header">
+          <div class="text-center">
+          返信コメント入力フォーム
+          </div>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">閉じる</span>
+          </button>
+        </div>
+      <!-- 返信コメント入力フォーム -->
+          <div class="modal-body">
+                <div class="form-group">
+                  <%= form_with(model:[@room, @room_comment_reply], local: true) do |form| %>
+                         <%= form.text_area :comment, class: "form-control input-form" %>
+                 <!--<textarea class="form-control input-form" name="comment[content]" rows="2"><%#=@room_comment_reply.comment%></textarea>-->
+                         <%= form.hidden_field :room_id, value: @room.id %>
+                          <%= form.hidden_field :parent_id %>
+                 </div>
+                 <div class="text-right">
+                 <button type="submit" class="btn btn-primary">
+                   送信
+                </button>
+                </div>
+              <% end %>
+            </div>
+          </div>
