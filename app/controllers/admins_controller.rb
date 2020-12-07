@@ -5,8 +5,4 @@ def index
   @rooms = Room.all
 end
 
-def create
-
-end
-
 end

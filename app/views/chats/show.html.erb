@@ -7,6 +7,7 @@
         <li><%= message %></li>
       <% end %>
       <%end %>
+      
 <h2>Direct Message</h2>
 <div class="row">
   <div class="col-xs-2"></div>
@@ -34,6 +35,9 @@
             <%= attachment_image_tag m.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
           </div>
              <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+             
+               <!--<button type="button" class="btn btn-danger"><%#= link_to '削除', message_path(m.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></button>-->
+             
           </td>   
            <td>
           <div class="chat-hukidashi">

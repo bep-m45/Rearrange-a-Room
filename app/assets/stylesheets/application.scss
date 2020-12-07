@@ -36,11 +36,11 @@ main {
 }
 
 h1 {
-
   margin-bottom: 70px;
   font-size: 100px;
   font-family: 'Nerko One', cursive;
   text-align: center;
+  text-decoration: underline dotted 10px #ffffff;
 }
 
 h2 {
@@ -125,9 +125,22 @@ table {
 }
 
 .logo {
+  display: flex;
   margin-right: auto;
   font-family: 'Nerko One', cursive;
   font-size: 35px;
+}
+.logo-text {
+  line-height: 75px;
+  text-decoration: underline dotted 5px #ffffff;
+}
+
+.logo-image {
+  width: 130px;
+  height: 80px;
+  margin-right: 15px;
+  background-image: image-url("/images/logo.PNG");
+  background-size: cover;
 }
 
 .header-list{

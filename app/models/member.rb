@@ -43,9 +43,8 @@ class Member < ApplicationRecord
     following.include?(other_member)
   end
 
-  validates :nickname, presence: true, length: { minimum: 3, maximum: 10 }
+  validates :nickname, presence: true, length: { minimum: 2, maximum: 10 }
   validates :name, presence: true, length: { minimum: 3, maximum: 15 }
   validates :profile, length: { maximum: 250 }
-
 end
 

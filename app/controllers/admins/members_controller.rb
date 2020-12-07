@@ -1,41 +1,41 @@
 class Admins::MembersController < ApplicationController
-    before_action :authenticate_admin! 
+    before_action :authenticate_admin!
 
   def index
-    @members = Member.all
+    @members = Member.all.order(created_at: :desc)
   end
-  
+
   def show
   @member = Member.find(params[:id])
-  @rooms = @member.rooms
+  @rooms = @member.rooms.order(created_at: :desc)
   end
-  
+
   def edit
    @member = Member.find(params[:id])
   end
-  
+
    def update
         @member =Member.find(params[:id])
         if @member.update(member_params)
-          
+
           if @member.is_deleted == true
              @member.rooms.destroy_all
-          else  
+          else
           end
           flash[:notice] = "お客様情報を更新しました"
             redirect_to admins_members_path
-          
+
         else
             render 'admins/members/edit'
         end
    end
-   
-   
+
+
  def resign
  end
-  
+
    private
-   
+
   def member_params
   params.require(:member).permit(:is_deleted)
   end

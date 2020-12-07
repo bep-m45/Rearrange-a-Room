@@ -11,55 +11,44 @@
   </head>
 
   <body>
-  
     <header>
-          <div class="header">
-        <div class="logo">Rearrange a Room</div>
-
-        <!--<div class="header-list">-->
-            <nav>
-              <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <nav>
-              <ul>
-                <% if member_signed_in? %>
-                  <li class="header-list-item"><%= link_to "Home", root_path, class: "btn-primary" %></button></li>
-                  <li class="header-list-item"><%= link_to "My Page", member_path(current_member.id), class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "Users", members_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "Rooms", rooms_path, class: "btn-primary"  %></li>
-                  <li class="header-list-item"><%= link_to "Sign Out", destroy_member_session_path, method: :delete, class: "btn-primary" %></li>
-                <% elsif admin_signed_in? %>
-                  <li class="header-list-item"><%= link_to "会員一覧", admins_members_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "投稿一覧", admins_rooms_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: "btn-primary" %></li>
-                <% else %>
-                  <li class="header-list-item"><%= link_to "Home", root_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "About", homes_about_path, class: "btn-primary" %></li> 
-                  <li class="header-list-item"><%= link_to "Gest In", members_guest_sign_in_path, method: :post, class: "btn-primary" %></li></a>
-                  <li class="header-list-item"><%= link_to "Sign Up", new_member_registration_path, class: "btn-primary" %></li>
-                  <li class="header-list-item"><%= link_to "Sign In", new_member_session_path, class: "btn-primary"  %></li>
-                <% end %>
-              </ul>
-            </nav>
-
-          
-          </div>
+      <div class="header">
+        <div class="logo"><div class="logo-background"><div class="logo-image"></div></div><div class="logo-text">Rearrange a Room</div></div>
+        <div class="header-list">
+          <nav>
+            <ul>
+              <% if member_signed_in? %>
+                <li class="header-list-item"><%= link_to "Home", root_path, class: "btn-primary" %></button></li>
+                <li class="header-list-item"><%= link_to "My Page", member_path(current_member.id), class: "btn-primary" %></li>
+                <li class="header-list-item"><%= link_to "Users", members_path, class: "btn-primary" %></li>
+                <li class="header-list-item"><%= link_to "Rooms", rooms_path, class: "btn-primary"  %></li>
+                <li class="header-list-item"><%= link_to "Sign Out", destroy_member_session_path, method: :delete, class: "btn-primary" %></li>
+              <% elsif admin_signed_in? %>
+                <li class="header-list-item"><%= link_to "会員一覧", admins_members_path, class: "btn-primary" %></li>
+                <li class="header-list-item"><%= link_to "投稿一覧", admins_rooms_path, class: "btn-primary" %></li>
+                <li class="header-list-item"><%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: "btn-primary" %></li>
+              <% else %>
+                <li class="header-list-item"><%= link_to "Home", root_path, class: "btn-primary" %></li>
+                <li class="header-list-item"><%= link_to "About", homes_about_path, class: "btn-primary" %></li> 
+                <li class="header-list-item"><%= link_to "Gest In", members_guest_sign_in_path, method: :post, class: "btn-primary" %></li></a>
+                <li class="header-list-item"><%= link_to "Sign Up", new_member_registration_path, class: "btn-primary" %></li>
+                <li class="header-list-item"><%= link_to "Sign In", new_member_session_path, class: "btn-primary"  %></li>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
     </header>
+    
     <main>
-        <h4>
-          <% if flash[:notice] %>
-  <div class="flash">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
-</h4>
+      <h4>
+        <% if flash[:notice] %>
+          <div class="flash">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+      </h4>
       <div class="container">
-
-          <%= yield %>
+        <%= yield %>
       </div>
     </main>
   </body>

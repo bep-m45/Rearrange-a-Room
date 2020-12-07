@@ -18,15 +18,15 @@
 //= require_tree .
 
 $(function() {
-    $('.hamburger').click(function() {
-        $(this).toggleClass('active');
+    // $('.hamburger').click(function() {
+    //     $(this).toggleClass('active');
  
-        if ($(this).hasClass('active')) {
-            $('.globalMenuSp').addClass('active');
-        } else {
-            $('.globalMenuSp').removeClass('active');
-        }
-    });
+    //     if ($(this).hasClass('active')) {
+    //         $('.globalMenuSp').addClass('active');
+    //     } else {
+    //         $('.globalMenuSp').removeClass('active');
+    //     }
+    // });
     
  	$('.post_image').on('change', function (e) {
  	    var previewImage;
@@ -53,12 +53,6 @@ $(function() {
 });
 
 
-// $('#newday').datepicker({
-//     dateFormat: 'yy-mm-dd',
-// });
-
-
-// 
 function inputCommentParentId(parentId){
     $("#room_comment_parent_id").val(parentId);
 }

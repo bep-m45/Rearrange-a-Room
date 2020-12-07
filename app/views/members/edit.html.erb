@@ -1,56 +1,49 @@
-
-
 <h2><%= current_member.nickname %> 編集Page</h2>
 
-  <% if @member.errors.any? %>
-    <h5><%= pluralize(@member.errors.count, "error") %> prohibited this product from being saved:</h5>
-      <div class="alert alert-warning">
-        <ul>
-          <% @member.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-  <% end %>
-
-  <div class="row">
-    <div class="col-xs-2"></div>
-    
-      <div class="col-xs-4">
-        <%= form_with model: @member, url: member_path, local:true do |f|%>
-        <div class="post_image">
-        <%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "320x320", class: "image" %>
-        
-          <%= f.attachment_field :profile_image %>
-      </div>
-      </div>
-
-      <div class="col-xs-4">
-            <table class="table">
-              <tr>
-                <th><%= f.label :名前 %></th>
-　　　　        <td><%= f.text_field :name, class:"form-control" %></td>
-　    　      </tr>
-　　          <tr>
-　　            <th><%= f.label :ニックネーム %></th>
-　　　　        <td><%= f.text_field :nickname, class:"form-control" %></td>
-　　          </tr>
-　　          <tr>
-　　            <th><%= f.label :メールアドレス %></th>
-　　　　        <td><%= f.email_field :email, class:"form-control" %></td>
-　  　        </tr>
-　　          <tr>
-　　            <th><%= f.label :プロフィール %></th>
-　　            <td><%= f.text_area :profile, class:"form-control" %></td>
-　　          </tr>
-            </table>
-
-              <div class="text-right">
-                 <button type="submit" class="btn btn-success">更新</button>
-                  <button type="button" class="btn btn-danger"><%=link_to '退会', members_resign_path %><button></button>
-              </div>
+<% if @member.errors.any? %>
+  <h5><%= pluralize(@member.errors.count, "error") %> prohibited this product from being saved:</h5>
+    <div class="alert alert-warning">
+      <ul>
+        <% @member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
         <% end %>
-      </div>
+      </ul>
+    </div>
+<% end %>
 
-      <div class="col-xs-2"></div>
-  </div>
+<div class="row">
+  <div class="col-xs-2"></div>
+    <div class="col-xs-4">
+    <%= form_with model: @member, url: member_path, local:true do |f|%>
+      <div class="post_image">
+        <%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "320x320", class: "image" %>
+        <%= f.attachment_field :profile_image %>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <table class="table">
+        <tr>
+          <th><%= f.label :名前 %></th>
+　　　　  <td><%= f.text_field :name, class:"form-control" %></td>
+　    　</tr>
+　　    <tr>
+　　      <th><%= f.label :ニックネーム %></th>
+　　　　  <td><%= f.text_field :nickname, class:"form-control" %></td>
+　　    </tr>
+　　    <tr>
+　　      <th><%= f.label :メールアドレス %></th>
+　　　　  <td><%= f.email_field :email, class:"form-control" %></td>
+　  　  </tr>
+　　    <tr>
+　　      <th><%= f.label :プロフィール %></th>
+　　      <td><%= f.text_area :profile, class:"form-control" %></td>
+　　    </tr>
+      </table>
+      <div class="text-right">
+        <button type="submit" class="btn btn-success">更新</button>
+        <button type="button" class="btn btn-danger"><%=link_to '退会', members_resign_path %><button></button>
+      </div>
+    <% end %>
+    </div>
+    <div class="col-xs-2"></div>
+</div>

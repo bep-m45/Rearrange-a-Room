@@ -2,7 +2,7 @@ class Admins::RoomsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(created_at: :desc)
   end
 
   def show

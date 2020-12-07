@@ -1,11 +1,10 @@
 <h2>Admin Sign In</h2>
 
   <div class="row">
-    <div class="col-xs-3"></div> 
-  
+    <div class="col-xs-3"></div>
+
       <div class="col-xs-6">
-        <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
-        
+        <%= form_with model: @admin, url: admin_session_path, local: true do |f| %
           <table class="table">
             <tr>
               <th><%= f.label :email %></th>
@@ -16,7 +15,7 @@
               <td><%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword" %></td>
             </tr>
           </table>
-        
+
           <div class="text-right">
             <% if devise_mapping.rememberable? %>
               <%= f.check_box :remember_me %>
@@ -25,12 +24,12 @@
             <br>
             <%= f.submit "SIGN IN" %>
           </div>
-         
-         
+
+
         <% end %>
       </div>
 
-    <div class="col-xs-3"></div> 
+    <div class="col-xs-3"></div>
   </div>
 
 

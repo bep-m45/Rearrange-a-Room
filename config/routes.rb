@@ -9,12 +9,12 @@ Rails.application.routes.draw do
   get '/search' => 'searches#search'
   get '/members/resign' => 'members#resign'
   patch 'members/resign' => 'members#resign_update'
-  resources :admins, only: [:index] 
-    
+  resources :admins, only: [:index]
+
     devise_scope :member do
     post 'members/guest_sign_in', to: 'members/sessions#new_guest'
     end
-    
+
     devise_for :members ,controllers: {
     registrations: 'members/registrations',
     sessions: 'members/sessions'
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
    devise_for :admins  ,controllers: {
     sessions: 'admins/sessions'
   }
-    
+
   resources :members, only: [:edit, :show, :index, :update, :new] do
          member do
            get :following,:followers
@@ -30,18 +30,12 @@ Rails.application.routes.draw do
        end
    resources :rooms do
    resource :favorites, only: [:create, :destroy]
-   resources :room_comments, only: [:create, :destroy] 
-  end      
+   resources :room_comments, only: [:create, :destroy]
+  end
    resources :relationships, only: [:create, :destroy]
-   resources :messages, only: [:create]
-   resources :chats, only: [:create, :show, :index]   
-   
- 
+   resources :messages, only: [:create, :destroy]
+   resources :chats, only: [:create, :show, :index]
 
- 
-
-
-  
   namespace :admins do
    resources :members
    resources :rooms
