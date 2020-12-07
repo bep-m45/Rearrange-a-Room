@@ -49,16 +49,9 @@
                 <% end %>
                 <%= room.member.nickname %><br />
                 <br>
-                <%= link_to room_path(room.id) do %>
-                  <%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
-                <% end %>
                 <div id="favorites_buttons_<%= room.id %>">
                   <%= render partial: 'favorites/favorite', locals: { room: room} %>
                 </div>
-                <% if room.member == current_member %>
-                  <%= link_to '編集', edit_room_path(room.id) %>
-                  <%= link_to '削除', room_path(room.id), method: :delete, data: {confirm: "Are you sure?"} %>
-                <% end %>
               </div>
             <% end %>
           </div>

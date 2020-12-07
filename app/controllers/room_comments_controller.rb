@@ -39,7 +39,11 @@ class RoomCommentsController < ApplicationController
   def destroy
     @room = Room.find(params[:room_id])
     @room_comment = RoomComment.find(params[:id])
+    p "-----------"
+    p @room_comment
+    p @room
     @room_comment.destroy
+    flash[:notice] = "コメントを削除しました"
     redirect_to request.referer
   end
 

@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!, only: [:show, :edit, :create, :following, :followers, :resign]
+  before_action :current_member, only: [:edit, :update]
    def index
      @members = Member.all.order(created_at: :desc)
    end
@@ -36,8 +37,11 @@ class MembersController < ApplicationController
 
 
   def edit
+   
    @member = Member.find(params[:id])
-
+  if @member.id != current_member.id
+   redirect_to member_path(current_member.id)
+  end
   end
 
   def update

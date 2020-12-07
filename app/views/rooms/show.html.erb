@@ -26,7 +26,7 @@
             <% else %>
             <tr>
               <td>
-                <%= @room.created_at %>
+                <%= @room.created_at.strftime("%Y-%m-%d %H:%M") %>
                 <%= link_to room_favorites_path(@room), method: :post, remote: true do %>
                   <i class="far fa-heart" aria-hidden="true"></i><%= @room.favorites.count %> いいね
                 <% end %>
@@ -85,6 +85,16 @@
   </div>
   
   <!-- 投稿へのコメント -->
+    <% if @room_comment.errors.any? %>
+        <h5><%= pluralize(@room_comment.errors.count, "error") %> prohibited this product from being saved:</h5>
+        <ul>
+          <% @room_comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>  
+      <%end %>
+      
+      
   <div id="comments_area">
     <h3><i class="fa fa-comment"></i> Comment　<%= @room.room_comments.count %>件</h3>
     <div class="room_comment_container">
@@ -116,13 +126,7 @@
             </td>
           </tr>
           <!-- リプライコメント一覧 -->
-          <% if @room_comment.errors.any? %>
-            <h5><%= pluralize(@room_comment.errors.count, "error") %> prohibited this product from being saved:</h5>
-            <ul>
-              <% @room_comment.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-           <%end %>
+          
            <div id="reply_area">
 　         <% room_comment.replies.order(:created_at).each do |reply| %>
             <tr>
@@ -145,14 +149,7 @@
       <% end %>
       
       <!-- 親コメント入力フォーム -->
-      <% if @room_comment.errors.any? %>
-        <h5><%= pluralize(@room_comment.errors.count, "error") %> prohibited this product from being saved:</h5>
-        <ul>
-          <% @room_comment.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>  
-      <%end %>
+    
 
       <%= form_with(model:[@room,@room_comment],local:true) do |form| %>
       <br>

@@ -123,10 +123,14 @@
       </div>
      </table>
      <div class="text-right">
-       <button type="button" class="btn btn-success">
+       
+         <% if member == current_member %>
+         <button type="button" class="btn btn-success">
          <%= link_to "編集する", edit_member_path(@member.id) %>
+         </button>
         <%#= link_to "パスワードを変更する", member_path(@member.id) %>
-       </button>
+        <% end %>
+       
      </div>
   <% end %>
   </div>

@@ -19,6 +19,7 @@
             <ul>
               <% if member_signed_in? %>
                 <li class="header-list-item"><%= link_to "Home", root_path, class: "btn-primary" %></button></li>
+                <li class="header-list-item"><%= link_to "Post", new_room_path, class: "btn-primary" %></li>
                 <li class="header-list-item"><%= link_to "My Page", member_path(current_member.id), class: "btn-primary" %></li>
                 <li class="header-list-item"><%= link_to "Users", members_path, class: "btn-primary" %></li>
                 <li class="header-list-item"><%= link_to "Rooms", rooms_path, class: "btn-primary"  %></li>

@@ -77,12 +77,12 @@
       <table class="table">
             <tr>
                 <td>
-                <p><%= attachment_image_tag room_comment.member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
+                <p><%= attachment_image_tag room_comment.member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %
             <%= room_comment.member.nickname %> 
           </p>
           <%=room_comment.created_at.strftime("%Y-%m-%d %H:%M") %>　
           <button type="button" class="btn btn-danger">
-          <%= link_to "削除", admins_room_comment_path(@room, room_comment), method: :delete, data: {confirm: "本当に削除しますか？"} %><br />
+          <%= link_to "削除", "/admins/room_comments/#{room_comment.id}", method: :delete, data: {confirm: "本当に削除しますか？"} %><br />
           </button>
           <br>
           </td>
@@ -97,11 +97,12 @@
          
               <p>
                 <%= attachment_image_tag reply.member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "50x50" %>
-                <%= reply.member.nickname %> : 
+
+                <%= reply.member.nickname %> 
               </p>
                 <%=reply.created_at.strftime("%Y-%m-%d %H:%M") %>　
                 <button type="button" class="btn btn-danger">
-                <%= link_to "削除", admins_room_comment_path(@room, reply), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+               <%= link_to "削除", "/admins/room_comments/#{reply.id}", method: :delete, data: {confirm: "本当に削除しますか？"} %>
                 </button>
           </td>
           <td><%= text_url_to_link(h(reply.comment)).html_safe %></td>

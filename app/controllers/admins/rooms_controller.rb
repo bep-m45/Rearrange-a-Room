@@ -35,7 +35,6 @@ class Admins::RoomsController < ApplicationController
 
     def destroy
      @room = Room.find(params[:id])
-     @room_comment = RoomComment(params[:id])
      if @room.destroy
        flash[:notice] ='Roomの投稿を削除しました'
     redirect_to admins_rooms_path
