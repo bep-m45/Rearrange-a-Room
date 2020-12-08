@@ -11,15 +11,20 @@
   </div>
   
   <div class="col-xs-8">
-    <div class="post-container">
-      <% @rooms.each do |room| %>
-      <div class="post-list"><br />
-      <br>
-        <div id="favorites_buttons_<%= room.id %>">
-          <%= render partial: 'favorites/favorite', locals: { room: room} %>
-        </div>
+    <div class="room-container">
+      <div class="post-container">
+        <% @rooms.each do |room| %>
+          <div class="post-list"><br />
+          <br>
+            <div id="favorites_buttons_<%= room.id %>">
+              <%= render partial: 'favorites/favorite', locals: { room: room} %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <% end %>
+      <div class="text-right">
+        <%= paginate @rooms %>
+      </div>
     </div>
   </div>
 </div>

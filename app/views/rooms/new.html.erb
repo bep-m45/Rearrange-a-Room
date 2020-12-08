@@ -11,18 +11,20 @@
 
 <div class="room-container">
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-3">
       <%= form_with model: @room, local: true do |f|%>
         <div class="post_image">
           <table class="table">
             <tr>
-              <td><%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "430x430",class: "image" %></td>
+              <td><%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "310x310",class: "image" %></td>
             </tr>
           </table>
           <%= f.attachment_field :image %>
         </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-4">
       <table class="table">
         <tr>
           <th>間取り</th>
@@ -51,5 +53,6 @@
       </div>
       <% end %>
     </div>
+    <div class="col-xs-1"></div>
   </div>
 </div>

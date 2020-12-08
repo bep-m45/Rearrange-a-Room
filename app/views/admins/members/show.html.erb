@@ -1,91 +1,71 @@
-
 <h2><%= @member.nickname %> のPage</h2>
 
 <div class="row">
-    <div class="col-xs-4">
-      <div class="plofile-container">
-
-<div class="text-center">
- <div class="member-image"><%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
-</div>
-<br>
-<table class="table">
-<tr><th>名前</th>
-    <td><div class="member-name"><%= @member.nickname %></div></td>
-</tr>
-<tr>
-    <th>プロフィール</th>
-    <td><div class="member-profile"><%= text_url_to_link(h(@member.profile)).html_safe %></div></td>
-</tr>
-<tr>
-    <td>
-
-        <% @member ||= current_member %>
-        <div class="follow_followed">
-                <strong id="following" class="follow_followed"><%= @member.following.count %></strong>
-                フォロー
-            </a>
-
-            </td>
-            <td>
-                <strong id="followers" class="follow_followed"><%= @member.followers.count %></strong>
-                フォロワー
-            </a>
-        </div>
-    </td>
-</tr>
-
-</table>
-<div class="text-right">
-   <button type="button" class="btn btn-success">
-        <%= link_to '編集', edit_admins_member_path(@member.id) %>
-        </button>
-        </div>
-        </td>
-</div>
-</div>
-<div class="col-xs-8">
-
-<div class="post-container">
-<% @rooms.each do |room| %>
-<div class="post-list">
-   <table class="table">
-     <tr>
-       <td>
-<%= link_to admins_room_path(room.id) do %>
-<%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
-<% end %>
-</td>
-</tr>
-
-
-            <tr>
-              <td><%= room.created_at %>　
-               
-                 <i class="far fa-heart" aria-hidden="true"></i>
-                   <%= room.favorites.count %> いいね 
-              
-                　
-                 
-                  <i class="fa fa-comment"></i>
-                    <%= room.room_comments.count %>
-               
-              </td>
-              </tr>
-              <tr>
-              <td><%= room.room_genre.genre_name %></td>
-           </tr>
-        </table>
-         
+  
+  <div class="col-xs-4">
+      <div class="text-center">
+       <div class="member-image"><%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+      </div>
+      <br>
+      <table class="table">
+        <tr>
+          <th>名前</th>
+            <td><div class="member-name"><%= @member.nickname %></div></td>
+        </tr>
+        <tr>
+          <th>プロフィール</th>
+          <td><div class="member-profile"><%= text_url_to_link(h(@member.profile)).html_safe %></div></td>
+        </tr>
+        <tr>
+          <div class="follow_followed">
+          <td>
+          <% @member ||= current_member %>
+            <strong id="following" class="follow_followed"><%= @member.following.count %></strong>
+            フォロー
+          </td>
+          <td>
+            <strong id="followers" class="follow_followed"><%= @member.followers.count %></strong>
+            フォロワー
+          </td>
+          </div>
+        </tr>
+      </table>
       <div class="text-right">
-     <button type="button" class="btn btn-danger"><%= link_to '削除', admins_room_path(room.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
-     </div>
- 
-   
+        <button type="button" class="btn btn-success"><%= link_to '編集', edit_admins_member_path(@member.id) %></button>
+      </div>
   </div>
- <% end %>
- </div>
-
-
-</div>
+  <div class="col-xs-8">
+    <div class="room-container">
+    <div class="post-container">
+      <% @rooms.each do |room| %>
+      <div class="post-list">
+        <table class="table">
+          <tr>
+            <td>
+              <%= link_to admins_room_path(room.id) do %>
+                <%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "310x310" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= room.created_at %>　
+                <i class="far fa-heart" aria-hidden="true"></i>
+                <%= room.favorites.count %> いいね 
+                <i class="fa fa-comment"></i><%= room.room_comments.count %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= room.room_genre.genre_name %></td>
+          </tr>
+        </table>
+        <div class="text-right">
+          <button type="button" class="btn btn-danger"><%= link_to '削除', admins_room_path(room.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="text-right">
+    <%= paginate @rooms %>
+    </div>
+  </div>
 </div>

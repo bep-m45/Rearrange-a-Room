@@ -1,5 +1,3 @@
-
-
 <h2>会員一覧</h2>
 
 <table class="table">
@@ -19,26 +17,26 @@
     <tr>
       <td><%= member.id %></td>
       <td><%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), admins_member_path(member) %></td>
-
       <td><%= link_to member.nickname, admins_member_path(member.id) %>（<%= member.name %>）</td>
-
       <td><%= text_url_to_link(h(member.profile)).html_safe %></td>
       <td>
-                <strong id="followers" class="follow_followed"><%= member.followers.count %></strong>
-                フォロワー
-         </a>
+        <strong id="followers" class="follow_followed"><%= member.followers.count %></strong>
+        フォロワー
       </td>
-      <td> <% if member.is_deleted %>
-   <span>退会済会員</span>
-  <% else %>
-   <span>有効会員</span>
-  <% end %></td>
+      <td> 
+        <% if member.is_deleted %>
+          <span>退会済会員</span>
+        <% else %>
+          <span>有効会員</span>
+        <% end %>
+      </td>
       <td>
-        <button type="button" class="btn btn-success">
-        <%= link_to '編集', edit_admins_member_path(member.id) %>
-        </button>
-        </td>
+        <button type="button" class="btn btn-success"><%= link_to '編集', edit_admins_member_path(member.id) %></button>
+      </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+<div class="text-right">
+  <%= paginate @members %>
+</div>

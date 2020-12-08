@@ -62,47 +62,21 @@ h4 {
   font-size: 20px;
 }
 
-.plofile-container {
-  padding : 20px;
-  background-image: image-url("/images/table.jpg");
-  box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
-}
-
 table {
    background-color: rgba(251, 253, 253, 0.70);
+}
+
+li {
+  list-style-type: none;
+}
+
+.modal-header {
+  background-color: rgba(205, 253, 253, 0.7);
 }
 
 .about-text {
   text-align: center;
   font-size: 20px;
-}
-/*room  post */
-
-.post-container {
-   display: flex;
-   justify-content: left;
-   flex-wrap: wrap;
-}
-
-.room-container {
-  padding: 20px 120px;
-  box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
-  background-image: image-url("/images/table.jpg");
-}
-
-.room-production-table {
-
-}
-
-.post-list {
- margin: 15px;
-}
-
-/* room comment */
-
-.room_comment_container {
-  padding: 20px;
-  background-color: rgba(251, 253, 253, 0.70);
 }
 
 /* ヘッダー */
@@ -116,7 +90,7 @@ table {
    box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
    background-color: rgba(205, 253, 253, 0.40);
  }
-
+ 
 .header {
   margin: 0 25px;
   padding: 10 0px;
@@ -130,6 +104,7 @@ table {
   font-family: 'Nerko One', cursive;
   font-size: 35px;
 }
+
 .logo-text {
   line-height: 75px;
   text-decoration: underline dotted 5px #ffffff;
@@ -166,8 +141,63 @@ header .btn-primary {
   border-radius: 50%;
 }
 
-/* ranking */
+/* button */
+.btn-right-radius {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #00BCD4;
+  background: #ECECEC;
+  border-radius: 0 15px 15px 0;
+  transition: .4s;
+}
+
+/*ページネーションン*/
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  border-radius: 15px;    /*角を丸くする*/
+}
+
+/* search */
+.search-container {
+  margin-bottom: 30px;
+  padding: 30px;
+  border-radius: 50%;
+  border: solid 4px #B6C2C2;
+  background-color: rgba(251, 253, 253, 0.70);
+}
+
+.search-heading {
+  font-family: 'Nerko One', cursive;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 50px;
+  text-align: center;
+}
+
+.search-logo {
+  width: 400px;
+  height: 240px;
+  background-image: image-url("/images/logo.PNG");
+  background-size: cover;
+}
+
+/* TOP いいねranking */
 .room-ranking-container {
+  display: flex;
 }
 
 .room-ranking {
@@ -175,13 +205,13 @@ header .btn-primary {
    box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
    padding: 10px;
    display: flex;
-   justify-content: left;
+   justify-content: center;
    flex-wrap: wrap;
 }
 
 .room-ranking-item {
   padding: 15px;
-  margin: 15px
+  
 }
 
 .ranking-heading {
@@ -216,39 +246,42 @@ header .btn-primary {
   background-image: image-url("/images/second.PNG");
   background-size: cover;
 }
+ 
+/*room */
+.post-container {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
 
-/* search */
+.room-container {
+  padding: 10px ;
+  box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
+  background-image: image-url("/images/table.jpg");
+}
 
-.search-container {
-  margin-bottom: 30px;
-  padding: 30px;
-  border-radius: 50%;
-  border: solid 4px #B6C2C2;
+.room-production-table {
+}
+
+.room-image {
+}
+
+.post-list {
+ margin: 15px;
+}
+
+/* roomへのコメント */
+
+.room_comment_container {
+  padding: 20px;
   background-color: rgba(251, 253, 253, 0.70);
 }
-  // background-image: image-url("/images/block.jpg");
 
-.search-heading {
-  font-family: 'Nerko One', cursive;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 50px;
-  text-align: center;
-}
-
-.search-logo {
-  width: 400px;
-  height: 240px;
-  background-image: image-url("/images/logo.PNG");
-  background-size: cover;
-}
-
-
-
-
-
-li {
-  list-style-type: none;
+/* member */
+.plofile-container {
+  padding : 20px;
+  background-image: image-url("/images/table.jpg");
+  box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
 }
 
 .member-name {
@@ -257,12 +290,10 @@ li {
   margin-right: 20px;
 }
 
-
-
+/* DM */
 .chat-box {
   display: flex;
   margin-bottom: 20px;
-
 }
 
 .chat-hukidashi {
@@ -270,19 +301,3 @@ li {
   margin-left: 15px;
 }
 
-/* button */
-.btn-right-radius {
-  position: relative;
-  display: inline-block;
-  font-weight: bold;
-  padding: 0.25em 0.5em;
-  text-decoration: none;
-  color: #00BCD4;
-  background: #ECECEC;
-  border-radius: 0 15px 15px 0;
-  transition: .4s;
-}
-
-.modal-header {
-  background-color: rgba(205, 253, 253, 0.7);
-}

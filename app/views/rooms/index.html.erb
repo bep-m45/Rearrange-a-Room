@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-xs-12">
     <%= render partial: 'rooms/category', locals: { room_layouts: @room_layouts, room_genres: @room_genres, room_images: @room_images } %>
@@ -15,7 +16,7 @@
     Rooms
   <% end %>
 </h2>
-
+<div class="room-container">
 <div class="row">
   <div clas="col-xs-12">
     <div class="post-container">
@@ -38,5 +39,9 @@
       <% end %>
     </div>
   </div>
+</div>
+<div class="text-right">
+        <%= paginate @rooms %>
+      </div>
 </div>
 
