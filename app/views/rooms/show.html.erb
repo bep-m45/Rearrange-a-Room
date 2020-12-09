@@ -1,3 +1,4 @@
+<% @page_title = "#{@member.nickname}さんのRoom" %>
 <h2><%= @room.member.nickname %>のRoom</h2>
 
   <div class="room-container">
@@ -58,7 +59,7 @@
   
   <!-- 投稿へのコメント -->
   <% if @room_comment.errors.any? %>
-    <h5><%= pluralize(@room_comment.errors.count, "error") %> prohibited this product from being saved:</h5>
+    <h5><%= pluralize(@room_comment.errors.count, "") %>個のエラーがあります</h5>
     <ul>
       <% @room_comment.errors.full_messages.each do |message| %>
         <li><%= message %></li>

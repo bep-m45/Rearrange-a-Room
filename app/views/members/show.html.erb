@@ -1,3 +1,4 @@
+	<% @page_title = "#{@member.nickname}さんのMyPage" %>
 <h2>
   <%= @member.nickname %> Page
   <% if @member.is_deleted %>
@@ -9,22 +10,27 @@
   <div class="col-xs-4">
     <%= render 'follow_form', member: @member %>
   </div>
-  
   <div class="col-xs-8">
-    <div class="room-container">
-      <div class="post-container">
-        <% @rooms.each do |room| %>
-          <div class="post-list"><br />
-          <br>
-            <div id="favorites_buttons_<%= room.id %>">
-              <%= render partial: 'favorites/favorite', locals: { room: room} %>
+    <% if @rooms.empty? %>
+      <div class="text-center">
+        <h4>投稿されたRoomはありません</h4>
+      </div>
+    <% else %>
+      <div class="room-container">
+        <div class="post-container">
+          <% @rooms.each do |room| %>
+            <div class="post-list"><br />
+            <br>
+              <div id="favorites_buttons_<%= room.id %>">
+                <%= render partial: 'favorites/favorite', locals: { room: room} %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+        <div class="text-right">
+          <%= paginate @rooms %>
+        </div>
       </div>
-      <div class="text-right">
-        <%= paginate @rooms %>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

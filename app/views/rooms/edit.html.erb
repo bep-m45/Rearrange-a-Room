@@ -1,7 +1,8 @@
+<% @page_title = 'Room編集' %>
 <h2>Room編集page</h2>
 
 <% if @room.errors.any? %>
-  <h5><%= pluralize(@room.errors.count, "error") %> prohibited this product from being saved:</h5>
+  <h5><%= pluralize(@room.errors.count, "") %> 個のエラー</h5>
     <div class="alert alert-warning">
       <ul>
         <% @room.errors.full_messages.each do |message| %>

@@ -1,3 +1,4 @@
+<% @page_title = "#{@member.nickname}さんの編集" %>
 <h2>
   <%= @member.nickname %>様
   ( <% if @member.is_deleted %>
@@ -7,8 +8,8 @@
   <% end %> )
 </h2>
 
-  <div class="row">
-    <div class="col-xs-2"></div>
+<div class="row">
+  <div class="col-xs-2"></div>
     <div class="col-xs-3">
       <table class="table">
         <tr>
@@ -17,6 +18,8 @@
           </td>
         </tr>
       </table>
+      <%= form_with model: @member, url: admins_member_path(@member), local:true do |f|%>
+        <%= f.attachment_field :profile_image %>
     </div>
     <div class="col-xs-1"></div>
     <div class="col-xs-4">
@@ -27,11 +30,11 @@
         </tr>
         <tr>
           <th>ニックネーム</th>
-　　　　  <td><%= @member.nickname%></td>
+　　　　  <td><%= f.text_field :nickname, class:"form-control"%></td>
 　　    </tr>
 　　    <tr>
 　　      <th>名前</th>
-　　　　  <td><%= @member.name %></td>
+　　　　  <td><%= f.text_field :name, class:"form-control" %></td>
 　　    </tr>
 　　    <tr>
 　　      <th>メールアドレス</th>
@@ -39,18 +42,17 @@
 　　    </tr>
 　　    <tr>
 　　      <th>プロフィール</th>
-　　      <td><%= @member.profile %></td>
+　　      <td><%= f.text_area :profile, class:"form-control" %></td>
 　　    </tr>
 　    　<tr>
-　　    <%= form_with model: @member, url: admins_member_path(@member), local:true do |f|%>
           <th><%= f.label :会員ステータス %></th>
           <td><%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み</td>
         </tr>
       </table>
-        <div class="text-right">
-         <button type="submit" class="btn btn-primary">更新</button>
-        </div>
-        <% end %>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">更新</button>
+      </div>
+      <% end %>
     </div>
     <div class="col-xs-2"></div>
-  </div>
+</div>

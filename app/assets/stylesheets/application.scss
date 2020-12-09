@@ -23,7 +23,6 @@
   box-sizing: border-box;
 }
 
-
 body {
   background-image: image-url("/images/background1.jpg");
   background-size: cover;
@@ -79,12 +78,23 @@ li {
   font-size: 20px;
 }
 
+.about-heading {
+  font-size: 25px;
+}
+
+.about-image {
+　width: 130px;
+  height: 80px;
+ background-image: image-url("/images/about.jpg");
+  background-size: cover;
+  
+}
+
 /* ヘッダー */
  header {
    width: 100%;
    height: 100px;
    padding-top: 10px;
-   //background-image: image-url("/images/header.jpg");
    background-position: bottoms;
    background-size: cover;
    box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
@@ -156,19 +166,16 @@ header .btn-primary {
 
 /*ページネーションン*/
 .pagination>li>a {          
-  border: none;     /*枠線をなくす*/
-  color: #696969;   /*文字の色を変える*/
+  border: none;     
+  color: #696969;   
 }
 
-/* 表示しているページ番号のデザイン */
 .pagination>.active>a {     
-  background: #93c9ff;     /*背景の色を変える*/
-  border-radius: 15px;     /*角を丸くする*/
+  background: #93c9ff;     
 }
 
-/*ホバー時のデザイン*/
 .pagination>li>a:hover {        
-  border-radius: 15px;    /*角を丸くする*/
+  border-radius: 15px;   
 }
 
 /* search */
@@ -300,4 +307,8 @@ header .btn-primary {
   margin-top: 15px;
   margin-left: 15px;
 }
+
+/* footer */
+
+
 

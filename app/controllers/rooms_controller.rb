@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
 		   @room_image = RoomImage.find(params[:room_image_id])
 		   @rooms = @room_image.rooms.order(created_at: :desc).page(params[:page]).per(9)
     else
-       @rooms = Room.all.order(created_at: :desc).page(params[:page]).per(3)
+       @rooms = Room.all.order(created_at: :desc).page(params[:page]).per(9)
     end
   end
 
