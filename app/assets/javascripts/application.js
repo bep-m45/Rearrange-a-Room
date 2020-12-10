@@ -12,7 +12,37 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+ 	$('.post_image').on('change', function (e) {
+ 	    var previewImage;
+ 	    if ($(".image")){
+ 	        previewImage = $(".image");
+ 	    }else{
+ 	        previewImage = $(".profile_image");
+ 	    }
+ 		var reader = new FileReader();
+		reader.onload = function (e) {
+		  previewImage.attr('src', e.target.result);
+		}
+  	    reader.readAsDataURL(e.target.files[0]);
+    });
+    
+    $('#modalForm').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        var cusnoVal = button.data('cusno');
+        modal.find('.modal-body input#cusno').val(cusnoVal);
+        var visitdayVal = button.data('visitday');
+        modal.find('.modal-body input#oldday').val(visitdayVal);
+    });
+});
+
+
+function inputCommentParentId(parentId){
+    $("#room_comment_parent_id").val(parentId);
+}

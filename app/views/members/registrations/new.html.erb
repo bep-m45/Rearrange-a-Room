@@ -1,44 +1,38 @@
-<h2>新規会員登録</h2>
+<% @page_title = 'SignUp' %>
+<h2>Sign Up</h2>
 
-  <div class="row">
-    <div class="col-xs-3"></div>  
-    
-      <div class="col-xs-6">
-  
-        <%= form_with model: @member, url: new_member_registration_path, id: 'new_member', class: "new_member", local: true do |f| %>
-        <%= render "members/shared/error_messages", resource: resource %>
-          
-            <table class="table">
-              <tr>
-                <th class="text-center"><%= f.label :名前 %></th>
-                <td><%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName" %></td>
-              </tr>
-              <tr>
-                <th class="text-center"><%= f.label :ニックネーム %></th>
-                <td><%= f.text_field :nickname, class:"form-control", id:"inputNickname" %></td>
-              </tr>
-              <tr>
-                <th class="text-center"><%= f.label :メールアドレス %></th>
-                <td><%= f.email_field :email, class:"form-control",　id:"inputEmail" %></td>
-              </tr>
-              <tr>
-                <th class="text-center"><%= f.label :パスワード %></th>
-                <td><%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword" %></td>
-              </tr>
-              <tr>
-                <th class="text-center"><%= f.label :パスワード確認 %></th>
-                <td><%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", id:"inputConfirmPassword" %></td>
-              </tr>
-            </table>
-          
-          <div class="text-right">
-            <%= f.submit "登録" %>
-          </div>
-    
-        <% end %>
-  
+<div class="row">
+  <div class="col-xs-3"></div>  
+  <div class="col-xs-6">
+    <%= form_with model: @member, url: member_registration_path, id: 'new_member', class: "new_member", local: true do |f| %>
+      <%= render "members/shared/error_messages", resource: resource %>
+      <table class="table">
+        <tr>
+          <th class="text-center"><%= f.label :名前 %></th>
+          <td><%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName" %></td>
+        </tr>
+        <tr>
+          <th class="text-center"><%= f.label :ニックネーム %></th>
+          <td><%= f.text_field :nickname, class:"form-control", id:"inputNickname" %></td>
+        </tr>
+        <tr>
+          <th class="text-center"><%= f.label :メールアドレス %></th>
+          <td><%= f.email_field :email, class:"form-control",　id:"inputEmail" %></td>
+        </tr>
+        <tr>
+          <th class="text-center"><%= f.label :パスワード %></th>
+          <td><%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword" %></td>
+        </tr>
+        <tr>
+          <th class="text-center"><%= f.label :パスワード確認 %></th>
+          <td><%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", id:"inputConfirmPassword" %></td>
+        </tr>
+      </table>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">Sign Up</button>
       </div>
-   
-    <div class="col-xs-3"></div>  
+    <% end %>
   </div>
+  <div class="col-xs-3"></div>  
+</div>
 

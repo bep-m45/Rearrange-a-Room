@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_062533) do
+ActiveRecord::Schema.define(version: 2020_11_16_095155) do
 
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 2020_11_16_062533) do
     t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_image_id"
+    t.boolean "is_deleted", default: false
+    t.text "profile"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end

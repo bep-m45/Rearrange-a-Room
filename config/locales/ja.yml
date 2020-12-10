@@ -1,0 +1,39 @@
+ja:
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
+    
+  activerecord:
+    models:
+      member: "ユーザー"
+      room: "Room"
+      room_comment: "Roomへのコメント"
+      messages: "メッセージ"
+      admins: "管理人"
+    attributes:
+      member:
+        nickname: "ニックネーム"
+        name: "名前"
+        email: "メールアドレス"
+        profile_image: "プロフィール画像"
+        purofile: "プロフィール"
+        password: "パスワード"
+      room:
+        room_layout_id: "間取り"
+        room_genre_id: "部屋の種類"
+        room_image_id: "部屋のイメージ"
+        production: "説明コメント"
+        image: "イメージ画像"
+        size: "広さ"
+      room_comment:
+        comment: "コメント"
+      message: 
+        comment: "メッセージ"
+      admins:
+        email: "メールアドレス"
+        epassword: "パスワード"
+        
