@@ -1,71 +1,66 @@
+<% @page_title = "Searches" %>
 <h2>Searches</h2>
 
-  <div class="row">
-      <div class="col-xs-12">
-        <%= render partial: 'rooms/category', locals: { room_layouts: @room_layouts, room_genres: @room_genres, room_images: @room_images } %>
-     </div>
+<div class="row">
+  <div class="col-xs-12">
+    <%= render partial: 'rooms/category', locals: { room_layouts: @room_layouts, room_genres: @room_genres, room_images: @room_images } %>
   </div>
-  
-  <div class="row">
-    <div class="col-xs-12">
-      
-      <% if @range == "1" %>
-        <h3><%= @word %>と一致するUSER情報</h3>
-          <% if @members.empty? %>
-            USERはいません
-          <% else %>
-       
-            <table class="table">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>名前</th>
-                  <th>プロフィール</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @members.each do |member| %>
-                  <tr>
-                    <td><%= link_to attachment_image_tag(member, :profile_image, :fill, 20, 20, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size: "80x80"), member_path(member.id) %>
-                      フォロワー
-                      <%=link_to member.followers.count, followers_member_path(member) %>
-                    </td>
-                    <td><%= link_to member.nickname, member_path(member) %></td>
-                    <td><%= member.profile %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          <% end %>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <% if @range == "1" %>
+      <h3><%= @word %>と一致するUser情報</h3>
+      <% if @members.empty? %>
+        <div class="text-center">
+         <h4>一致するUserはいません</h4>
+        </div>
+      <% else %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>名前</th>
+            <th>プロフィール</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <td><%= link_to attachment_image_tag(member, :profile_image, :fill, 20, 20, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size: "80x80"), member_path(member.id) %>
+                フォロワー
+                <%=link_to member.followers.count, followers_member_path(member) %>
+            </td>
+            <td><%= link_to member.nickname, member_path(member) %></td>
+            <td><%= member.profile %></td>
+          </tr>
+        <% end %>
+        </tbody>
+        </table>
+      <% end %>
     
       <% elsif @range == "2" %>
-        <h2><%= @word %>と一致するROOM情報</h2>
-          <% if @rooms.empty? %>
-            ROOMはありません
-          <% else %>
-            <div class="post-container">
-              <% @rooms.each do |room| %>
-                <div class="post-list">
-                  <%= link_to member_path(room.member_id) do %>
-                    <%= attachment_image_tag room.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %></td>
-                  <% end %>
-                  <%= room.member.nickname %><br />
-                  <br>
-                  <%= link_to room_path(room.id) do %>
-                    <%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %>
-                  <% end %>
-                  <div id="favorites_buttons_<%= room.id %>">
-                   <%= render partial: 'favorites/favorite', locals: { room: room} %>
-                  </div>
-  
-                  <% if room.member == current_member %>
-                   <%= link_to '編集', edit_room_path(room.id) %>
-                   <%= link_to '削除', room_path(room.id), method: :delete, data: {confirm: "Are you sure?"} %>
-                  <% end %>
+        <h2><%= @word %>と一致するRoom情報</h2>
+        <% if @rooms.empty? %>
+          <div class="text-center">
+            <h4>一致するRoomはありません
+          </div>
+        <% else %>
+          <div class="post-container">
+            <% @rooms.each do |room| %>
+              <div class="post-list">
+                <%= link_to member_path(room.member_id) do %>
+                  <%= attachment_image_tag room.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %></td>
+                <% end %>
+                <%= room.member.nickname %><br />
+                <br>
+                <div id="favorites_buttons_<%= room.id %>">
+                  <%= render partial: 'favorites/favorite', locals: { room: room} %>
                 </div>
-              <% end %>
-            </div>
-          <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

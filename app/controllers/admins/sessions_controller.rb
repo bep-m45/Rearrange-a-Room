@@ -23,4 +23,10 @@ class Admins::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   
+  def new_guest
+    admin = Admin.guest
+    sign_in admin
+    redirect_to admins_path, notice: 'ゲスト管理者としてSign Inしました。'
+  end
+  
 end
