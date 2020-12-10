@@ -1,6 +1,5 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!, only: [:show, :edit, :create, :following, :followers, :resign]
-  before_action :current_member, only: [:edit, :update]
 
   def index
    @members = Member.all.order(created_at: :desc).page(params[:page]).per(10)
