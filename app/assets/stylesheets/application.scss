@@ -87,7 +87,7 @@ li {
   height: 80px;
  background-image: image-url("/images/about.jpg");
   background-size: cover;
-  
+
 }
 
 /* ヘッダー */
@@ -100,7 +100,7 @@ li {
    box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
    background-color: rgba(205, 253, 253, 0.40);
  }
- 
+
 .header {
   margin: 0 25px;
   padding: 10 0px;
@@ -165,17 +165,17 @@ header .btn-primary {
 }
 
 /*ページネーションン*/
-.pagination>li>a {          
-  border: none;     
-  color: #696969;   
+.pagination>li>a {
+  border: none;
+  color: #696969;
 }
 
-.pagination>.active>a {     
-  background: #93c9ff;     
+.pagination>.active>a {
+  background: #93c9ff;
 }
 
-.pagination>li>a:hover {        
-  border-radius: 15px;   
+.pagination>li>a:hover {
+  border-radius: 15px;
 }
 
 /* search */
@@ -218,7 +218,7 @@ header .btn-primary {
 
 .room-ranking-item {
   padding: 15px;
-  
+
 }
 
 .ranking-heading {
@@ -253,7 +253,7 @@ header .btn-primary {
   background-image: image-url("/images/second.PNG");
   background-size: cover;
 }
- 
+
 /*room */
 .post-container {
    display: flex;
@@ -307,8 +307,3 @@ header .btn-primary {
   margin-top: 15px;
   margin-left: 15px;
 }
-
-/* footer */
-
-
-

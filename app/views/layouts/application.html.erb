@@ -4,8 +4,8 @@
     <title><%= page_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag 'favicon.PNG'%>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= favicon_link_tag 'favicon.PNG'%>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   </head>
@@ -30,7 +30,7 @@
                 <li class="header-list-item"><%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: "btn-primary" %></li>
               <% else %>
                 <li class="header-list-item"><%= link_to "Home", root_path, class: "btn-primary" %></li>
-                <li class="header-list-item"><%= link_to "About", homes_about_path, class: "btn-primary" %></li> 
+                <li class="header-list-item"><%= link_to "About", homes_about_path, class: "btn-primary" %></li>
                 <li class="header-list-item"><%= link_to "Gest In", members_guest_sign_in_path, method: :post, class: "btn-primary" %></li></a>
                 <li class="header-list-item"><%= link_to "Sign Up", new_member_registration_path, class: "btn-primary" %></li>
                 <li class="header-list-item"><%= link_to "Sign In", new_member_session_path, class: "btn-primary"  %></li>
@@ -39,7 +39,7 @@
           </nav>
         </div>
     </header>
-    
+
     <main>
       <h4>
         <% if flash[:notice] %>
@@ -52,7 +52,5 @@
         <%= yield %>
       </div>
     </main>
-  <footer>
-  </footer>
   </body>
 </html>
