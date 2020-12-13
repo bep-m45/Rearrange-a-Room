@@ -42,7 +42,7 @@ $(function() {
     });
 });
 
-
+ //リプライコメント機能でのparent_idをいれる為の記述 
 function inputCommentParentId(parentId){
     $("#room_comment_parent_id").val(parentId);
 }

@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 2020_11_28_071440) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "room_id"
+    t.integer "member_id", null: false
+    t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id", "room_id"], name: "index_favorites_on_member_id_and_room_id", unique: true
@@ -132,10 +132,12 @@ ActiveRecord::Schema.define(version: 2020_11_28_071440) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer "member_id"
-    t.integer "category"
     t.string "size"
     t.text "production"
     t.string "image_id"
+    t.integer "room_layout_id"
+    t.integer "room_image_id"
+    t.integer "room_genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -99,7 +99,6 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:member_id, :size, :production, :image,  :room_layout_id, :room_genre_id, :room_image_id)
   end
-
-  end
+end
 
 

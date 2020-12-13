@@ -42,7 +42,7 @@
             </tr>
             <tr>
               <th>説明</th>
-              <td><%= text_url_to_link(h(@room.production)).html_safe %></td>
+              <td><%= simple_format text_url_to_link(h(@room.production)).html_safe %></td>
             </tr>
           </table>
           <% if @room.member == current_member %>

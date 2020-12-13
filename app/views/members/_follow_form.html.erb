@@ -11,7 +11,13 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="text-center">
-        <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+        <table class="table">
+          <tr>
+            <td>
+              <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+            </td>
+          </tr>
+        </table>
       </div>
       <br>
       <table class="table">
@@ -26,7 +32,6 @@
         <div class="follow_followed">
         <tr>
           <td>
-          <%# @member ||= current_member %>
            <a href="<%= following_member_path(@member) %>">
              <strong id="following" class="follow_followed"><%= @member.following.count %></strong>フォロー
            </a>
@@ -42,14 +47,12 @@
      <div class="text-right">
        <button type="button" class="btn btn-success">
          <%= link_to "編集する", edit_member_path(@member.id) %>
-        <%#= link_to "パスワードを変更する", member_path(@member.id) %>
        </button>
      </div>
     </div>
     </div>
   <% else %>
   <!-- フォローボタン -->
-  <%# if member.is_deleted == false %>
   <% if member != current_member %>
     <div class="row">
       <div class="col-xs-4">
@@ -88,12 +91,15 @@
     </div>
     <div class="col-xs-4"></div>
     </div>
-
-
     <!-- プロフィール -->
-
     <div class="text-center">
-      <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+      <table class="table">
+        <tr>
+          <td>
+            <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div>
+          </td>
+        </tr>
+      </table>
     </div>
     <br>
     <table class="table">
@@ -126,11 +132,8 @@
         <button type="button" class="btn btn-success">
           <%= link_to "編集する", edit_member_path(@member.id) %>
         </button>
-        <%#= link_to "パスワードを変更する", member_path(@member.id) %>
       <% end %>
     </div>
-
-  
    <% end %>
    
   <!-- モーダルフォーム(DM一覧) -->

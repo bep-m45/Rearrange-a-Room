@@ -62,7 +62,13 @@ h4 {
 }
 
 table {
+  // table-layout: fixed;
+  // word-wrap: break-word;
    background-color: rgba(251, 253, 253, 0.70);
+}
+
+td.wrap { 
+  white-space: wrap;
 }
 
 li {

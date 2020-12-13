@@ -4,8 +4,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th></th>
-      <th>名前</th>
+      <th >名前</th>
       <th>プロフィール</th>
       <th>フォロワー数</th>
     </tr>
@@ -13,12 +12,14 @@
   <tbody>
   <% @members.each do |member| %>
     <tr>
-      <td><%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), member_path(member.id) %></td>
-      <td><%= link_to member.nickname, member_path(member.id) %></td>
       <td>
-        <%= text_url_to_link(h(member.profile)).html_safe %>
-        <% if member.is_deleted %>
+        <%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), member_path(member.id) %><br />
+        <div class="text-center"><%= link_to member.nickname, member_path(member.id) %></div>
+      <td class="wrap">
+         <% if member.is_deleted %>
         (退会済会員)
+        <% else %>
+        <%= simple_format text_url_to_link(h(member.profile)).html_safe %>
         <% end %>
       </td>
       <td>

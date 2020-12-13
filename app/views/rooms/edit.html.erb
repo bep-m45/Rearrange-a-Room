@@ -12,46 +12,49 @@
     </div>
 <% end %>
 
-<div class="row">
-  <div class="col-xs-2"></div>
-  <div class="col-xs-4">
-  <%= form_with model: @room, local:true do |f|%>
-    <div class="post_image">
-      <%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "320x320", class: "image" %>
-      <%= f.attachment_field :image %>
+<div class="room-container">
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-3">
+      <%= form_with model: @room, local:true do |f|%>
+        <div class="post_image">
+          <table class="table">
+            <tr>
+              <td><%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "320x320", class: "image" %></td>
+            </tr>
+        </table>
+        <%= f.attachment_field :image %>
+        </div>
     </div>
+    <div class="col-xs-1"></div>
+      <div class="col-xs-6">
+        <table class="table">
+          <tr>
+            <th>間取り</th>
+            <td><%= f.collection_select :room_layout_id, RoomLayout.all, :id,:layout_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+          </tr>
+  　       <tr>
+            <th>広さ</th>
+            <td><%= f.select :size, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,"その他"], include_blank: "選択して下さい", class: "form-control" %>　畳</td>
+          </tr>
+          <tr>
+            <th>部屋の種類</th>
+            <td><%= f.collection_select :room_genre_id, RoomGenre.all, :id,:genre_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th>イメージ</th>
+            <td><%= f.collection_select :room_image_id, RoomImage.all, :id,:image_name,{prompt: "--選択してください--"},class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th>Roomのコメント</th>
+            <td><%= f.text_area :production, class:"form-control", size: "50x10" %></td>
+          </tr>
+        </table>
+        <div class="text-right">
+          <button type="button" class="btn btn-success">更新</button>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-xs-1"></div>
   </div>
-  <div class="col-xs-4">
-    <table class="table">
-      <tr>
-        <th>間取り</th>
-        <td><%= f.collection_select :room_layout_id, RoomLayout.all, :id,:layout_name,{prompt: "--選択してください--"},class: "form-control" %></td>
-      </tr>
-  　   <tr>
-        <th>広さ</th>
-        <td><%= f.select :size, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,"その他"], include_blank: "選択して下さい", class: "form-control" %>　畳</td>
-      </tr>
-      <tr>
-        <th>部屋の種類</th>
-        <td><%= f.collection_select :room_genre_id, RoomGenre.all, :id,:genre_name,{prompt: "--選択してください--"},class: "form-control" %></td>
-      </tr>
-      <tr>
-        <th>イメージ</th>
-        <td><%= f.collection_select :room_image_id, RoomImage.all, :id,:image_name,{prompt: "--選択してください--"},class: "form-control" %></td>
-      </tr>
-      <tr>
-        <th>Roomのコメント</th>
-        <td><%= f.text_area :production, class:"form-control" %></td>
-      </tr>
-      <tr>
-        <th>参考ページ</th>
-        <td></td>
-      </tr>
-    </table>
-    <div class="text-right">
-      <button type="button" class="btn btn-success">更新</button>
-    </div>
-  </div>
-  <% end %>
-  <div class="col-xs-2"></div>
 </div>
