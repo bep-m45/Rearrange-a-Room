@@ -85,10 +85,6 @@ class MembersController < ApplicationController
 
   def resign_update
     current_member.update(is_deleted: true)
-    if @member.is_deleted == true
-       @member.rooms.destroy_all
-    else
-    end
     reset_session
     flash[:notice] = "退会しました"
     redirect_to root_path
