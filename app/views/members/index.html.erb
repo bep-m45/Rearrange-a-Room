@@ -1,7 +1,7 @@
 <% @page_title = "Users" %>
 <h2>Users</h2>
 
-<table class="table">
+<table class="table" style="table-layout:fixed;">
   <thead>
     <tr>
       <th >名前</th>
@@ -15,7 +15,7 @@
       <td>
         <%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), member_path(member.id) %><br />
         <div class="text-center"><%= link_to member.nickname, member_path(member.id) %></div>
-      <td class="wrap">
+      <td>
          <% if member.is_deleted %>
         (退会済会員)
         <% else %>

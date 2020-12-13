@@ -8,7 +8,7 @@
        <div class="member-image"><%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
       </div>
       <br>
-      <table class="table">
+      <table class="table" style="table-layout:fixed;">
         <tr>
           <th>名前</th>
             <td><div class="member-name"><%= @member.nickname %></div></td>

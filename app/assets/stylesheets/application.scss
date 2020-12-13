@@ -61,15 +61,22 @@ h4 {
   font-size: 20px;
 }
 
-table {
-  // table-layout: fixed;
-  // word-wrap: break-word;
+.table {
+   word-wrap: break-word;
    background-color: rgba(251, 253, 253, 0.70);
 }
 
-td.wrap { 
-  white-space: wrap;
+.table-style > .table > tr:nth-child(2) > td {
+} 
+
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    width: 10%;
 }
+
 
 li {
   list-style-type: none;
