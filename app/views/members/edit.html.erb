@@ -38,7 +38,15 @@
 　　    </tr>
 　　    <tr>
 　　      <th><%= f.label :メールアドレス %></th>
-　　　　  <td><%= f.email_field :email, class:"form-control" %></td>
+　　　　  <td>
+　　　　    <% if @member.email == "guest@example.com" %>
+　　　　    <div class="text-left">
+　　　　      <%= @member.email %>
+　　　　    </div>  
+　　　　    <% else %>
+　　　　      <%= f.email_field :email, class:"form-control" %>
+　　　　    <% end %>
+　　　　  </td>
 　  　  </tr>
 　　    <tr>
 　　      <th><%= f.label :プロフィール %></th>

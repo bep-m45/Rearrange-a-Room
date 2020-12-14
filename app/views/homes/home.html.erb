@@ -27,9 +27,9 @@
                   <div class="ranking-number-logo2"><div class="ranking-number2"><%= j %></div></div>
                   <div class="member-profile">
                     <%= link_to member_path(ranking.member_id) do %>
-                      <h4><%= attachment_image_tag ranking.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
+                      <h5 style="white-space:nowrap;"><%= attachment_image_tag ranking.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>　
                     <% end %>
-                    <%= ranking.member.nickname %></h4>
+                    <%= ranking.member.nickname %></h5>
                   </div>
                 </td>
               </tr>
@@ -47,9 +47,9 @@
                   <div class="ranking-number-logo"><font color="red"><div class="ranking-number"><%= j %></font></div></div>
                   <div class="menber-profile">
                     <%= link_to member_path(ranking.member_id) do %>
-                      <h4><%= attachment_image_tag ranking.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
+                      <h5 style="white-space:nowrap;"><%= attachment_image_tag ranking.member, :profile_image, :limit, 300, 300, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>　
                     <% end %>
-                    <%= ranking.member.nickname %></h4>
+                    <%= ranking.member.nickname %></h5>
                   </div>
                 </td>
               </tr>

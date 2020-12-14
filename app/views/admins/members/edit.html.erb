@@ -46,7 +46,13 @@
 　　    </tr>
 　    　<tr>
           <th><%= f.label :会員ステータス %></th>
-          <td><%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み</td>
+          <td>
+            <% if @member.email == "guest@example.com" %>
+              有効
+            <% else %>
+              <%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み
+            <% end %>
+          </td>
         </tr>
       </table>
       <div class="text-right">

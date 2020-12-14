@@ -84,10 +84,16 @@ class MembersController < ApplicationController
   end
 
   def resign_update
-    current_member.update(is_deleted: true)
-    reset_session
-    flash[:notice] = "退会しました"
-    redirect_to root_path
+    @member = current_member
+    if @member == Member.find_by(email:"guest@example.com")
+      flash[:notice] = "ゲスト会員のため退会や変更はお控えください"
+      redirect_to edit_member_path(@member)
+    else
+      @member.update(is_deleted: true)
+      reset_session
+      flash[:notice] = "退会しました"
+      redirect_to root_path
+    end
   end
 
   private
