@@ -47,11 +47,11 @@
 　    　<tr>
           <th><%= f.label :会員ステータス %></th>
           <td>
-            <%# if @member.email == "guest@example.com" %>
+            <% if @member.email == "guest@example.com" %>
               有効
-            <%# else %>
+            <% else %>
               <%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み
-            <%# end %>
+            <% end %>
           </td>
         </tr>
       </table>
