@@ -19,7 +19,7 @@
       <td><%= member.id %></td>
       <td><%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), admins_member_path(member) %></td>
       <td><%= link_to member.nickname, admins_member_path(member.id) %><br />（<%= member.name %>）</td>
-      <td><%= simple_format text_url_to_link(h(member.profile)).html_safe %></td>
+      <td><%= simple_format text_url_to_link(h(member.profile)).html_safe.truncate(50, omission: '...') %></td>
       <td>
         <strong id="followers" class="follow_followed"><%= member.followers.count %></strong>
         フォロワー

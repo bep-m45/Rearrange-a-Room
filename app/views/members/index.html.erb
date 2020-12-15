@@ -19,7 +19,7 @@
          <% if member.is_deleted %>
         (退会済会員)
         <% else %>
-        <%= simple_format text_url_to_link(h(member.profile)).html_safe %>
+        <%= simple_format text_url_to_link(h(member.profile)).html_safe.truncate(50, omission: '...') %>
         <% end %>
       </td>
       <td>
