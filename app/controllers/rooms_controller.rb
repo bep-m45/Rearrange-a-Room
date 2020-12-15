@@ -72,9 +72,8 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     if @room.update(room_params)
-      byebug
        flash[:notice] = "Roomが編集されました"
-       redirect_to member_path(current_member.id)
+       redirect_to room_path(@room.id)
     else
        flash[:notice] ='ROOMの編集に失敗しました'
        render "edit"
