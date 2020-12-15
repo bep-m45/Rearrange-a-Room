@@ -22,6 +22,7 @@ ja:
         profile_image: "プロフィール画像"
         purofile: "プロフィール"
         password: "パスワード"
+        password_confirmation : "パスワード"
       room:
         room_layout_id: "間取り"
         room_genre_id: "部屋の種類"
