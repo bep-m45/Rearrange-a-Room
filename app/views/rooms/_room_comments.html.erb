@@ -1,0 +1,53 @@
+      <% @room_comments.each do |room_comment| %>
+        <% if room_comment.parent_id.present? || room_comment.id.blank? %>
+          <% next %>
+        <% end %>
+      <!-- 親コメント一覧 -->
+        <table class="table">
+          <tr>
+            <td width="200">
+              <p>
+                <%= attachment_image_tag room_comment.member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "80x80" %>
+                <%= room_comment.member.nickname %>
+              </p>
+              <%= room_comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+              <% if current_member == room_comment.member %>
+                <%= link_to "削除", room_room_comment_path(@room, room_comment), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %><br />
+              <% end %>
+              <div class="btn-wrap">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalForm" data-cusno=1 data-visitday="2019-07-01" onClick="inputCommentParentId(<%=room_comment.id%>)">
+                  返信 <i class="fa fa-comment"></i>
+                </button>
+              </div>
+              <br>
+            </td>
+            <td>
+              <%= text_url_to_link(h(room_comment.comment)).html_safe %>
+            </td>
+          </tr>
+          <!-- リプライコメント一覧 -->
+           <div id="reply_area">
+　         <% room_comment.replies.order(:created_at).each do |reply| %>
+            <tr>
+              <td width="200">
+                <p>
+                  <%= attachment_image_tag reply.member, :profile_image, :limit, 80, 80, class:"img-circle", fallback: "no_image.jpg",size: "50x50" %>
+                  <%= reply.member.nickname %>
+                </p>
+                <%=reply.created_at.strftime("%Y-%m-%d %H:%M") %>
+                <% if current_member == reply.member %>
+                  <%= link_to "削除", room_room_comment_path(@room, reply), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %>
+                <% end %>
+              </td>
+              <td><%= text_url_to_link(h(reply.comment)).html_safe %></td>
+            </tr>
+          <% end %>
+          </div>
+        </table>
+      <br>
+      <% end %>
+      <!-- 親コメント入力フォーム -->
+     
+    
+  
+  

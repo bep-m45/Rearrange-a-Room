@@ -1,0 +1,4 @@
+$(function() {
+$("#chats_area").html("<%= escape_javascript(render partial: 'chats/chat_index', locals: {messages: @messages}) %>")
+$("textarea").val('')
+});

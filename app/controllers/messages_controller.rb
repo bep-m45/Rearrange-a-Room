@@ -6,8 +6,8 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @chat =@message.chat
     if @message.save
+       @messages = Message.all
        flash[:notice] = "メッセージを送信しました"
-       redirect_to chat_path(@message.chat.id)
     else    
        @entries = @chat.entries
        render "chats/show"

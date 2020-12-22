@@ -6,8 +6,8 @@ def create
   @room_comment = current_member.room_comments.build(room_comment_params)
     
   if @room_comment.save
+     @room_comments = RoomComment.all
      flash[:notice] = "コメントが投稿されました"
-     redirect_to room_path(@room.id)
   else 
      @room_comments = @room.room_comments
      @room_comment_reply = @room.room_comments.build
@@ -21,8 +21,8 @@ def destroy
   @room = Room.find(params[:room_id])
   @room_comment = RoomComment.find(params[:id])
   @room_comment.destroy
+  @room_comments = RoomComment.all
   flash[:notice] = "コメントを削除しました"
-  redirect_to request.referer
 end
 
 private
