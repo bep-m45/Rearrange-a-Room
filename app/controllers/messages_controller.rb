@@ -4,12 +4,11 @@ class MessagesController < ApplicationController
   def create
     Entry.where(member_id: current_member.id, chat_id: params[:message][:chat_id]).present?
     @message = Message.new(message_params)
-    # byebug
+    @chat =@message.chat
     if @message.save
        flash[:notice] = "メッセージを送信しました"
        redirect_to chat_path(@message.chat.id)
     else    
-       @chat = @message.chat
        @entries = @chat.entries
        render "chats/show"
        flash[:notice] = "メッセージの送信に失敗しました"

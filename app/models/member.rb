@@ -15,7 +15,9 @@ class Member < ApplicationRecord
   has_many :reply_comments, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entres, dependent: :destroy
-
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+ 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |member|
       member.name = "ゲスト会員"

@@ -67,6 +67,7 @@ gem 'jquery-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem "kaminari"
+gem "pry-byebug"
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'dotenv-rails'

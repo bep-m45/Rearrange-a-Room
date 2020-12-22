@@ -39,13 +39,7 @@ Rails.application.routes.draw do
    resources :relationships, only: [:create, :destroy]
    resources :messages, only: [:create]
    resources :chats, only: [:create, :show, :index]   
-   
  
-
- 
-
-
-  
   namespace :admins do
    resources :members
    resources :rooms
