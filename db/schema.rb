@@ -24,18 +24,6 @@ ActiveRecord::Schema.define(version: 2020_11_28_071440) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.integer "item_id"
-    t.string "category_name"
-    t.string "room_layout_name"
-    t.string "room_image_name"
-    t.string "room_genre_name"
-    t.string "ancestry"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
-  end
-
   create_table "chats", force: :cascade do |t|
     t.integer "member_id"
     t.datetime "created_at", null: false
@@ -57,12 +45,6 @@ ActiveRecord::Schema.define(version: 2020_11_28_071440) do
     t.index ["member_id", "room_id"], name: "index_favorites_on_member_id_and_room_id", unique: true
     t.index ["member_id"], name: "index_favorites_on_member_id"
     t.index ["room_id"], name: "index_favorites_on_room_id"
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.string "item_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "members", force: :cascade do |t|

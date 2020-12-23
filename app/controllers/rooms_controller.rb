@@ -72,6 +72,8 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     if @room.update(room_params)
+       sleep(3)
+       redirect_to image_url(@room)
        flash[:notice] = "Roomが編集されました"
        redirect_to room_path(@room.id)
     else

@@ -72,13 +72,15 @@
       <%#= render "room_comments" %>
       <%= render partial: 'rooms/room_comments', locals: {room_comment: @room_comment, room: @room, room_comments: @room_comments, room_comment_reply: @room_comment_reply} %>
     </div>
-    <%= form_with(model:[@room,@room_comment]) do |form| %>
+    
+    <!-- 親コメント入力フォーム -->
+    <%= form_with(model:[@room,@room_comment]) do |f| %>
       <br>
       <p>
         <label>コメント</label>
       </p>
-      <%= form.text_area :comment, class: "form-control input-form" %>
-      <%= form.hidden_field :room_id, value: @room.id %>
+      <%= f.text_area :comment, class: "form-control input-form" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
       <br>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">送信</button>

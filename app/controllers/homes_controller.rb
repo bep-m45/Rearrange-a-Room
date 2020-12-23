@@ -2,7 +2,6 @@ class HomesController < ApplicationController
   
   def home
    @all_ranks = Room.find(Favorite.group(:room_id).order('count(room_id) desc').limit(6).pluck(:room_id))
-  
     if params[:room_layout_id]
   	   @room_layout = RoomLayout.find(params[:room_layout_id])
   	   @room_layouts = @room_layout.rooms.order(created_at: :desc)
