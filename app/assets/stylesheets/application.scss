@@ -30,8 +30,9 @@ body {
 }
 
 main {
+  padding-top: 3%;
   width: 100%;
-  padding: 3% 5% 5% 5%;
+  margin: auto;
 }
 
 h1 {
@@ -208,7 +209,7 @@ header .btn-primary {
 .room-ranking {
    background-image: image-url("table.jpg");
    box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
-   padding: 2%;
+   padding: 1%;
    display: flex;
    justify-content: center;
    flex-wrap: wrap;
@@ -298,4 +299,125 @@ header .btn-primary {
 .chat-hukidashi {
   margin-top: 1%;
   margin-left: 1%;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 780px) {
+  
+ h1 {
+  margin-bottom: 7%;
+  font-size: 350%;
+  font-family: 'Nerko One', cursive;
+  text-align: center;
+  text-decoration: underline dotted #ffffff;
+ }
+ 
+ h2 {
+  margin-bottom: 5%;
+  font-family: 'Nerko One', cursive;
+  font-size: 250%;
+  text-align: center;
+}
+
+h3 {
+  font-family: 'Nerko One', cursive;
+  margin-top: 7%;
+  margin-bottom: 3%;
+  font-size: 200%;
+  text-align: center;
+}
+ 
+ h4 {
+  font-size: 80%;
+}
+
+/* media-480px-header */
+  
+  .logo {
+  display: flex;
+  margin-right: auto;
+  font-family: 'Nerko One', cursive;
+  font-size: 35px;
+}
+  
+ .logo-text {
+    line-height: 70px;
+    text-decoration: underline dotted 5px #ffffff;
+  }
+  
+  .header-list{
+    // display: flex;
+    // display: flex;
+    // justify-content: center;
+}
+
+.header-list-item {
+  display: none;
+  // padding-right: 10px;
+  // display: inline-block;
+  // text-align: center;
+  // line-height: 90px;
+}
+
+header .btn-primary {
+  display: none;
+  // font-size: 16px;
+  // font-weight: bold;
+  // background-color: rgba(33, 157, 159, 0.50);
+  // padding: 8px 20px;
+  // color: #ffffff;
+  // width: 200px;
+  // height: 100px;
+  // border-radius: 50%;
+}
+
+/* media-480px-search */
+.search-heading {
+  font-family: 'Nerko One', cursive;
+  margin-left: 20%;
+  margin-top: 25%;
+  margin-bottom: 1%;
+  font-size: 230%;
+  text-align: center;
+}
+
+.search-logo {
+  width: 300px;
+  height: 160px;
+  background-image: image-url("logo.PNG");
+  background-size: cover;
+}
+
+/*room */
+.post-container {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.room-container {
+  padding: 2% ;
+  box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
+  background-image: image-url("table.jpg");
+}
+
+.post-list {
+ margin: 2%;
+}
+
+.room-image {
+  width: 220px;
+  height: 220px;
+}
+
+
+.member-image {
+  width: 205px;
+  height: 205px;
+}
+
+.img-circle {
+  width: 60px;
+  height: 60px;
+}
 }

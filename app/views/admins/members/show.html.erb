@@ -5,7 +5,7 @@
   
   <div class="col-xs-4">
       <div class="text-center">
-       <div class="member-image"><%= attachment_image_tag @member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+       <div class="member-image"><%= attachment_image_tag @member, :profile_image, class:"member-image", fallback: "no_image.jpg",size: "320x320" %></div></td>
       </div>
       <br>
       <table class="table" style="table-layout:fixed;">
@@ -49,12 +49,12 @@
               <tr>
                 <td>
                   <%= link_to admins_room_path(room.id) do %>
-                    <%= attachment_image_tag room, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "310x310" %>
+                    <%= attachment_image_tag room, :image, class:"room-image", fallback: "no_image.jpg",size: "310x310" %>
                   <% end %>
                 </td>
               </tr>
               <tr>
-                <td><%= room.created_at %>　
+                <td><%= room.created_at.strftime("%Y-%m-%d %H:%M") %>
                   <i class="far fa-heart" aria-hidden="true"></i>
                   <%= room.favorites.count %> いいね 
                   <i class="fa fa-comment"></i><%= room.room_comments.count %>

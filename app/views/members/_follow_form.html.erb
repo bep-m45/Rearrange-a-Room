@@ -14,7 +14,7 @@
         <table class="table" >
           <tr>
             <td>
-              <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div></td>
+              <div class="member-image"><%= attachment_image_tag member, :profile_image, class:"member-image", fallback: "no_image.jpg",size: "320x320" %></div></td>
             </td>
           </tr>
         </table>
@@ -65,37 +65,38 @@
           <% else %>
             <%= form_for(current_member.active_relationships.build) do |f| %>
               <div><%= hidden_field_tag :followed_id, member.id %></div>
-              <button type="submit" class="btn btn-light">フォローする</button><br />
+              <button type="submit" class="btn btn-light">フォロー</button><br />
             <% end %>
           <% end %>
         </div>
     </div>
+    <div class="col-xs-1"></div>
     <!-- チャットルームボタン -->
     <div class="col-xs-4">
         <% unless member.id == current_member.id %>
           <% if @is_chat == true %>
-            <button type="button" class="btn btn-info"><a href="/chats/<%= @chat_id %>">チャットへ</a></button><br />
+            <button type="button" class="btn btn-info"><a href="/chats/<%= @chat_id %>">DMへ</a></button><br />
             <br>
           <% else %>
             <%= form_with model: @chat, local: true do |f| %>
               <%= fields_for @entry do |e| %>
                 <%= e.hidden_field :member_id, value: @member.id %>
               <% end %>
-              <button type="submit" class="btn btn-info">チャットを始める</button><br />
+              <button type="submit" class="btn btn-info">DMを始める</button><br />
               <br>
             <% end %>
           <% end %>
         <% end %>
   <% end %>
     </div>
-    <div class="col-xs-4"></div>
+    <div class="col-xs-3"></div>
     </div>
     <!-- プロフィール -->
     <div class="text-center">
       <table class="table">
         <tr>
           <td>
-            <div class="member-image"><%= attachment_image_tag member, :profile_image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x320" %></div>
+            <div class="member-image"><%= attachment_image_tag member, :profile_image, class:"member-image",fallback: "no_image.jpg",size: "320x320" %></div>
           </td>
         </tr>
       </table>
