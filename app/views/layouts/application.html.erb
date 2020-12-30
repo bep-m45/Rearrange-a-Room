@@ -14,13 +14,45 @@
   <body>
     <header>
       <div class="header">
+        
         <div class="logo">
           <div class="logo-background">
             <%= link_to root_path do %><div class="logo-image"></div><% end %>
           </div>
           <div class="logo-text">Rearrange a Room</div>
         </div>
+        
         <div class="header-list">
+          <div class="hamburger-menu">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <nav class="globalMenuSp">
+            <ul>
+              <% if member_signed_in? %>
+                <li><%= link_to "Home", root_path %></li>
+                <li><%= link_to "Post", new_room_path %></li>
+                <li><%= link_to "My Page", member_path(current_member.id) %></li>
+                <li><%= link_to "Users", members_path %></li>
+                <li><%= link_to "Rooms", rooms_path(anchor: "room-index") %></li>
+                <li><%= link_to "Sign Out", destroy_member_session_path, method: :delete %></li>
+              <% elsif admin_signed_in? %>
+                <li><%= link_to "会員一覧", admins_members_path %></li>
+                <li><%= link_to "投稿一覧", admins_rooms_path %></li>
+                <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Home", root_path %></li>
+                <li><%= link_to "About", homes_about_path %></li>
+                <li><%= link_to "Gest In", members_guest_sign_in_path, method: :post %></li>
+                <li><%= link_to "Sign Up", new_member_registration_path %></li>
+                <li><%= link_to "Sign In", new_member_session_path %></li>
+              <% end %>
+            </ul>
+          </nav>
+          </div>
+       
           <nav>
             <ul>
               <% if member_signed_in? %>
@@ -28,7 +60,7 @@
                 <li class="header-list-item"><%= link_to "Post", new_room_path, class: "btn-primary" %></li>
                 <li class="header-list-item"><%= link_to "My Page", member_path(current_member.id), class: "btn-primary" %></li>
                 <li class="header-list-item"><%= link_to "Users", members_path, class: "btn-primary" %></li>
-                <li class="header-list-item"><%= link_to "Rooms", rooms_path, class: "btn-primary"  %></li>
+                <li class="header-list-item"><%= link_to "Rooms", rooms_path(anchor: "room-index"), class: "btn-primary"  %></li>
                 <li class="header-list-item"><%= link_to "Sign Out", destroy_member_session_path, method: :delete, class: "btn-primary" %></li>
               <% elsif admin_signed_in? %>
                 <li class="header-list-item"><%= link_to "会員一覧", admins_members_path, class: "btn-primary" %></li>
@@ -45,7 +77,6 @@
           </nav>
         </div>
     </header>
-
     <main>
       <h4>
         <% if flash[:notice] %>
@@ -57,6 +88,7 @@
       <div class="container">
         <%= yield %>
       </div>
+      
     </main>
   </body>
 </html>

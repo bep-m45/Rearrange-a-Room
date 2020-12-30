@@ -18,7 +18,7 @@
         <div class="post_image">
           <table class="table">
             <tr>
-              <td><%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "310x310",class: "image" %></td>
+              <td><%= attachment_image_tag @room, :image, class:"room-image", fallback: "no_image.jpg",size: "310x310" %></td>
             </tr>
           </table>
           <%= f.attachment_field :image %>

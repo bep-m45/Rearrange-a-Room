@@ -46,3 +46,15 @@ $(function() {
 function inputCommentParentId(parentId){
     $("#room_comment_parent_id").val(parentId);
 }
+
+$(function() {
+    $('.hamburger').click(function() {
+        $(this).toggleClass('active');
+ 
+        if ($(this).hasClass('active')) {
+            $('.globalMenuSp').addClass('active');
+        } else {
+            $('.globalMenuSp').removeClass('active');
+        }
+    });
+});
