@@ -1,10 +1,11 @@
 <% @page_title = '投稿詳細' %>
 <h2>投稿詳細ページ</h2>
 
-<div class="room-container">
+<div class="room-container room-responsive">
   <div class="row">
     <div class="col-xs-2"></div>
     <div class="col-xs-3">
+      
       <!-- 投稿詳細 -->
       <table class="table" >
         <tr>
@@ -63,6 +64,67 @@
     <div class="col-xs-2"></div>
   </div>
 </div>
+
+  <!-- media-respinshive-375px -->
+<div class="room-container room-responsive-375px">
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+    <br>
+      <table class="table" >
+      <tr>
+        <td><%= attachment_image_tag @room, :image,class:"room-image", fallback: "no_image.jpg",size: "310x310" %></td>
+      </tr>
+      <tr>
+        <td><%= @room.created_at.strftime("%Y-%m-%d %H:%M") %>
+          <i class="fas fa-heart" aria-hidden="true"></i>
+          <%= @room.favorites.count %> いいね
+          <i class="fa fa-comment"></i>
+          <%= @room.room_comments.count %>
+        </td>
+      </tr>
+    </table>
+    </div>
+    <div class="col-xs-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <div class="room-production-table">
+        <table class="table" style="table-layout:fixed;">
+          <tr>
+            <th>間取り</th>
+            <td><%= @room.room_layout.layout_name %></td>
+          </tr>
+          <tr>
+            <th>広さ</th>
+            <td><%= @room.size %>畳</td>
+          </tr>
+          <tr>
+            <th>部屋の種類</th>
+            <td><%= @room.room_genre.genre_name %></td>
+          </tr>
+          <tr>
+            <th>イメージ</th>
+            <td><%= @room.room_image.image_name %></td>
+          </tr>
+          <tr>
+            <th>説明</th>
+            <td><%= simple_format text_url_to_link(h(@room.production)).html_safe %></td>
+          </tr>
+        </table>
+        <% if @room.member == current_member %>
+          <div class="text-right">
+            <button type="button" class="btn btn-success"><%= link_to "編集", edit_room_path(@room.id) %></button>
+            <button type="button" class="btn btn-danger"><%= link_to '削除', room_path(@room.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-1"></div>
+  </div>
+</div>
+
 <!-- 投稿に対してのコメント-->
 <div id="comments_area">
   <h3><i class="fa fa-comment"></i> コメント　<%= @room.room_comments.count %>件</h3>

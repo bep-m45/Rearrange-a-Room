@@ -7,8 +7,8 @@
       <th>ID</th>
       <th></th>
       <th>ニックネーム（名前）</th>
-      <th>プロフィール</th>
-      <th>フォロワー数</th>
+      <th class="room-responsive">プロフィール</th>
+      <th class="room-responsive">フォロワー数</th>
       <th>ステータス</th>
       <th></th>
     </tr>
@@ -17,10 +17,10 @@
     <% @members.each do |member| %>
     <tr>
       <td><%= member.id %></td>
-      <td><%= link_to (attachment_image_tag member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), admins_member_path(member) %></td>
+      <td><%= link_to (attachment_image_tag member, :profile_image, class:"img-circle", fallback: "no_image.jpg", size: "80x80"), admins_member_path(member) %></td>
       <td><%= link_to member.nickname, admins_member_path(member.id) %><br />（<%= member.name %>）</td>
-      <td><%= text_url_to_link(h(member.profile)).html_safe.truncate(50, omission: '...') %></td>
-      <td>
+      <td class="room-responsive"><%= text_url_to_link(h(member.profile)).html_safe.truncate(50, omission: '...') %></td>
+      <td class="room-responsive">
         <strong id="followers" class="follow_followed"><%= member.followers.count %></strong>
         フォロワー
       </td>

@@ -466,6 +466,8 @@ header .btn-primary {
   background-size: cover;
 }
 
+
+
 /*media-780px-ranking */
 .ranking-number {
   margin-right: 2%;
@@ -559,7 +561,7 @@ h3 {
  h4 {
   font-size: 110%;
 }
-/* media-780px-header */
+/* media-375px-header */
   
   .logo {
   display: flex;
@@ -581,24 +583,23 @@ header .btn-primary {
   display: none;
 }
 
-/* media-780px-search */
+/* media-375px-search */
 .search-heading {
   font-family: 'Nerko One', cursive;
-  margin-left: 20%;
-  margin-top: 25%;
   margin-bottom: 1%;
-  font-size: 190%;
+  font-size: 150%;
   text-align: center;
 }
 
 .search-logo {
   width: 140px;
   height: 80px;
+  margin-left: 20%;
   background-image: image-url("logo.PNG");
   background-size: cover;
 }
 
-/*media-780px-ranking */
+/*media-375px-ranking */
 .ranking-number {
   margin-right: 2%;
   margin-left: 35%;
@@ -629,7 +630,11 @@ header .btn-primary {
   background-size: cover;
 }
 
-/*media-780px-room */
+/*media-375px-room */
+.room-responsive {
+  display: none;
+}
+
 .post-container {
    display: flex;
    justify-content: center;
@@ -647,24 +652,37 @@ header .btn-primary {
 }
 
 .room-image {
-  width: 70px;
-  height: 70px;
+  width: 220px;
+  height: 220px;
 }
 
-
+.admin-room-image {
+  width: 60px;
+  height: 60px;
+}
+/* media-375-member */
 .member-image {
-  width: 130px;
-  height: 130px;
+  width: 270px;
+  height: 270px;
 }
 
 .img-circle {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+}
+
+.modal {
+  display: none;
 }
 }
 
 @media screen and (min-width: 781px) {
 .hamburger-menu{
+  display: none;
+}
+}
+@media screen and (min-width: 376px) {
+.room-responsive-375px {
   display: none;
 }
 }

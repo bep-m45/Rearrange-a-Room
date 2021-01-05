@@ -41,15 +41,7 @@ $(function() {
 		}
   	    reader.readAsDataURL(e.target.files[0]);
     });
-    
-    $('#modalForm').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var modal = $(this);
-        var cusnoVal = button.data('cusno');
-        modal.find('.modal-body input#cusno').val(cusnoVal);
-        var visitdayVal = button.data('visitday');
-        modal.find('.modal-body input#oldday').val(visitdayVal);
-    });
+
 });
 
  //リプライコメント機能でのparent_idをいれる為の記述 

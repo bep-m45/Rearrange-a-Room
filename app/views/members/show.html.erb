@@ -6,7 +6,7 @@
   <% end %>
 </h2>
 
-<div class="row">
+<div class="row room-responsive">
   <div class="col-xs-4">
     <%= render 'follow_form', member: @member %>
   </div>
@@ -33,4 +33,63 @@
       </div>
     <% end %>
   </div>
+</div>
+
+<!-- room-responsive-375px -->
+<div class="room-responsive-375px">
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <%= render 'follow_form', member: @member %>
+    </div>
+    <div class="modal fade" id="modalForm-375px" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="text-center">DM一覧</div>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">閉じる</span>
+              </button>
+            </div>
+            <form role="form" id="form1" action="" method="POST">
+              <div class="modal-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>名前</th>
+                      <th></th>
+                    </tr>
+                    <tr>
+                  </thead>
+                  <tbody>
+                    <% @another_entries.each do |m| %>
+                      <tr>
+                        <td>
+                          <%= attachment_image_tag m.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
+                        </td>
+                        <td>
+                          <%= m.member.nickname %>
+            　　            <% if @member.is_deleted %>
+        　　                　(退会済会員)
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= link_to "チャットへ", chat_path(m.chat.id) %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+<div class="col-xs-1"></div>
+</div>
 </div>

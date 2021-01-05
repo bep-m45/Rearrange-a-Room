@@ -8,7 +8,7 @@
   <% end %> )
 </h2>
 
-<div class="row">
+<div class="row room-responsive">
   <div class="col-xs-2"></div>
     <div class="col-xs-3">
       <table class="table">
@@ -61,4 +61,67 @@
       <% end %>
     </div>
     <div class="col-xs-2"></div>
+</div>
+
+<!-- media-responsive-375px -->
+<div class="room-responsive-375px">
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <table class="table">
+        <tr>
+          <td>
+            <%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "320x320",class: "member-image" %>
+          </td>
+        </tr>
+      </table>
+      <%= form_with model: @member, url: admins_member_path(@member), local:true do |f|%>
+        <%= f.attachment_field :profile_image %>
+    </div
+    <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <table class="table">
+        <tr>
+          <th>ID</th>
+            <td><%= @member.id %></td>
+        </tr>
+        <tr>
+          <th>ニックネーム</th>
+　　　　  <td><%= f.text_field :nickname, class:"form-control"%></td>
+　　    </tr>
+　　    <tr>
+　　      <th>名前</th>
+　　　　  <td><%= f.text_field :name, class:"form-control" %></td>
+　　    </tr>
+　　    <tr>
+　　      <th>メールアドレス</th>
+　　　　  <td><%= @member.email %></td>
+　　    </tr>
+　　    <tr>
+　　      <th>プロフィール</th>
+　　      <td><%= f.text_area :profile, class:"form-control" %></td>
+　　    </tr>
+　    　<tr>
+          <th><%= f.label :会員ステータス %></th>
+          <td>
+            <% if @member.email == "guest@example.com" %>
+              有効
+            <% else %>
+              <%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">更新</button><br />
+      </div>
+      <br>
+      <% end %>
+    </div>
+    <div class="col-xs-1"></div>
+    </div>
+</div>
 </div>

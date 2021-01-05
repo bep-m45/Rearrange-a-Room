@@ -2,7 +2,10 @@
   <% if member == current_member %>
   <div class="row">
     <div class="col-xs-12">
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalForm" data-cusno=1 data-visitday="2019-07-01">
+      <button type="button" class="btn btn-info room-responsive" data-toggle="modal" data-target="#modalForm">
+        <i class="fas fa-envelope"></i> DM一覧
+      </button><br />
+      <button type="button" class="btn btn-success room-responsive-375px" data-toggle="modal" data-target="#modalForm-375px">
         <i class="fas fa-envelope"></i> DM一覧
       </button><br />
       <br>
@@ -65,7 +68,7 @@
           <% else %>
             <%= form_for(current_member.active_relationships.build) do |f| %>
               <div><%= hidden_field_tag :followed_id, member.id %></div>
-              <button type="submit" class="btn btn-light">フォロー</button><br />
+              <button type="submit" class="btn btn-light">フォローする</button><br />
             <% end %>
           <% end %>
         </div>
@@ -185,3 +188,5 @@
       </div>
     </div>
 </div>
+
+
