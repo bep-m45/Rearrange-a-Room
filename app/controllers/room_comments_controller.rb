@@ -6,7 +6,7 @@ def create
   @room_comment = current_member.room_comments.build(room_comment_params)
     
   if @room_comment.save
-     @room_comments = RoomComment.all
+     @room_comments = @room.room_comments
      flash[:notice] = "コメントが投稿されました"
   else 
      @room_comments = @room.room_comments
@@ -21,7 +21,7 @@ def destroy
   @room = Room.find(params[:room_id])
   @room_comment = RoomComment.find(params[:id])
   @room_comment.destroy
-  @room_comments = RoomComment.all
+  @room_comments = @room.room_comments
   flash[:notice] = "コメントを削除しました"
 end
 
