@@ -31,8 +31,10 @@ body {
 
 main {
   padding-top: 3%;
+  padding-bottom: 10%;
   width: 100%;
-  margin: auto;
+  height: 100%;
+  margin: 0 auto;
 }
 
 h1 {
@@ -67,6 +69,10 @@ h5 {
   font-weight: bold;
 }
 
+h6 {
+  font-family: 'Nerko One', cursive;
+}
+
 .table {
    word-wrap: break-word;
    background-color: rgba(251, 253, 253, 0.70);
@@ -87,6 +93,10 @@ li {
 
 .about-heading {
   font-size: 180%;
+}
+
+.flash-message {
+  padding-left: 3%;
 }
 
 /* ヘッダー */
@@ -247,6 +257,17 @@ header .btn-primary {
   height: 100px;
   border-radius: 50%;
 }
+
+  h6 .btn-primary {
+  font-size: 170%;
+  font-weight: bold;
+  background-color: rgba(33, 157, 159, 0.50);
+  padding: 8px 20px;
+  color: #ffffff;
+  width: 200px;
+  height: 100px;
+  border-radius: 10%;
+  }
 
 /* button */
 .btn-right-radius {
@@ -642,7 +663,7 @@ header .btn-primary {
 }
 
 .room-container {
-  padding: 2% ;
+  padding: 2%;
   box-shadow: 0 20px 35px 0 rgba(1, 49, 49, 0.30);
   background-image: image-url("table.jpg");
 }

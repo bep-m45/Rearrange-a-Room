@@ -95,6 +95,11 @@ class MembersController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def member_rooms
+    @member = Member.find(params[:id])
+    @rooms = @member.rooms.order(created_at: :desc).page(params[:page]).per(9)
+  end
 
   private
 

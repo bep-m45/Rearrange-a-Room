@@ -114,9 +114,21 @@
       </div>
       </tr>
     </table>
-    <div class="text-right">
-      <button type="button" class="btn btn-success"><%= link_to '編集', edit_admins_member_path(@member.id) %></button>
-    </div>
+    
+      <div class="row">
+        <h6 class="room-responsive-375px">
+          <div class="col-xs-4">
+            <%= link_to "Rooms",admins_member_member_rooms_path(@member.id), class: "btn-primary" %>
+          </div>
+           </h6>
+        <div class="col-xs-4">
+      <button type="button" class="btn btn-success">
+        <%= link_to '編集', edit_admins_member_path(@member.id) %>
+        </button>
+        </div>
+        <div class-"col-xs-4"></div>
+      </div>
+   
   </div>
   <div class="col-xs-1"></div>
 </div>

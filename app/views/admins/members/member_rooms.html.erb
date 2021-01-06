@@ -1,0 +1,48 @@
+<% @page_title = "#{@member.nickname}さんの投稿一覧" %>
+<h2><%= @member.nickname %> の投稿一覧</h2>
+
+<div class="row">
+    <div class="col-xs-1"></div>
+<div class="col-xs-10">
+    <% if @rooms.empty? %>
+      <div class="text-center">
+        <h4>投稿されたRoomはありません</h4>
+      </div>
+    <% else %>  
+      <div class="room-container">
+        <div class="post-container">
+          <% @rooms.each do |room| %>
+          <div class="post-list">
+            <table class="table">
+              <tr>
+                <td>
+                  <%= link_to admins_room_path(room.id) do %>
+                    <%= attachment_image_tag room, :image, class:"room-image", fallback: "no_image.jpg",size: "310x310" %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= room.created_at.strftime("%Y-%m-%d %H:%M") %>
+                  <i class="far fa-heart" aria-hidden="true"></i>
+                  <%= room.favorites.count %> いいね 
+                  <i class="fa fa-comment"></i><%= room.room_comments.count %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= room.room_genre.genre_name %></td>
+              </tr>
+            </table>
+            <div class="text-right">
+              <button type="button" class="btn btn-danger"><%= link_to '削除', admins_room_path(room.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <div class="text-right">
+          <%= paginate @rooms %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-xs-1"></div>
+  </div>

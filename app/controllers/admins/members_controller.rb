@@ -29,6 +29,11 @@ class Admins::MembersController < ApplicationController
     end
   end
   
+  def member_rooms
+    @member = Member.find(params[:member_id])
+    @rooms = @member.rooms.order(created_at: :desc).page(params[:page]).per(9)
+  end
+  
   private
 
   def member_params

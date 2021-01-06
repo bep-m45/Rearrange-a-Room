@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
 
-  get 'member/index'
-  get 'member/show'
-  get 'member/edit'
+  # get 'member/index'
+  # get 'member/show'
+  # get 'member/edit'
   root to: 'homes#home'
   get '/homes/about' => 'homes#about'
   get '/search' => 'searches#search'
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :members, only: [:edit, :show, :index, :update, :new] do
          member do
            get :following,:followers
+           get :member_rooms
          end
        end
    resources :rooms do
@@ -41,7 +42,9 @@ Rails.application.routes.draw do
    resources :chats, only: [:create, :show, :index]   
  
   namespace :admins do
-   resources :members
+   resources :members do
+    get :member_rooms
+   end
    resources :rooms
    resources :room_comments, only: [:destroy]
   end

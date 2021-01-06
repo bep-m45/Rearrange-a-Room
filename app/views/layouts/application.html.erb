@@ -78,7 +78,7 @@
         </div>
     </header>
     <main>
-      <h4>
+      <h4 class="flash-message">
         <% if flash[:notice] %>
           <div class="flash">
             <%= flash[:notice] %>
@@ -88,7 +88,7 @@
       <div class="container">
         <%= yield %>
       </div>
-      
     </main>
+    <footer></footer>
   </body>
 </html>
