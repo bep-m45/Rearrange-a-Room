@@ -63,7 +63,6 @@ class RoomsController < ApplicationController
 
   def edit
     @room = Room.find(params[:id])
-
     if @room.member.id != current_member.id
     redirect_to member_path(current_member.id)
     end
@@ -72,8 +71,6 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     if @room.update(room_params)
-       sleep(3)
-       redirect_to image_url(@room)
        flash[:notice] = "Roomが編集されました"
        redirect_to room_path(@room.id)
     else

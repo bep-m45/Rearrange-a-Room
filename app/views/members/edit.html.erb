@@ -20,7 +20,7 @@
         <br>
         <table class="table">
           <tr>
-            <td><%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "320x320", class: "member-image" %></td>
+            <td><%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "320x320", class: "image member-image" %></td>
           </tr>
         </table>
         <%= f.attachment_field :profile_image %>
@@ -72,7 +72,7 @@
     <br>
       <table class="table">
         <tr>
-          <td><%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "310x310", class: "member-image" %></td>
+          <td><%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "310x310", class: "image member-image" %></td>
         </tr>
       </table>
       <%= f.attachment_field :profile_image %>
