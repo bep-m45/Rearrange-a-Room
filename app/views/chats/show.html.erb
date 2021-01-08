@@ -4,37 +4,38 @@
     <% @message.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
+  </ul>
 <%end %>
  	
 <% @page_title = "#{current_member.nickname}さんのDM" %>     
 <h2>Direct Message</h2>
   <div class="row">
     <div class="col-xs-2"></div>
-      <div class="col-xs-8">
-        <% @entries.each do |e| %>
-          <div class="member-name">
-            <strong>
-              <%= attachment_image_tag e.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
-              <a class="chats-member-link" href="/members/<%= e.member.id %>"><%= e.member.nickname %>さん</a>
-            </strong>
-          </div>
-        <% end %>
-        <hr>
-        <div class="chats">
-          <div id="chats_area">
+    <div class="col-xs-8">
+      <% @entries.each do |e| %>
+        <div class="member-name">
+          <strong>
+            <%= attachment_image_tag e.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
+            <a class="chats-member-link" href="/members/<%= e.member.id %>"><%= e.member.nickname %>さん</a>
+          </strong>
+        </div>
+      <% end %>
+      <hr>
+      <div class="chats">
+        <div id="chats_area">
           <%= render partial: "chats/chat_index", messages: @messages %>
-          </div>  
-          <div class="posts">
-            <%= form_with model: @message do |f| %>
-              <%= f.text_area :comment, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-control" %>
-              <%= f.hidden_field :chat_id, value: @chat.id %>
-              <br>
-              <div class="text-right">
-                <button type="submit" class="btn btn-primary">投稿</button>
-              </div>
-            <% end %>
-          </div>
+        </div>  
+        <div class="posts">
+          <%= form_with model: @message do |f| %>
+            <%= f.text_area :comment, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-control" %>
+            <%= f.hidden_field :chat_id, value: @chat.id %>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary">投稿</button>
+            </div>
+          <% end %>
         </div>
       </div>
-      <div class="col-xs-2"></div>
+    </div>
+    <div class="col-xs-2"></div>
   </div>

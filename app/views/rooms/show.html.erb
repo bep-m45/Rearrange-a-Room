@@ -4,12 +4,13 @@
   <div class="room-container room-responsive">
     <div class="row">
       <div class="col-xs-2"></div>
+      
+      <!-- 投稿詳細 -->
       <div class="col-xs-3">
-        <!-- 投稿詳細 -->
         <div class="room-image">
           <div class="favorites_buttons_<%= @room.id %>">
-          <%= render partial: 'favorites/favorite', locals: { room: @room} %>
-        </div>
+            <%= render partial: "favorites/favorite", locals: { room: @room} %>
+          </div>
         </div>
       </div>
       <div class="col-xs-1"></div>
@@ -62,8 +63,10 @@
   <br>
     <div class="row">
       <div class="col-xs-1"></div>
+      
+      <!-- 投稿詳細 -->
       <div class="col-xs-10">
-         <div class="favorites_buttons_<%= @room.id %>">
+        <div class="favorites_buttons_<%= @room.id %>">
           <%= render partial: 'favorites/favorite', locals: { room: @room} %>
         </div>
       </div>
@@ -116,7 +119,7 @@
       <% end %>
     </ul>  
   <%end %>
-  <h3><i class="fa fa-comment"></i> Comment　<%= @room.room_comments.count %>件</h3>
+  <h3><i class="fa fa-comment"></i> Comment  <%= @room.room_comments.count %>件</h3>
   <div class="room_comment_container">
     <div id="comments_area">
       <%= render partial: 'rooms/room_comments', locals: {room_comment: @room_comment, room: @room, room_comments: @room_comments, room_comment_reply: @room_comment_reply} %>
@@ -124,7 +127,7 @@
     
     <!-- 親コメント入力フォーム -->
     <%= form_with(model:[@room,@room_comment]) do |f| %>
-      <br>
+    <br>
       <p>
         <label>コメント</label>
       </p>

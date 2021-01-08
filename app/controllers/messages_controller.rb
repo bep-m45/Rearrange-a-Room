@@ -6,12 +6,12 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @chat =@message.chat
     if @message.save
-       @messages = Message.all
-       flash[:notice] = "メッセージを送信しました"
+      @messages = Message.all
+      flash[:notice] = "メッセージを送信しました"
     else    
-       @entries = @chat.entries
-       render "chats/show"
-       flash[:notice] = "メッセージの送信に失敗しました"
+      @entries = @chat.entries
+      render "chats/show"
+      flash[:notice] = "メッセージの送信に失敗しました"
     end
   end
 

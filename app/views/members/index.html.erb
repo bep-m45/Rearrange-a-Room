@@ -11,29 +11,28 @@
     </tr>
   </thead>
   <tbody>
-  <% @members.each do |member| %>
-    <tr>
-      <td>　　　　
-        <%= link_to (attachment_image_tag member, :profile_image, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), member_path(member.id) %>
-      </td>
-      <td>
-        <%= link_to member.nickname, member_path(member.id) %>
-      </td>  
-      <td>
-         <% if member.is_deleted %>
-        (退会済会員)
-        <% else %>
-        <%= text_url_to_link(h(member.profile)).html_safe.truncate(50, omission: '...') %>
-        <% end %>
-      </td>
-      <td>
-        <a href="<%= followers_member_path(member.id) %>">
-          <strong id="followers" class="follow_followed"><%= member.followers.count %></strong>
-          フォロワー
-        </a>
-      </td>
-    </tr>
-  <% end %>
+    <% @members.each do |member| %>
+      <tr>
+        <td>        
+          <%= link_to (attachment_image_tag member, :profile_image, class:"img-circle", fallback: "no_image.jpg", size: "100x100"), member_path(member.id) %>
+        </td>
+        <td>
+          <%= link_to member.nickname, member_path(member.id) %>
+        </td>  
+        <td>
+           <% if member.is_deleted %>
+          (退会済会員)
+          <% else %>
+          <%= text_url_to_link(h(member.profile)).html_safe.truncate(50, omission: '...') %>
+          <% end %>
+        </td>
+        <td>
+          <a href="<%= followers_member_path(member.id) %>">
+            <strong id="followers" class="follow_followed"><%= member.followers.count %></strong>フォロワー
+          </a>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <div class="text-right">

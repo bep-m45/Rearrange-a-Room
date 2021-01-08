@@ -13,9 +13,9 @@
 <% end %>
 
 <div class="row room-responsive">
-  <div class="col-xs-1"></div>
+  <%= form_with model: @member, url: member_path, local:true do |f|%>
+    <div class="col-xs-1"></div>
     <div class="col-xs-3">
-      <%= form_with model: @member, url: member_path, local:true do |f|%>
       <div class="post_image">
         <br>
         <table class="table">
@@ -31,90 +31,90 @@
       <table class="table">
         <tr>
           <th><%= f.label :名前 %></th>
-　　　　  <td><%= f.text_field :name, class:"form-control" %></td>
-　    　</tr>
-　　    <tr>
-　　      <th><%= f.label :ニックネーム %></th>
-　　　　  <td><%= f.text_field :nickname, class:"form-control" %></td>
-　　    </tr>
-　　    <tr>
-　　      <th><%= f.label :メールアドレス %></th>
-　　　　  <td>
-　　　　    <% if @member.email == "guest@example.com" %>
-　　　　    <div class="text-left">
-　　　　      <%= @member.email %>
-　　　　    </div>  
-　　　　    <% else %>
-　　　　      <%= f.email_field :email, class:"form-control" %>
-　　　　    <% end %>
-　　　　  </td>
-　  　  </tr>
-　　    <tr>
-　　      <th><%= f.label :プロフィール %></th>
-　　      <td><%= f.text_area :profile, class:"form-control", size: "50x10" %></td>
-　　    </tr>
+          <td><%= f.text_field :name, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :ニックネーム %></th>
+          <td><%= f.text_field :nickname, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <td>
+            <% if @member.email == "guest@example.com" %>
+              <div class="text-left">
+                <%= @member.email %>
+              </div>  
+            <% else %>
+              <%= f.email_field :email, class:"form-control" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :プロフィール %></th>
+          <td><%= f.text_area :profile, class:"form-control", size: "50x10" %></td>
+        </tr>
       </table>
       <div class="text-right">
         <button type="submit" class="btn btn-success">更新</button>
         <button type="button" class="btn btn-danger"><%=link_to '退会', members_resign_path %><button></button>
       </div>
-    <% end %>
     </div>
     <div class="col-xs-1"></div>
+  <% end %>
 </div>
 
 <!-- media-responsive-375px -->
-<div class="row room-responsive-375px">
-  <div class="col-xs-1"></div>
-  <div class="col-xs-10">
-    <%= form_with model: @member, url: member_path, local:true do |f|%>
-    <div class="post_image">
-    <br>
+<%= form_with model: @member, url: member_path, local:true do |f|%>
+  <div class="row room-responsive-375px">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <div class="post_image">
+      <br>
+        <table class="table">
+          <tr>
+            <td><%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "310x310", class: "image member-image" %></td>
+          </tr>
+        </table>
+        <%= f.attachment_field :profile_image %>
+      </div>
+    </div>
+    <div class="col-xs-1"></div>
+  </div>
+  <div class="row room-responsive-375px">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
       <table class="table">
         <tr>
-          <td><%= attachment_image_tag @member, :profile_image, fallback: "no_image.jpg",size: "310x310", class: "image member-image" %></td>
+          <th><%= f.label :名前 %></th>
+          <td><%= f.text_field :name, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :ニックネーム %></th>
+          <td><%= f.text_field :nickname, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <td>
+            <% if @member.email == "guest@example.com" %>
+            <div class="text-left">
+            <%= @member.email %>
+            </div>  
+           <% else %>
+            <%= f.email_field :email, class:"form-control" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :プロフィール %></th>
+          <td><%= f.text_area :profile, class:"form-control", size: "20x5" %></td>
         </tr>
       </table>
-      <%= f.attachment_field :profile_image %>
+      <div class="text-right">
+        <button type="submit" class="btn btn-success">更新</button>
+        <button type="button" class="btn btn-danger"><%=link_to '退会', members_resign_path %><button></button>
+      </div>
     </div>
+    <div class="col-xs-1"></div>
   </div>
-  <div class="col-xs-1"></div>
-</div>
-<div class="row room-responsive-375px">
-  <div class="col-xs-1"></div>
-  <div class="col-xs-10">
-    <table class="table">
-      <tr>
-        <th><%= f.label :名前 %></th>
-　　　　<td><%= f.text_field :name, class:"form-control" %></td>
-　    </tr>
-　　  <tr>
-　　    <th><%= f.label :ニックネーム %></th>
-　　　　<td><%= f.text_field :nickname, class:"form-control" %></td>
-　　  </tr>
-　　  <tr>
-　　    <th><%= f.label :メールアドレス %></th>
-　　　　<td>
-　　　　  <% if @member.email == "guest@example.com" %>
-　　　　  <div class="text-left">
-　　　　    <%= @member.email %>
-　　　　  </div>  
-　　　　  <% else %>
-　　　　    <%= f.email_field :email, class:"form-control" %>
-　　　　  <% end %>
-　　　　</td>
-　  　</tr>
-　　  <tr>
-　　    <th><%= f.label :プロフィール %></th>
-　　    <td><%= f.text_area :profile, class:"form-control", size: "20x5" %></td>
-　　  </tr>
-    </table>
-    <div class="text-right">
-      <button type="submit" class="btn btn-success">更新</button>
-      <button type="button" class="btn btn-danger"><%=link_to '退会', members_resign_path %><button></button>
-    </div>
-    <% end %>
-  </div>
-  <div class="col-xs-1"></div>
-</div>
+<% end %>
 

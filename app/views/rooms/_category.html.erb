@@ -21,7 +21,7 @@
 		      <li><% RoomImage.all.each do |room_image| %></li>
 		        <%= link_to room_image.image_name, rooms_path(room_image_id: room_image.id, anchor: "room-index") %>
 		      <% end %>
-           <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
             <h4>フリーワード</h4>
             <%= f.select :range, options_for_select([['---選択してください---', ''],['USER', '1'],['ROOM', '2']]) %><br />
             <br>
@@ -34,7 +34,7 @@
     </div>
     
     <!-- media-responsive-375px -->
-    <div class="row room-responsive-375px ">
+    <div class="row room-responsive-375px">
       <div class="row">
         <div class="col-xs-2"></div>
         <div class="col-xs-7">

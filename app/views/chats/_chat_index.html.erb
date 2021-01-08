@@ -1,23 +1,21 @@
-
-            <% if @messages.present? %>
-              <% @messages.each do |m| %>
-                <div class="chat-box">
-                  <table class="table">
-                    <tr>
-                      <td>
-                        <div class="chat-face">
-                          <%= attachment_image_tag m.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
-                        </div>
-                          <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
-                      </td>   
-                      <td>
-                        <div class="chat-hukidashi">
-                          <strong><%= text_url_to_link(h(m.comment)).html_safe %></strong><br>
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              <% end %>
-            <% end %>
-          
+<% if @messages.present? %>
+  <% @messages.each do |m| %>
+    <div class="chat-box">
+      <table class="table">
+        <tr>
+          <td>
+            <div class="chat-face">
+              <%= attachment_image_tag m.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
+            </div>
+              <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+          </td>   
+          <td>
+            <div class="chat-hukidashi">
+              <strong><%= text_url_to_link(h(m.comment)).html_safe %></strong><br>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+<% end %>

@@ -10,7 +10,6 @@ class MembersController < ApplicationController
     @rooms = @member.rooms.order(created_at: :desc).page(params[:page]).per(9)
     @current_member_entry = Entry.where(member_id: current_member.id)
     @member_entry = Entry.where(member_id: @member.id)
-
     unless @member.id == current_member.id
       @current_member_entry.each do |cu|
         @member_entry.each do |u|
@@ -36,7 +35,6 @@ class MembersController < ApplicationController
 
   def edit
     @member = Member.find(params[:id])
-
     if @member.id != current_member.id
       redirect_to member_path(current_member.id)
     end
@@ -44,7 +42,6 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-
     if @member.update(member_params)
       flash[:notice] ='MY PAGEが編集されました'
       redirect_to member_path(@member.id)
@@ -58,7 +55,7 @@ class MembersController < ApplicationController
     @member  = Member.find(params[:id])
     @members = @member.following
     @current_member_entry = Entry.where(member_id: current_member.id)
-
+    
     my_chats_ids = []
     @current_member_entry.each do | entry |
       my_chats_ids << entry.chat.id
@@ -106,4 +103,5 @@ class MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:name, :nickname, :email, :profile_image, :profile, :is_deleted )
   end
+  
 end

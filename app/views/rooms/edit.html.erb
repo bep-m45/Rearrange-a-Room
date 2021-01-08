@@ -1,32 +1,32 @@
-<% @page_title = 'Room編集' %>
+<% @page_title = "Room編集" %>
 <h2>Room編集page</h2>
 
 <% if @room.errors.any? %>
   <h5><%= pluralize(@room.errors.count, "") %> 個のエラー</h5>
-    <div class="alert alert-warning">
-      <ul>
-        <% @room.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <div class="alert alert-warning">
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <div class="room-container room-responsive">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-3">
-      <%= form_with model: @room, local: true do |f|%>
+  <%= form_with model: @room, local: true do |f|%>
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-3">
         <div class="post_image">
           <table class="table">
             <tr>
               <td><%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "320x320", class: "room-image" %></td>
             </tr>
-        </table>
-        <%= f.attachment_field :image %>
+          </table>
+          <%= f.attachment_field :image %>
         </div>
-    </div>
-    <div class="col-xs-1"></div>
+      </div>
+      <div class="col-xs-1"></div>
       <div class="col-xs-6">
         <table class="table">
           <tr>
@@ -35,7 +35,7 @@
           </tr>
           <tr>
             <th>広さ</th>
-            <td><%= f.select :size, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,"その他"], include_blank: "選択して下さい", class: "form-control" %>　畳</td>
+            <td><%= f.select :size, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,"その他"], include_blank: "選択して下さい", class: "form-control" %>  畳</td>
           </tr>
           <tr>
             <th>部屋の種類</th>
@@ -54,32 +54,31 @@
           <button type="submit" class="btn btn-success">更新</button>
         </div>
       </div>
-    <% end %>
-    <div class="col-xs-1"></div>
-  </div>
+      <div class="col-xs-1"></div>
+    </div>
+  <% end %>
 </div>
 
 <!-- media-respinshive-375px -->
 <div class="room-container room-responsive-375px">
-<br>
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-10">
-      <%= form_with model: @room, local: true do |f|%>
+  <%= form_with model: @room, local: true do |f|%>
+  <br>
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
         <div class="post_image">
           <table class="table">
             <tr>
               <td><%= attachment_image_tag @room, :image, fallback: "no_image.jpg",size: "320x320", class: "room-image" %></td>
             </tr>
-        </table>
-        <%= f.attachment_field :image %>
+          </table>
+          <%= f.attachment_field :image %>
         </div>
+      </div>
+      <div class="col-xs-1"></div>
     </div>
-    <div class="col-xs-1"></div>
-  </div>
-  <
-  <div class="row">
-    <div class="col-xs-1"></div>
+    <div class="row">
+      <div class="col-xs-1"></div>
       <div class="col-xs-10">
         <table class="table">
           <tr>
@@ -88,7 +87,7 @@
           </tr>
           <tr>
             <th>広さ</th>
-            <td><%= f.select :size, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,"その他"], include_blank: "選択して下さい", class: "form-control" %>　畳</td>
+            <td><%= f.select :size, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,"その他"], include_blank: "選択して下さい", class: "form-control" %>  畳</td>
           </tr>
           <tr>
             <th>部屋の種類</th>
@@ -108,7 +107,7 @@
         </div>
         <br>
       </div>
-    <% end %>
-    <div class="col-xs-1"></div>
-  </div>
+      <div class="col-xs-1"></div>
+    </div>
+  <% end %>
 </div>

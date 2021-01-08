@@ -1,4 +1,4 @@
-	<% @page_title = "#{@member.nickname}さんのMyPage" %>
+<% @page_title = "#{@member.nickname}さんのMyPage" %>
 <h2>
   <%= @member.nickname %> Page
   <% if @member.is_deleted %>
@@ -8,7 +8,7 @@
 
 <div class="row room-responsive">
   <div class="col-xs-4">
-    <%= render 'follow_form', member: @member %>
+    <%= render "follow_form", member: @member %>
   </div>
   <div class="col-xs-8">
     <% if @rooms.empty? %>
@@ -20,9 +20,9 @@
         <div class="post-container">
           <% @rooms.each do |room| %>
             <div class="post-list"><br />
-            <br>
+              <br>
               <div class="favorites_buttons_<%= room.id %>">
-                <%= render partial: 'favorites/favorite', locals: { room: room} %>
+                <%= render partial: "favorites/favorite", locals: { room: room} %>
               </div>
             </div>
           <% end %>
@@ -62,7 +62,6 @@
                     <th>名前</th>
                     <th></th>
                   </tr>
-                  <tr>
                 </thead>
                 <tbody>
                   <% @another_entries.each do |m| %>
@@ -72,8 +71,8 @@
                       </td>
                       <td>
                         <%= m.member.nickname %>
-          　　            <% if @member.is_deleted %>
-      　　                　(退会済会員)
+                        <% if @member.is_deleted %>
+                          (退会済会員)
                         <% end %>
                       </td>
                       <td>

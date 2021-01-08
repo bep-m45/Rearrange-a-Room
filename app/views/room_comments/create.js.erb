@@ -1,5 +1,5 @@
 $(function() {
-$("#comments_area").html("<%= escape_javascript(render partial: 'rooms/room_comments', locals: {room_comment: @room_comment, room: @room, room_comments: @room_comments, room_comment_reply: @room_comment_reply}) %>")
-$("#modalForm").modal("hide")
-$("textarea").val('')
+  $("#comments_area").html("<%= escape_javascript(render partial: "rooms/room_comments", locals: {room_comment: @room_comment, room: @room, room_comments: @room_comments, room_comment_reply: @room_comment_reply}) %>")
+  $("#modalForm").modal("hide")
+  $("textarea").val('')
 });

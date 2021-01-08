@@ -10,14 +10,13 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id])
-
-   if Entry.where(member_id: current_member.id,chat_id: @chat.id).present?
+    if Entry.where(member_id: current_member.id,chat_id: @chat.id).present?
       @messages = @chat.messages
       @message = Message.new
       @entries = @chat.entries
-   else
+    else
       redirect_back(fallback_location: root_path)
-   end
+    end
   end
   
 end

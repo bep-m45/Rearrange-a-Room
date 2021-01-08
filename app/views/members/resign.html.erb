@@ -1,5 +1,4 @@
-	
-<% @page_title = "退会確認" %>
+	<% @page_title = "退会確認" %>
 <h2>本当に退会しますか？</h2>
 
 <div class="row">
@@ -11,7 +10,7 @@
     </p>
     <br>
     <div class="text-center">
-      <button type="button" class="btn btn-sccess"><%= link_to'退会しない', member_path(current_member.id) %></button>　
+      <button type="button" class="btn btn-sccess"><%= link_to'退会しない', member_path(current_member.id) %></button>  
       <button type="button" class="btn btn-danger"><%= link_to '退会する', members_resign_path ,method: :patch, "data-confirm" => "本当に退会しますか？"%></button>
     </div>
   </div>

@@ -4,9 +4,9 @@
     <title><%= page_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag 'favicon.PNG'%>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application' %>
+    <%= favicon_link_tag "favicon.PNG"%>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application" %>
      <meta name="viewport" content="width=device-width,initial-scale=1.0">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   </head>
@@ -14,45 +14,42 @@
   <body>
     <header>
       <div class="header">
-        
         <div class="logo">
           <div class="logo-background">
             <%= link_to root_path do %><div class="logo-image"></div><% end %>
           </div>
           <div class="logo-text">Rearrange a Room</div>
         </div>
-        
         <div class="header-list">
           <div class="hamburger-menu">
-          <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <nav class="globalMenuSp">
+              <ul>
+                <% if member_signed_in? %>
+                  <li><%= link_to "Home", root_path %></li>
+                  <li><%= link_to "Post", new_room_path %></li>
+                  <li><%= link_to "My Page", member_path(current_member.id) %></li>
+                  <li><%= link_to "Users", members_path %></li>
+                  <li><%= link_to "Rooms", rooms_path(anchor: "room-index") %></li>
+                  <li><%= link_to "Sign Out", destroy_member_session_path, method: :delete %></li>
+                <% elsif admin_signed_in? %>
+                  <li><%= link_to "会員一覧", admins_members_path %></li>
+                  <li><%= link_to "投稿一覧", admins_rooms_path %></li>
+                  <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to "Home", root_path %></li>
+                  <li><%= link_to "About", homes_about_path %></li>
+                  <li><%= link_to "Gest In", members_guest_sign_in_path, method: :post %></li>
+                  <li><%= link_to "Sign Up", new_member_registration_path %></li>
+                  <li><%= link_to "Sign In", new_member_session_path %></li>
+                <% end %>
+              </ul>
+            </nav>
           </div>
-          <nav class="globalMenuSp">
-            <ul>
-              <% if member_signed_in? %>
-                <li><%= link_to "Home", root_path %></li>
-                <li><%= link_to "Post", new_room_path %></li>
-                <li><%= link_to "My Page", member_path(current_member.id) %></li>
-                <li><%= link_to "Users", members_path %></li>
-                <li><%= link_to "Rooms", rooms_path(anchor: "room-index") %></li>
-                <li><%= link_to "Sign Out", destroy_member_session_path, method: :delete %></li>
-              <% elsif admin_signed_in? %>
-                <li><%= link_to "会員一覧", admins_members_path %></li>
-                <li><%= link_to "投稿一覧", admins_rooms_path %></li>
-                <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
-              <% else %>
-                <li><%= link_to "Home", root_path %></li>
-                <li><%= link_to "About", homes_about_path %></li>
-                <li><%= link_to "Gest In", members_guest_sign_in_path, method: :post %></li>
-                <li><%= link_to "Sign Up", new_member_registration_path %></li>
-                <li><%= link_to "Sign In", new_member_session_path %></li>
-              <% end %>
-            </ul>
-          </nav>
-          </div>
-       
           <nav>
             <ul>
               <% if member_signed_in? %>
@@ -76,6 +73,7 @@
             </ul>
           </nav>
         </div>
+      </div>
     </header>
     <main>
       <h4 class="flash-message">

@@ -25,7 +25,7 @@ class Admins::MembersController < ApplicationController
       flash[:notice] = "お客様情報を更新しました"
       redirect_to admins_members_path
     else
-      render 'admins/members/edit'
+      render "admins/members/edit"
     end
   end
   
@@ -39,4 +39,5 @@ class Admins::MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:is_deleted, :name, :nickname, :email, :profile_image, :profile)
   end
+  
 end

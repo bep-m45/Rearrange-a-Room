@@ -23,13 +23,12 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     @room.member_id = current_member.id
-
-  if @room.save
-     redirect_to room_path(@room.id)
-     flash[:notice] = "Roomを投稿しました"
-  else
-     render "new", notice: "送信に失敗しましたしました"
-  end
+    if @room.save
+      redirect_to room_path(@room.id)
+      flash[:notice] = "Roomを投稿しました"
+    else
+      render "new", notice: "送信に失敗しましたしました"
+    end
   end
 
   def show
@@ -38,26 +37,26 @@ class RoomsController < ApplicationController
     @room_comment = @room.room_comments.build
     @room_comment_reply = @room.room_comments.build
     @member = @room.member
-
+    
     if params[:room_layout_id]
-  	   @room_layout = RoomLayout.find(params[:room_layout_id])
-  	   @room_layouts = @room_layout.rooms.order(created_at: :desc)
+  	  @room_layout = RoomLayout.find(params[:room_layout_id])
+  	  @room_layouts = @room_layout.rooms.order(created_at: :desc)
     else
-       @room_layouts = RoomLayout
+      @room_layouts = RoomLayout
     end
-
+    
     if params[:room_genre_id]
-  	   @room_genre = RoomGenre.find(params[:room_genre_id])
-  	   @room_genres = @room_genre.rooms.order(created_at: :desc)
+  	  @room_genre = RoomGenre.find(params[:room_genre_id])
+  	  @room_genres = @room_genre.rooms.order(created_at: :desc)
     else
-       @room_genres = RoomGenre
+      @room_genres = RoomGenre
     end
 
     if params[:room_image_id]
-  	   @room_image = RoomImage.find(params[:room_image_id])
-  	   @room_images = @room_image.rooms.order(created_at: :desc)
+  	  @room_image = RoomImage.find(params[:room_image_id])
+      @room_images = @room_image.rooms.order(created_at: :desc)
     else
-       @room_images = RoomImage
+      @room_images = RoomImage
     end
   end
 
@@ -71,20 +70,19 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     if @room.update(room_params)
-       flash[:notice] = "Roomが編集されました"
-       redirect_to room_path(@room.id)
+      flash[:notice] = "Roomが編集されました"
+      redirect_to room_path(@room.id)
     else
-       flash[:notice] ='ROOMの編集に失敗しました'
-       render "edit"
+      flash[:notice] ='ROOMの編集に失敗しました'
+      render "edit"
     end
   end
 
   def destroy
     @room = Room.find(params[:id])
-
     if @room.destroy
-       flash[:notice] ='Roomの投稿を削除しました'
-       redirect_to member_path(current_member)
+      flash[:notice] ='Roomの投稿を削除しました'
+      redirect_to member_path(current_member)
     end
   end
 
@@ -97,6 +95,7 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:member_id, :size, :production, :image,  :room_layout_id, :room_genre_id, :room_image_id)
   end
+  
 end
 
 

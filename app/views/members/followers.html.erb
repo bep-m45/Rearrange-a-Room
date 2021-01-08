@@ -3,7 +3,7 @@
 
 <div class="row room-responsive">
   <div class="col-xs-4">
-    <%= render 'follow_form', member: @member %>
+    <%= render "follow_form", member: @member %>
   </div>
   <div class="col-xs-8">
     <table class="table">
@@ -15,20 +15,20 @@
         </tr>
       </thead>
       <tbody>
-      <% @members.each do |member| %>
-        <tr>
-          <td><%= link_to attachment_image_tag(member, :profile_image,format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size: "80x80"), member_path(member.id) %>
-              フォロワー
-              <%=link_to member.followers.count, followers_member_path(member) %>
-          </td>
-          <td><%= link_to member.nickname, member_path(member) %>
-        　　  　<% if member.is_deleted %>
-        　　    　(退会済会員)
+        <% @members.each do |member| %>
+          <tr>
+            <td><%= link_to attachment_image_tag(member, :profile_image,format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size: "80x80"), member_path(member.id) %>フォロワー
+                <%=link_to member.followers.count, followers_member_path(member) %>
+            </td>
+            <td>
+              <%= link_to member.nickname, member_path(member) %>
+              <% if member.is_deleted %>
+                (退会済会員)
               <% end %>
-          </td>
-          <td><%= member.profile %></td>
-        </tr>
-      <% end %>
+            </td>
+            <td><%= member.profile %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
@@ -44,19 +44,18 @@
     </tr>
   </thead>
   <tbody>
-  <% @members.each do |member| %>
-    <tr>
-      <td><%= link_to attachment_image_tag(member, :profile_image,format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size: "80x80"), member_path(member.id) %>
-        フォロワー
-        <%=link_to member.followers.count, followers_member_path(member) %>
-      </td>
-      <td><%= link_to member.nickname, member_path(member) %>
-        <% if member.is_deleted %>
-        　(退会済会員)
-        <% end %>
-      </td>
-      <td><%= member.profile %></td>
-    </tr>
-  <% end %>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= link_to attachment_image_tag(member, :profile_image,format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size: "80x80"), member_path(member.id) %>フォロワー
+          <%=link_to member.followers.count, followers_member_path(member) %>
+        </td>
+        <td><%= link_to member.nickname, member_path(member) %>
+          <% if member.is_deleted %>
+            (退会済会員)
+          <% end %>
+        </td>
+        <td><%= member.profile %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
