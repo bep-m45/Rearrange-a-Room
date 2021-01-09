@@ -7,7 +7,10 @@
             <div class="chat-face">
               <%= attachment_image_tag m.member, :profile_image, :limit, 50, 50, class:"img-circle", fallback: "no_image.jpg", size: "100x100" %>
             </div>
-              <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+            <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+            <% if m.member == current_member %>
+              <%= link_to '削除', message_path(m), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %>
+            <% end %>
           </td>   
           <td>
             <div class="chat-hukidashi">
@@ -16,11 +19,6 @@
           </td>
         </tr>
       </table>
-      <% if m.member == current_member %>
-        <div class="text-right">
-          <button type="button" class="btn btn-danger"><%= link_to '削除', message_path(m), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %></button>
-        </div>
-      <% end %>
     </div>
   <% end %>
 <% end %>
