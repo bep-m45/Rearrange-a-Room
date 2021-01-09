@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @chat =@message.chat
     if @message.save
-      @messages = Message.all
+      @messages = @chat.messages
       flash[:notice] = "メッセージを送信しました"
     else    
       @entries = @chat.entries
@@ -14,6 +14,17 @@ class MessagesController < ApplicationController
       flash[:notice] = "メッセージの送信に失敗しました"
     end
   end
+  
+  def destroy
+    @message = Message.find(params[:id])
+    @chat = @message.chat
+    @chat.member_id = current_member.id
+    if @message.destroy
+      @messages = @chat.messages
+      flash[:notice] ="Messageを削除しました"
+    end
+  end
+    
 
   private
 

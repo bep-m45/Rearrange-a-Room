@@ -4,7 +4,7 @@
   <% end %>
 
   <!-- 親コメント一覧 -->
-  <table class="table">
+  <table class="table style="table-layout:fixed;"">
     <tr>
       <td width="200">
         <p>
@@ -23,7 +23,7 @@
         <br>
       </td>
       <td>
-        <%= text_url_to_link(h(room_comment.comment)).html_safe %>
+        <%= simple_format text_url_to_link(h(room_comment.comment)).html_safe %>
       </td>
     </tr>
   
@@ -41,7 +41,7 @@
               <%= link_to "削除", room_room_comment_path(@room, reply), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %>
             <% end %>
           </td>
-          <td><%= text_url_to_link(h(reply.comment)).html_safe %></td>
+          <td><%= simple_format text_url_to_link(h(reply.comment)).html_safe %></td>
         </tr>
       <% end %>
     </div>
