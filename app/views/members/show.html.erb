@@ -96,50 +96,49 @@
 </div>
 
 <!-- モーダルフォーム(通知) -->
-   <div class="modal fade" id="modalForm-notification-375px" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="text-center">通知</div>
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">×</span>
-            <span class="sr-only">閉じる</span>
-          </button>
-        </div>
-        <form role="form" id="form1" action="" method="POST">
-          <div class="modal-body">
-            <% if @notifications.exists? %>
-              <table class="table">
-              <% @notifications.each do |notification| %>
-              <tr>
-                <td>
-                  <%= link_to notification.visitor.nickname, member_path(notification.visitor.id) %>さんが
-                  <% case notification.action %>
-                    <% when 'follow' then %>
-                      あなたをフォローしました
-                    <% when "room_comment" then %>
-                      <% if notification.room.member.id == current_member.id %>
-                        <%= link_to "あなたの投稿", room_path(notification.room) %>
-                        にコメントしました
-                      <% end %>
-                    <% when "favorite" then %>
-                      <%= link_to "あなたの投稿", room_path(notification.room) %>
-                      にいいねしました
-                  <% end %>
-                </td>
-                </tr>
-              </table>
-            <% end %>  
-            <% else %>
-              現在通知はありません！
-              他のユーザーにフォロー、いいね、コメントされると、
-              ここに通知が表示されます！
-            <% end %>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
-          </div>
-        </form>
+<div class="modal fade" id="modalForm-notification-375px" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="text-center">通知</div>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">閉じる</span>
+        </button>
       </div>
+      <form role="form" id="form1" action="" method="POST">
+        <div class="modal-body">
+          <% if @notifications.exists? %>
+            <table class="table">
+              <% @notifications.each do |notification| %>
+                <tr>
+                  <td>
+                    <%= link_to notification.visitor.nickname, member_path(notification.visitor.id) %>さんが
+                    <% case notification.action %>
+                      <% when "follow" then %>
+                        あなたをフォローしました
+                      <% when "room_comment" then %>
+                      <% if notification.room.member.id == current_member.id %>
+                        <%= link_to "あなたの投稿", room_path(notification.room) %>にコメントしました
+                      <% end %>
+                      <% when "favorite" then %>
+                      <%= link_to "あなたの投稿", room_path(notification.room) %>にいいねしました
+                      <% when "dm" then %>
+                      <%= link_to "あなたのDM", chat_path(notification.message.chat.id) %>にメッセージしました
+                    <% end %>
+                  </td>
+                 </tr>
+              <% end %>
+            </table>
+          <% else %>
+            現在通知はありません！<br />
+            他のユーザーにフォロー、いいね、DM、コメントされるとここに通知が表示されます！
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
+        </div>
+      </form>
     </div>
   </div>
+</div>   

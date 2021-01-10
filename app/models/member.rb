@@ -52,7 +52,7 @@ class Member < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
+  
   validates :nickname, presence: true, length: { minimum: 2, maximum: 10 }
   validates :name, presence: true, length: { minimum: 3, maximum: 15 }
   validates :profile, length: { maximum: 250 }

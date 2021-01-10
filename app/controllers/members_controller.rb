@@ -10,7 +10,7 @@ class MembersController < ApplicationController
     @rooms = @member.rooms.order(created_at: :desc).page(params[:page]).per(9)
     @notifications = current_member.passive_notifications.page(params[:page]).per(20)
     @notifications.where(checked: false).each do |notification|
-      notification.update_attributes(checked: true)
+    notification.update_attributes(checked: true)
     end
     @current_member_entry = Entry.where(member_id: current_member.id)
     @member_entry = Entry.where(member_id: @member.id)
@@ -34,7 +34,7 @@ class MembersController < ApplicationController
     @current_member_entry.each do | entry |
       my_chats_ids << entry.chat.id
     end
-    @another_entries = Entry.where(chat_id: my_chats_ids).where('member_id != ?', @member.id)
+    @another_entries = Entry.where(chat_id: my_chats_ids).where("member_id != ?", @member.id)
   end
 
   def edit
@@ -47,11 +47,11 @@ class MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      flash[:notice] ='My Pageが編集されました'
+      flash[:notice] ="My Pageが編集されました"
       redirect_to member_path(@member.id)
     else
-      flash[:notice] ='My Pageの編集に失敗しました'
-      render 'edit'
+      flash[:notice] ="My Pageの編集に失敗しました"
+      render "edit"
     end
   end
 
@@ -64,8 +64,8 @@ class MembersController < ApplicationController
     @current_member_entry.each do | entry |
       my_chats_ids << entry.chat.id
     end
-    @another_entries = Entry.where(chat_id: my_chats_ids).where('member_id != ?', @member.id)
-    render 'following'
+    @another_entries = Entry.where(chat_id: my_chats_ids).where("member_id != ?", @member.id)
+    render "following"
   end
 
   def followers
@@ -77,8 +77,8 @@ class MembersController < ApplicationController
     @current_member_entry.each do | entry |
       my_chats_ids << entry.chat.id
     end
-    @another_entries = Entry.where(chat_id: my_chats_ids).where('member_id != ?', @member.id)
-    render 'followers'
+    @another_entries = Entry.where(chat_id: my_chats_ids).where("member_id != ?", @member.id)
+    render "followers"
   end
 
   def resign
