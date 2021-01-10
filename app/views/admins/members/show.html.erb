@@ -1,5 +1,10 @@
 <% @page_title = "#{@member.nickname}さんの詳細" %>
-<h2><%= @member.nickname %> のPage</h2>
+<h2>
+  <%= @member.nickname %> Page
+  <% if @member.is_deleted %>
+    (退会済会員)
+  <% end %>
+</h2>
 
 <div class="row room-responsive">
   <div class="col-xs-4">

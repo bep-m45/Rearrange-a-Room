@@ -7,6 +7,7 @@ class RoomCommentsController < ApplicationController
       
     if @room_comment.save
       @room_comments = @room.room_comments
+      @room.create_notification_room_comment!(current_member, @room_comment.id)
       flash[:notice] = "コメントが投稿されました"
     else 
       @room_comments = @room.room_comments

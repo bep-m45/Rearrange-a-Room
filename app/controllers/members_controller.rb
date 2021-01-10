@@ -8,6 +8,10 @@ class MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
     @rooms = @member.rooms.order(created_at: :desc).page(params[:page]).per(9)
+    @notifications = current_member.passive_notifications.page(params[:page]).per(20)
+    @notifications.where(checked: false).each do |notification|
+      notification.update_attributes(checked: true)
+    end
     @current_member_entry = Entry.where(member_id: current_member.id)
     @member_entry = Entry.where(member_id: @member.id)
     unless @member.id == current_member.id
@@ -43,10 +47,10 @@ class MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      flash[:notice] ='MY PAGEが編集されました'
+      flash[:notice] ='My Pageが編集されました'
       redirect_to member_path(@member.id)
     else
-      flash[:notice] ='MY PAGEの編集に失敗しました'
+      flash[:notice] ='My Pageの編集に失敗しました'
       render 'edit'
     end
   end

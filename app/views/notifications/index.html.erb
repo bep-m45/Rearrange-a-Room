@@ -1,0 +1,22 @@
+<% if @notifications.exists? %>
+  <% @notifications.each do |notification| %>
+    <%= notification.visitor.nickname %>さんが
+    <% case notification.action %>
+      <% when 'follow' then %>
+        <%= "あなたをフォローしました" %>
+      <% when "room_comment" then %>
+        <% if notification.room.member.id == current_member.id %>
+          <%= link_to "あなたの投稿", room_path(notification.room) %>
+          にコメントしました
+        <% end %>
+      <% when "favorite" then %>
+        <%= link_to "あなたの投稿", room_path(notification.room) %>
+        にいいねしました
+    <% end %>
+  <% end %>  
+<% else %>
+  現在通知はありません！
+  他のユーザーにフォロー、いいね、コメントされると、
+  ここに通知が表示されます！
+<% end %>
+ 

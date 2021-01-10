@@ -17,7 +17,7 @@ class Member < ApplicationRecord
   has_many :entres, dependent: :destroy
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
- 
+  
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |member|
       member.name = "ゲスト会員"
@@ -40,6 +40,17 @@ class Member < ApplicationRecord
 
   def following?(other_member)
       following.include?(other_member)
+  end
+  
+  def create_notification_follow!(current_member)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_member.id, id, 'follow'])
+    if temp.blank?
+      notification = current_member.active_notifications.new(
+      visited_id: id,
+      action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 
   validates :nickname, presence: true, length: { minimum: 2, maximum: 10 }

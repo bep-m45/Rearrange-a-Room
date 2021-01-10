@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'notifications/index'
   root to: 'homes#home'
   get '/homes/about' => 'homes#about'
   get '/search' => 'searches#search'
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     member do
       get :following,:followers
       get :member_rooms
+      resources :notifications, only: [:index]
    end
  end
    
@@ -38,7 +40,7 @@ Rails.application.routes.draw do
   
   resources :relationships, only: [:create, :destroy]
   resources :messages, only: [:create, :destroy]
-  resources :chats, only: [:create, :show, :index]   
+  resources :chats, only: [:create, :show, :index]  
  
   namespace :admins do
     resources :members do

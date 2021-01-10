@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
     @chat.member_id = current_member.id
     if @message.destroy
       @messages = @chat.messages
-      flash[:notice] ="Messageを削除しました"
+      flash[:notice] ="メッセージを削除しました"
     end
   end
     
