@@ -42,7 +42,7 @@
 https://docs.google.com/spreadsheets/d/1sGhStL_BX1KIlMd6ZKOe--waGIia5HOvQ1OHFM62ABY/edit#gid=0
 
 ### 開発環境
-- OS:
+- OS：Mac, AmazonLinux
 - 言語:Ruby, HTML, CSS, Javascript
 - フレームワーク:Ruby On Rails
 - JSライブラリ:jQuery
