@@ -119,7 +119,7 @@
                     <%= link_to notification.visitor.nickname, member_path(notification.visitor.id) %>さんが
                     <% case notification.action %>
                       <% when "follow" then %>
-                        あなたをフォローしました
+                        あなたを<%= link_to "フォロー", followers_member_path(notification.visited.id) %>しました
                       <% when "room_comment" then %>
                       <% if notification.room.member.id == current_member.id %>
                         <%= link_to "あなたの投稿", room_path(notification.room) %>にコメントしました
