@@ -87,8 +87,6 @@
         <% end %>
       </div>
     </div>
-    <div class="col-xs-1"></div>
-    
     <!-- チャットルームボタン -->
     <div class="col-xs-4">
       <% unless member.id == current_member.id %>
@@ -106,7 +104,7 @@
         <% end %>
       <% end %>
     </div>  
-    <div class="col-xs-3"></div>
+    <div class="col-xs-4"></div>
   </div>
 <% end %>
     
@@ -214,8 +212,11 @@
       </div>
       <form role="form" id="form1" action="" method="POST">
         <div class="modal-body">
-          <% if @notifications.exists? %>
-            <table class="table">
+          <% if @notifications.empty? %>
+            現在通知はありません！<br />
+            他のユーザーにフォロー、いいね、DM、コメントされるとここに通知が表示されます！
+          <% else %>
+            <table class="table　">
               <% @notifications.each do |notification| %>
                 <tr>
                   <td>
@@ -230,15 +231,13 @@
                       <% when "favorite" then %>
                       <%= link_to "あなたの投稿", room_path(notification.room) %>にいいねしました
                       <% when "dm" then %>
+                      <%= notification.checked %>
                       <%= link_to "あなたのDM", chat_path(notification.message.chat.id) %>にメッセージしました
                     <% end %>
                   </td>
                  </tr>
               <% end %>
             </table>
-          <% else %>
-            現在通知はありません！<br />
-            他のユーザーにフォロー、いいね、DM、コメントされるとここに通知が表示されます！
           <% end %>
         </div>
         <div class="modal-footer">

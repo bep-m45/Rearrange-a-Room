@@ -8,9 +8,9 @@ class MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
     @rooms = @member.rooms.order(created_at: :desc).page(params[:page]).per(9)
-    @notifications = current_member.passive_notifications.page(params[:page]).per(20)
-    @notifications.where(checked: false).each do |notification|
-    notification.update_attributes(checked: true)
+    @notifications = current_member.passive_notifications.where(checked: false).page(params[:page]).per(5)
+    @notifications.each do |notification|
+      notification.update_attributes(checked: true)
     end
     @current_member_entry = Entry.where(member_id: current_member.id)
     @member_entry = Entry.where(member_id: @member.id)
@@ -59,7 +59,10 @@ class MembersController < ApplicationController
     @member  = Member.find(params[:id])
     @members = @member.following
     @current_member_entry = Entry.where(member_id: current_member.id)
-    
+    @notifications = current_member.passive_notifications.page(params[:page]).per(20)
+    @notifications.where(checked: false).each do |notification|
+      notification.update_attributes(checked: true)
+    end
     my_chats_ids = []
     @current_member_entry.each do | entry |
       my_chats_ids << entry.chat.id
@@ -72,7 +75,10 @@ class MembersController < ApplicationController
     @member  = Member.find(params[:id])
     @members = @member.followers
     @current_member_entry = Entry.where(member_id: current_member.id)
-
+    @notifications = current_member.passive_notifications.page(params[:page]).per(20)
+    @notifications.where(checked: false).each do |notification|
+      notification.update_attributes(checked: true)
+    end
     my_chats_ids = []
     @current_member_entry.each do | entry |
       my_chats_ids << entry.chat.id

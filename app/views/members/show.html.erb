@@ -108,7 +108,10 @@
       </div>
       <form role="form" id="form1" action="" method="POST">
         <div class="modal-body">
-          <% if @notifications.exists? %>
+          <% if @notifications.empty? %>
+            現在通知はありません！<br />
+            他のユーザーにフォロー、いいね、DM、コメントされるとここに通知が表示されます！
+          <% else %>
             <table class="table">
               <% @notifications.each do |notification| %>
                 <tr>
@@ -130,9 +133,6 @@
                  </tr>
               <% end %>
             </table>
-          <% else %>
-            現在通知はありません！<br />
-            他のユーザーにフォロー、いいね、DM、コメントされるとここに通知が表示されます！
           <% end %>
         </div>
         <div class="modal-footer">
@@ -141,4 +141,4 @@
       </form>
     </div>
   </div>
-</div>   
+</div>

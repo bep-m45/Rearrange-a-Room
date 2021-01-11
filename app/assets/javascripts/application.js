@@ -48,3 +48,4 @@ $(function() {
 function inputCommentParentId(parentId){
     $("#room_comment_parent_id").val(parentId);
 }
+
