@@ -15,8 +15,13 @@
         <% if current_member == room_comment.member %>
           <%= link_to "削除", room_room_comment_path(@room, room_comment), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %><br />
         <% end %>
-        <div class="btn-wrap">
-          <button type="button" class="btn btn-info" data-toggle="mo dal" data-target="#modalForm" onClick="inputCommentParentId(<%=room_comment.id%>)">
+        <div class="btn-wrap room-responsive">
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalForm-reply">
+            返信 <i class="fa fa-comment"></i>
+          </button>
+        </div>
+        <div class="btn-wrap room-responsive-375px">
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalForm-reply-375px">
             返信 <i class="fa fa-comment"></i>
           </button>
         </div>
